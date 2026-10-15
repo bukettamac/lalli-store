@@ -1300,6 +1300,88 @@ nav.main button{font-weight:500;color:#2A2220}
   .logo span{font-size:21px!important;letter-spacing:.24em!important}
   #kampanyalar{padding-block:16px 20px!important}
 }
+
+/* =========================================================
+   v20: masaüstü ve mobil için ayrı, sade e-ticaret düzeni
+   ========================================================= */
+.hsearch{position:relative;display:flex;align-items:center;min-width:0}
+.hsearch svg{position:absolute;left:14px;width:18px;height:18px;color:var(--muted);pointer-events:none}
+.hsearch input{width:100%;height:44px;border:1px solid #E6DED2;border-radius:999px;background:#F8F6F3;padding:0 16px 0 42px;font-size:15px;color:var(--ink)}
+.hsearch input:focus{outline:none;border-color:var(--ruby);background:#fff;box-shadow:0 0 0 3px rgba(142,22,48,.10)}
+.tabbar{display:none}
+.sfhead,.sfapply,.sfbtn,.sfscrim{display:none}
+.shoplay{display:block}
+
+/* ---------- MASAÜSTÜ (1024px ve üzeri) ---------- */
+@media (min-width:1024px){
+  .hrow{display:grid!important;grid-template-columns:auto minmax(260px,560px) auto!important;grid-template-areas:"logo search side" "nav nav nav"!important;justify-content:space-between;column-gap:32px!important;row-gap:4px!important;padding-block:14px 0!important}
+  .hrow .logo{grid-area:logo}.hrow .hside{grid-area:side}.hrow .hsearch{grid-area:search}
+  nav.main{grid-area:nav;border-top:1px solid #F1EBE2;margin-top:10px}
+  [data-focussearch]{display:none!important}
+  #sform{display:none!important}
+  /* mağaza: solda filtre, sağda ürünler */
+  .shoplay{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;align-items:start}
+  .sfilters{position:sticky;top:150px;border:1px solid #EEE7DD;border-radius:16px;padding:20px;background:#fff}
+  .sfilters .sftitle{display:block;font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 14px}
+  .shoptools.sel4{grid-template-columns:minmax(0,1fr)!important;gap:16px!important;margin:0!important}
+  .shopmeta{margin:0 0 22px!important;padding:0 0 14px!important;border-top:0!important;border-bottom:1px solid #EEE7DD}
+  .shopmain .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:40px 22px!important}
+  .msort{display:flex;align-items:center;gap:10px}
+  .msort select{min-height:42px;border:1px solid #E6DED2;border-radius:10px;background:#fff;padding:0 12px;font-size:14px}
+}
+@media (min-width:1400px){.shopmain .grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+
+/* ---------- MOBİL (1023px ve altı) ---------- */
+@media (max-width:1023px){
+  .hrow{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;grid-template-areas:"logo gap side" "search search search"!important;row-gap:8px!important;padding-block:8px 10px!important}
+  .hrow .logo{grid-area:logo}.hrow .hside{grid-area:side;justify-content:flex-end}.hrow .hsearch{grid-area:search}
+  .hsearch input{height:42px;font-size:16px}
+  .akisbtn,#favbtn,[data-focussearch]{display:none!important}
+  #sform{display:none!important}
+  nav.main{grid-column:1/-1}
+  /* alt sekme çubuğu */
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid #ECE4D8;padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))}
+  .tabbar button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;border:0;background:none;font-size:11px;color:var(--ink2);cursor:pointer;font-family:inherit}
+  .tabbar svg{width:23px;height:23px}
+  .tabbar .tb-akis{color:var(--ruby);font-weight:500}
+  .tabbar .tb-akis svg{width:25px;height:25px}
+  .tabbar .badge-n{position:absolute;top:5px;left:calc(50% + 6px);min-width:18px;height:18px;border-radius:9px;background:var(--ruby);color:#fff;font-size:10.5px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .ckbar{bottom:calc(72px + env(safe-area-inset-bottom,0px))!important}
+  .fbub{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
+  #toasts{bottom:calc(72px + env(safe-area-inset-bottom,0px))!important}
+  /* mağaza: filtre alttan açılan panelde */
+  .shopmeta{display:flex!important;gap:10px;align-items:center;margin:0 0 18px!important;padding:0!important;border:0!important}
+  .shopmeta .cnt{margin-right:auto}
+  .sfbtn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border:1px solid #E6DED2;border-radius:999px;background:#fff;font-size:14px;cursor:pointer;color:var(--ink);font-family:inherit}
+  .sfbtn svg{width:18px;height:18px}
+  .sfbtn em{font-style:normal;background:var(--ruby);color:#fff;border-radius:9px;min-width:18px;height:18px;font-size:11px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px}
+  .msort select{min-height:42px;max-width:150px;border:1px solid #E6DED2;border-radius:999px;background:#fff;padding:0 12px;font-size:14px}
+  .msort span{display:none}
+  .sfilters{position:fixed;left:0;right:0;bottom:0;z-index:130;background:#fff;border-radius:22px 22px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -20px 50px rgba(0,0,0,.18);transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);max-height:85vh;overflow:auto}
+  .sfilters.open{transform:none}
+  .sfscrim.open{display:block;position:fixed;inset:0;z-index:129;background:rgba(30,25,24,.4)}
+  .sfhead{display:flex;align-items:center;justify-content:space-between;padding:6px 0 12px}
+  .sfhead::before{content:"";position:absolute;left:50%;top:8px;width:40px;height:4px;border-radius:2px;background:#DDD3C6;transform:translateX(-50%)}
+  .sfhead b{font-family:var(--serif);font-size:24px;font-weight:500}
+  .sftitle{display:none}
+  .shoptools.sel4{grid-template-columns:minmax(0,1fr)!important;gap:14px!important;margin:0 0 16px!important}
+  .sfapply{display:flex;width:100%}
+  .shopmain .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:26px 12px!important}
+  #magaza{padding-top:28px!important}
+  .shead p{display:none}
+  footer.site{padding-bottom:20px}
+}
+@media (min-width:640px) and (max-width:1023px){.shopmain .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+
+@media (min-width:1024px){.fsort{display:none!important}}
+@media (max-width:1023px){.fsort{display:none!important}}
+
+/* v20: sade başlık boyutları ve boşluklar */
+.shead h2,.chead h2{font-size:clamp(26px,2.6vw,36px)!important;line-height:1.15}
+.feature h2,.band h2{font-size:clamp(26px,2.6vw,38px)}
+@media (min-width:1024px){#magaza{padding-top:40px!important}.shead{margin-bottom:24px!important}:root{--sec:72px}}
+@media (max-width:1023px){:root{--sec:52px}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1336,6 +1418,7 @@ nav.main button{font-weight:500;color:#2A2220}
       </svg>
       <span id="brandname">LALLİ</span>
     </button>
+    <form class="hsearch" id="hsearch" role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="sr" for="hq">Ürün ara</label><input id="hq" type="search" placeholder="Ürün ara: şahmeran, yüzük, isimli kolye…" autocomplete="off" enterkeyhint="search"></form>
     <nav class="main" id="mainnav" aria-label="Menü"><ul id="nav"></ul></nav>
     <div class="hside r">
       <button class="akisbtn" data-openfeed><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/></svg>Akış</button>
@@ -1347,6 +1430,13 @@ nav.main button{font-weight:500;color:#2A2220}
   </div>
 </header>
 
+<nav class="tabbar" aria-label="Hızlı menü">
+  <button data-go="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"/></svg>Ana sayfa</button>
+  <button data-tab="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Kategoriler</button>
+  <button class="tb-akis" data-openfeed><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/></svg>Akış</button>
+  <button data-navfav><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>Favoriler</button>
+  <button data-opencart><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Sepet<span class="badge-n" id="tbcartn" hidden>0</span></button>
+</nav>
 <main>
   <section class="band sand" id="kampanyalar" style="padding-block:36px 40px">
     <div class="wrap">
@@ -1375,20 +1465,30 @@ nav.main button{font-weight:500;color:#2A2220}
       <label class="sr" for="q">Ürün ara</label>
       <input id="q" type="search" placeholder="Ara: şahmeran, isim, yakut…" autocomplete="off">
     </form>
+    <div class="sfscrim" id="sfscrim"></div>
+    <div class="shoplay">
+    <aside class="sfilters" id="sfilters" aria-label="Filtreler">
+    <div class="sfhead"><b>Filtrele</b><button class="icon" data-sfclose aria-label="Filtreleri kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+    <span class="sftitle">Filtrele</span>
     <div class="shoptools sel4">
       <label class="fsel"><span>Kategori</span><select id="f-catsel"></select></label>
       <label class="fsel"><span>Fiyat</span><select id="f-price"></select></label>
       <label class="fsel"><span>Özellik</span><select id="f-feat"></select></label>
-      <label class="fsel"><span>Sırala</span><select id="sort">
+      <label class="fsel fsort"><span>Sırala</span><select id="sort">
         <option value="rec">Önerilen</option>
         <option value="new">En yeniler</option>
         <option value="asc">Fiyat: düşükten yükseğe</option>
         <option value="desc">Fiyat: yüksekten düşüğe</option>
       </select></label>
     </div>
-    <div class="shopmeta"><span class="cnt" id="ccount"></span></div>
+    <button class="btn btn-ruby sfapply" data-sfclose>Ürünleri göster</button>
+    </aside>
+    <div class="shopmain">
+    <div class="shopmeta"><span class="cnt" id="ccount"></span><button class="sfbtn" id="sfbtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filtrele<em hidden>0</em></button><label class="msort"><span>Sırala</span><select id="msort" aria-label="Sırala"><option value="rec">Önerilen</option><option value="new">En yeniler</option><option value="asc">Fiyat: artan</option><option value="desc">Fiyat: azalan</option></select></label></div>
     <div class="grid" id="cgrid"></div>
     <div class="more"><div class="lmwrap" id="lmwrap"><div class="lmprog"><span id="lmbar"></span></div><div class="lmcount" id="lmcount"></div><button class="lm" id="loadmore"></button></div></div>
+    </div>
+    </div>
   </section>
 
   <section class="band blush" id="cift">
@@ -2550,6 +2650,34 @@ var _addItem18=addItem;
 addItem=function(id,opt){var p=byId[id];if(p&&p.soldout){toast('<div class="r"><div style="flex:1"><h4>'+esc(p.name)+' tükendi</h4><div style="font-size:14px">Yeniden geldiğinde favorilerinden takip edebilirsin.</div></div></div>',{ms:3500});return;}_addItem18(id,opt);};
 
 /* yönetici sonu v18 */
+
+
+/* =========================================================
+   v20: üst arama, mobil alt sekme çubuğu, filtre paneli
+   ========================================================= */
+(function(){
+  var hq=$('#hq');
+  if(hq){
+    var t;hq.addEventListener('input',function(){var v=this.value;$('#q').value=v;$('#q').dispatchEvent(new Event('input',{bubbles:true}));clearTimeout(t);if(v.trim().length>=2)t=setTimeout(function(){var m=$('#magaza');if(m.getBoundingClientRect().top>window.innerHeight*.6||m.getBoundingClientRect().bottom<0)m.scrollIntoView({behavior:'smooth'});},500);});
+    $('#hsearch').addEventListener('submit',function(e){e.preventDefault();hq.blur();$('#magaza').scrollIntoView({behavior:'smooth'});});
+    $('#q').addEventListener('input',function(){if(document.activeElement!==hq)hq.value=this.value;});
+  }
+  function sheet(open){$('#sfilters').classList.toggle('open',open);$('#sfscrim').classList.toggle('open',open);if(open)setTimeout(function(){var s=$('#sfilters select');if(s)s.focus();},250);}
+  function activeCount(){var n=0;if(st.cat!=='all'||st.favs)n++;if(st.price!=='all')n++;if((st.feat||'all')!=='all')n++;return n;}
+  function paintSf(){var n=activeCount(),b=$('#sfbtn em');if(b){b.textContent=n;b.hidden=!n;}var ms=$('#msort');if(ms)ms.value=st.sort;}
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('button');if(!el)return;
+    if(el.id==='sfbtn'){sheet(true);return;}
+    if(el.hasAttribute('data-sfclose')){sheet(false);return;}
+    if(el.dataset.tab==='menu'){var m=$('#mainnav');if(!m.classList.contains('open'))$('#mtoggle').click();window.scrollTo({top:0,behavior:'smooth'});return;}
+  });
+  $('#sfscrim').addEventListener('click',function(){sheet(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&$('#sfilters').classList.contains('open')){e.stopImmediatePropagation();sheet(false);}},true);
+  var ms=$('#msort');if(ms)ms.addEventListener('change',function(){$('#sort').value=this.value;$('#sort').dispatchEvent(new Event('change',{bubbles:true}));});
+  var _rs=renderShop;renderShop=function(){_rs.apply(this,arguments);paintSf();};
+  var _pb=paintBadges;paintBadges=function(){_pb();var n=count(),b=$('#tbcartn');if(b){b.textContent=n;b.hidden=!n;}};
+  paintBadges();paintSf();
+})();
 
 
 /* =========================================================
