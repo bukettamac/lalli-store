@@ -23,15 +23,17 @@ module.exports = async (req, res) => {
     if (mode === 'kapali') return L.send(res, 403, { ok: false, msg: 'Satışlarımız çok yakında başlıyor.' });
     const by = L.catalog(cfg);
     const items = [];
-    let sub = 0;
+    let sub = 0, stockErr = '';
     (Array.isArray(b.items) ? b.items : []).slice(0, 50).forEach(l => {
       const p = by[String(l.id)];
       if (!p || p.hidden || !(p.price > 0)) return;
       const q = Math.max(1, Math.min(20, parseInt(l.q, 10) || 1));
+      if (L.tracked(p) && +p.stock < q) { stockErr = stockErr || (+p.stock <= 0 ? p.name + ' tükendi.' : p.name + ' için yalnızca ' + (+p.stock) + ' adet kaldı.'); return; }
       const opt = l.opt || {};
       items.push({ id: p.id, name: p.name, cat: p.cat, q, price: p.price, opt: { size: L.clean(opt.size, 8), eng: L.clean(opt.eng, 40) } });
       sub += p.price * q;
     });
+    if (stockErr) return L.send(res, 409, { ok: false, msg: stockErr + ' Sepetini güncelleyip tekrar dene.' });
     if (!items.length) return L.send(res, 400, { ok: false, msg: 'Sepetin boş ya da ürünler artık satışta değil.' });
 
     let discount = 0, coupon = null, couponLabel = null;
@@ -50,6 +52,7 @@ module.exports = async (req, res) => {
       subtotal: sub, discount, total, coupon, coupon_label: couponLabel, items, customer, stand
     };
     await L.rest('orders', { method: 'POST', body: order, headers: { Prefer: 'return=minimal' } });
+    try { await L.adjustStock(items, -1); } catch (e) { console.error('stok', e); }
 
     if (!pay) return L.send(res, 200, { ok: true, id, manual: true });
 
@@ -79,6 +82,7 @@ module.exports = async (req, res) => {
     if (!r || r.status !== 'success' || !r.paymentPageUrl) {
       console.error('iyzico', r && r.errorMessage);
       await L.rest('orders?id=eq.' + id, { method: 'PATCH', body: { payment_status: 'basarisiz', updated_at: new Date().toISOString() } });
+      try { await L.adjustStock(items, +1); } catch (e) { console.error('stok', e); }
       return L.send(res, 502, { ok: false, msg: 'Ödeme sayfası açılamadı, biraz sonra tekrar dene.' });
     }
     await L.rest('order_admin', { method: 'POST', body: { order_id: id, payment: { token: r.token } }, headers: { Prefer: 'resolution=merge-duplicates,return=minimal' } });

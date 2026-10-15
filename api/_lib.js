@@ -52,12 +52,12 @@ function catalog(cfg) {
   const all = [];
   BASE.P.forEach(b => {
     const o = prods[b.id] || {}, p = Object.assign({}, b);
-    ['name', 'price', 'hidden'].forEach(k => { if (o[k] !== undefined) p[k] = o[k]; });
+    ['name', 'price', 'hidden', 'stock'].forEach(k => { if (o[k] !== undefined) p[k] = o[k]; });
     p.priceSet = o.price !== undefined; all.push(p);
   });
   Object.keys(prods).forEach(id => {
     const o = prods[id];
-    if (o && o.extra) all.push({ id, cat: o.type || 'kolye', name: o.name || id, price: o.price || 0, hidden: o.hidden, incl: o.incl, priceSet: true });
+    if (o && o.extra) all.push({ id, cat: o.type || 'kolye', name: o.name || id, price: o.price || 0, hidden: o.hidden, incl: o.incl, stock: o.stock, priceSet: true });
   });
   const tmp = {}; all.forEach(p => { tmp[p.id] = p; });
   all.forEach(p => {
@@ -147,4 +147,19 @@ function siteUrl(req) {
 function clientIp(req) { return String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || '85.34.78.112'; }
 function clean(s, n) { return String(s == null ? '' : s).replace(/[<>]/g, '').trim().slice(0, n || 120); }
 
-module.exports = { send, rest, getUser, getConfig, catalog, dealsOf, evalCoupon, iyz, iyzOn, money, siteUrl, clientIp, clean, norm, STANDS, SERVICE };
+function tracked(p) { return p && p.stock !== undefined && p.stock !== null && p.stock !== ''; }
+/* Stok düş / geri ekle: site ayarlarındaki ürün stoklarını günceller (sign: -1 düş, +1 geri ekle) */
+async function adjustStock(items, sign) {
+  const rows = await rest('docs?col=eq.site&id=eq.config&select=data');
+  const cfg = (rows && rows[0] && rows[0].data) || {};
+  const prods = cfg.products || {};
+  let changed = false;
+  items.forEach(it => {
+    const o = prods[it.id];
+    if (o && o.stock !== undefined && o.stock !== null && o.stock !== '') { o.stock = Math.max(0, (+o.stock || 0) + sign * (+it.q || 0)); changed = true; }
+  });
+  if (!changed) return;
+  await rest('docs?col=eq.site&id=eq.config', { method: 'PATCH', body: { data: cfg, updated_at: new Date().toISOString() }, headers: { Prefer: 'return=minimal' } });
+}
+
+module.exports = { tracked, adjustStock, send, rest, getUser, getConfig, catalog, dealsOf, evalCoupon, iyz, iyzOn, money, siteUrl, clientIp, clean, norm, STANDS, SERVICE };
