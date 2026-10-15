@@ -1464,9 +1464,6 @@ html,body{margin:0!important}
 .fx-hero .btn{min-height:48px;padding:0 26px}
 .fx-tip{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 14px;font-size:13.5px;color:var(--goldtext);letter-spacing:.04em}
 .fx-tip svg{width:18px;height:18px}
-.fview{background:#fff!important;color:var(--ink)!important}
-.fv-x,.fv-hint{display:none!important}
-.fv-list{scroll-snap-type:none!important}
 .fd-top{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:calc(6px + env(safe-area-inset-top,0px)) 10px 6px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);text-align:center;font-family:var(--serif);font-size:20px}
 .fd-back{width:44px;height:44px;border-radius:50%;border:0;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
 .fd-back:hover{background:var(--sand)}
@@ -1572,6 +1569,54 @@ a.fd-name:hover{color:var(--ruby)}
 @media (min-width:1024px){.pf-tabs{top:57px}}
 
 @media (max-width:1023px){.pfbtn{display:none!important}}
+
+/* v27: etkileyici Çiftlere özel */
+#cift{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 85% 20%,#FBE9EC 0%,#FFF8F6 45%,#FFFFFF 100%)!important}
+#cift::before{content:"&";position:absolute;right:-2%;top:-14%;font-family:'Great Vibes',cursive;font-size:clamp(260px,34vw,520px);line-height:1;color:rgba(142,22,48,.06);pointer-events:none}
+#cift .feature{position:relative}
+#cift #cpl-title{font-size:clamp(32px,3.6vw,48px)!important;line-height:1.08}
+#cift #cpl-title em{display:block;font-family:'Great Vibes',cursive;font-style:normal;font-weight:400;color:var(--ruby);font-size:1.35em;line-height:1;margin-top:2px}
+#cift .eyebrow{color:var(--ruby)}
+#cift .steps{gap:8px!important}
+#cift .steps li{background:#fff;border:1px solid #F1D9DE;border-radius:999px;padding:6px 14px 6px 6px;align-items:center!important;box-shadow:0 4px 14px rgba(142,22,48,.06)}
+#cift .steps li b{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--ruby);color:#fff;font-size:13px;font-family:var(--sans)}
+#cift .big{position:relative;border-radius:24px!important;box-shadow:0 24px 60px rgba(142,22,48,.16);overflow:hidden}
+#cift .big::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(94,14,33,.62),rgba(94,14,33,0) 55%);pointer-events:none}
+#cift .engr{position:absolute;left:0;right:0;bottom:16px;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:4px 10px;color:#FFF3E3;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+#cift .engr span{font-family:'Great Vibes',cursive;font-size:clamp(34px,3.4vw,46px);line-height:1}
+#cift .engr i{font-family:'Great Vibes',cursive;font-style:normal;font-size:clamp(26px,2.6vw,34px);color:#E9D3A6}
+#cift .engr small{flex-basis:100%;text-align:center;font-size:12px;letter-spacing:.3em;color:#F3D9A4}
+#cift .cbadge{position:absolute;left:14px;top:14px;z-index:1;background:rgba(255,255,255,.92);color:var(--ruby);font-size:12px;font-weight:500;letter-spacing:.04em;padding:7px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+@media (max-width:1023px){#cift .big{height:260px!important}#cift::before{top:-6%;font-size:300px}}
+
+/* v28: tam ekran görüntüleyici geri; yumuşak kare ürünler; sipariş seçimi */
+.fview{background:#0E0B0A!important;color:#fff!important}
+.fv-x{display:flex!important}
+.fv-list{scroll-snap-type:y mandatory!important}
+.fv-shade{background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,0) 20%,rgba(0,0,0,0) 46%,rgba(10,6,5,.55) 66%,rgba(10,6,5,.92) 100%)!important}
+.fv-foot{gap:14px!important;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))!important}
+.fv-cmt{font-size:20px!important;line-height:1.35!important;text-shadow:0 2px 10px rgba(0,0,0,.55)!important}
+.fv-acc{display:inline-flex;align-items:center;gap:6px;color:#fff!important;text-decoration:none;font-weight:500;font-size:15px}
+.fv-acc .brandico{width:18px;height:18px;border-radius:5px}
+span.fv-acc{font-weight:500}
+.fv-sq{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin-right:-56px;padding:2px 56px 2px 0;scroll-snap-type:x proximity}
+.fv-sq::-webkit-scrollbar{display:none}
+.fv-sqi{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;padding:0;cursor:pointer;color:#fff;scroll-snap-align:start}
+.fv-sqi .im{display:block;width:62px;height:62px;border-radius:22px;overflow:hidden;background:#F8F2EA;border:2px solid rgba(255,255,255,.9);box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.fv-sqi .im img,.fv-sqi .im svg{width:100%;height:100%;object-fit:cover;display:block}
+.fv-sqi .pr{font-size:11.5px;font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.sstep{display:flex;align-items:center;gap:8px;margin:6px 0 2px;font-weight:500;font-size:14.5px}
+.sstep b{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--ruby);color:#fff;align-items:center;justify-content:center;font-size:12.5px}
+.sords{display:flex;flex-direction:column;gap:8px}
+.sord{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:8px 12px;cursor:pointer;background:#fff}
+.sord:has(input:checked){border-color:var(--ruby);background:#FFF8F9}
+.sord input{accent-color:var(--ruby);width:18px;height:18px;flex:none}
+.sord .th{display:flex}
+.sord .th span{width:38px;height:38px;border-radius:12px;overflow:hidden;border:2px solid #fff;margin-left:-10px;background:var(--sand)}
+.sord .th span:first-child{margin-left:0}
+.sord .th svg,.sord .th img{width:100%;height:100%;object-fit:cover;display:block}
+.sord .tx{display:flex;flex-direction:column;line-height:1.3;font-size:13px;color:var(--muted)}
+.sord .tx b{color:var(--ink);font-weight:500;font-size:14px}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -2147,7 +2192,7 @@ var DEF={
   featuredIds:[],pageSize:8,products:{},
   sections:{
     couple:{show:true,eyebrow:'Çiftlere özel',title:'İki isim, tek hikâye',text:'Eşleşen yüzükler, bileklikler ve iki yarım kalp kolyeler. İsimlerinizi ve size özel tarihi ücretsiz yazdırıyoruz.'},
-    sahmeran:{show:true,eyebrow:'Şahmeranlar',title:'Bilgeliğin kraliçesi',text:'Anadolu efsanelerinde Şahmeran, yılanların bilge kraliçesidir; koruyuculuğu ve bereketi simgeler. Taçlı başı ve sarmal gövdesiyle el işçiliğiyle hazırlanır.'},
+    sahmeran:{show:false,eyebrow:'Şahmeranlar',title:'Bilgeliğin kraliçesi',text:'Anadolu efsanelerinde Şahmeran, yılanların bilge kraliçesidir; koruyuculuğu ve bereketi simgeler. Taçlı başı ve sarmal gövdesiyle el işçiliğiyle hazırlanır.'},
     sets:{show:true,title:'Setler',text:'Kolye, küpe ve bileklik bir arada; ayrı ayrı almaktan %10 daha uygun.'},
     feed:{motto:'Tak takıştır, LALLİ Akışı’nda paylaş',text:'Müşterilerimizin LALLİ ile paylaştığı kombinler. Etikete dokun, parçayı keşfet; beğendiğini kalple işaretle.'},
     member:{title:'Üye ol, ayrıcalıkları kaçırma',text:'Hoş geldin indirimin hemen gelsin; yeni koleksiyonları, fırsat günü kodlarını ve üyelere özel kuponları seçtiğin kanaldan ilk sen öğren.'}
@@ -2590,7 +2635,7 @@ function openOrders(){
 var shareFile=null;
 document.addEventListener('change',function(e){
   if(e.target.id==='sfile'){var f=e.target.files[0];if(!f)return;if(!/^image\//.test(f.type)){$('#serr').textContent='Yalnızca fotoğraf seçebilirsin.';return;}shareFile=f;var u=URL.createObjectURL(f);$('#sprev').innerHTML='<img src="'+u+'" alt="Seçilen fotoğraf">';}
-  if(e.target.name==='sp'){var ch=$$('[name=sp]:checked');if(ch.length>3){e.target.checked=false;$('#serr').textContent='En fazla 3 parça seçebilirsin.';}}
+  if(e.target.name==='sp'){var ch=$$('[name=sp]:checked');if(ch.length>8){e.target.checked=false;$('#serr').textContent='En fazla 8 parça seçebilirsin.';}}
 });
 document.addEventListener('input',function(e){if(e.target.id==='scmt')$('#sccount').textContent=e.target.value.length+' / 160';});
 document.addEventListener('click',function(e){
@@ -2665,7 +2710,7 @@ async function sendShare(){
   var b=$('#ssend');b.disabled=true;er.textContent='';b.textContent='Ekleniyor…';
   try{
     var a=await assetsNs.upload(shareFile);
-    var post={id:'p'+String(myId).slice(-6)+Date.now().toString(36),url:a.url,assetId:a.id,pids:pids,pid:pids[0],comment:cm.slice(0,160),name:nm.slice(0,30),social:u?{net:net,user:u}:null,orders:delivered().map(function(o){return o.id;}),ts:Date.now()};
+    var post={id:'p'+String(myId).slice(-6)+Date.now().toString(36),url:a.url,assetId:a.id,pids:pids,pid:pids[0],comment:cm.slice(0,160),name:nm.slice(0,30),social:u?{net:net,user:u}:null,orders:[SHARE_ORDER||''],ts:Date.now()};
     var mine=(MYPOSTS||[]).slice(0,29);mine.unshift(post);
     await dbNs.doc('userposts/'+myId).set({uid:myId,posts:mine,ts:Date.now()});MYPOSTS=mine;
     S.set('lalli_name',nm);S.set('lalli_social',{net:net,user:u});
@@ -2907,7 +2952,7 @@ var CAMP=(function(){
     if(n)n.addEventListener('click',function(){touch();var cs=cards();if(atEnd())go(0);else go(cur()+1);});
     ['pointerdown','touchstart','wheel','focusin'].forEach(function(ev){c.addEventListener(ev,touch,{passive:true});});
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!reduce&&!timer)timer=setInterval(function(){
+    if(false)timer=setInterval(function(){
       if(!c||document.hidden||Date.now()-hold<4000||c.matches(':hover'))return;
       var cs=cards();if(cs.length<2||c.scrollWidth<=c.clientWidth+4)return;
       if(atEnd())go(0);else go(cur()+1);
@@ -3027,6 +3072,94 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#profil
 var _openOrders26=openOrders;openOrders=function(){_openOrders26.apply(this,arguments);};
 setInterval(function(){if(!$('#profile').hidden&&document.activeElement&&!document.activeElement.closest('#pfedit')){var y=$('#profile').scrollTop;renderProfile();$('#profile').scrollTop=y;}},4000);
 var _paintLikes26=paintLikes;paintLikes=function(){_paintLikes26();};
+
+
+/* =========================================================
+   v27: kart süresi ayarı, etkileyici Çiftlere özel
+   ========================================================= */
+if(typeof carousel!=='undefined')carousel.init=function(){};
+DEF.slidesDelay=4;if(C.slidesDelay==null)C.slidesDelay=4;
+DEF.sections.sahmeran.show=false;if(!(CONFIG&&CONFIG.sections&&CONFIG.sections.sahmeran&&CONFIG.sections.sahmeran.show!==undefined))C.sections.sahmeran.show=false;
+/* fırsat kartları: süre ayardan (saniye; 0 = kendiliğinden geçmesin) */
+(function(){
+  var last=Date.now();
+  function delay(){var d=+((C&&C.slidesDelay!=null)?C.slidesDelay:4);return isNaN(d)?4:d;}
+  ['pointerdown','touchstart','wheel','focusin'].forEach(function(ev){var c=$('#camps');if(c)c.addEventListener(ev,function(){last=Date.now()+2000;},{passive:true});});
+  CAMP.tick=function(){};
+  setInterval(function(){
+    var d=delay();if(!d)return;var c=$('#camps');if(!c||document.hidden||c.matches(':hover'))return;
+    if(Date.now()-last<d*1000)return;last=Date.now();
+    var cs=$$('.camp',c);if(cs.length<2||c.scrollWidth<=c.clientWidth+4)return;
+    var cur=0,bd=1e9;cs.forEach(function(el,k){var dd=Math.abs((el.offsetLeft-c.offsetLeft)-c.scrollLeft);if(dd<bd){bd=dd;cur=k;}});
+    var atEnd=c.scrollLeft>=c.scrollWidth-c.clientWidth-4,k=atEnd?0:cur+1;
+    c.scrollTo({left:cs[k].offsetLeft-c.offsetLeft,behavior:'smooth'});
+  },250);
+})();
+/* Çiftlere özel: el yazısı vurgu, kişiye özel yazı önizlemesi */
+var _renderSections27=renderSections;
+renderSections=function(){
+  _renderSections27();
+  var t=(C.sections.couple.title||''),i=t.indexOf(',');
+  $('#cpl-title').innerHTML=i>-1?esc(t.slice(0,i+1))+' <em>'+esc(t.slice(i+1).trim())+'</em>':esc(t);
+};
+var _renderHome27=renderHome;
+renderHome=function(){
+  _renderHome27();
+  var a=$('#coupleart');if(!a||$('.engr',a))return;
+  a.insertAdjacentHTML('beforeend','<span class="cbadge">✦ İsim ve tarih yazdırma ücretsiz</span><div class="engr" aria-hidden="true"><span>Ayşe</span><i>&amp;</i><span>Mert</span><small>14 · 02 · 2026</small></div>');
+};
+/* yönetici sonu v27 */
+
+
+/* =========================================================
+   v28: akış görüntüleyicisi yeniden tam ekran; sipariş seçerek paylaşım
+   ========================================================= */
+function fvSlide(it,i){
+  var pids=postPids(it),first=byId[pids[0]],lk=liked(it.id),n=likeCount(it.id),who=whoOf(it);
+  var bg=it.example?'':'<div class="fv-bg" style="background-image:url(\''+esc(it.url).replace(/'/g,'%27')+'\')"></div>';
+  return '<section class="fv" data-fvi="'+i+'" data-id="'+esc(it.id)+'" aria-label="'+esc((who||'LALLİ')+' kombini')+'">'+bg+
+    '<div class="fv-media" data-dbl="'+esc(it.id)+'">'+postMedia(it,true)+'<div class="fv-shade"></div><span class="burst" aria-hidden="true">'+HEART+'</span></div>'+
+    '<div class="fv-head"><span class="pin-av" aria-hidden="true">'+esc(initials(who||(first&&first.name)))+'</span><div class="fv-who">'+(whoHtml(it,'fv-acc')||'<b>LALLİ</b>')+'<span>'+(it.example?'Örnek kombin':esc(ago(it.ts)))+'</span></div></div>'+
+    '<div class="fv-rail"><button class="fv-btn" data-like="'+esc(it.id)+'" aria-pressed="'+lk+'" aria-label="'+(lk?'Beğenmekten vazgeç':'Beğen')+'"><span class="n">'+(n||'')+'</span><i class="c">'+HEART+'</i></button>'+
+      '<button class="fv-btn" data-postprods="'+esc(it.id)+'" aria-label="Bu kombindeki parçalar"><i class="c">'+BAGI+'</i>'+pids.length+'</button>'+
+      '<button class="fv-btn" data-fvshare="'+esc(it.id)+'" aria-label="Paylaş"><i class="c">'+SHAREI+'</i>Paylaş</button></div>'+
+    '<div class="fv-foot">'+(it.comment?'<p class="fv-cmt">“'+esc(it.comment)+'”</p>':'')+
+      '<div class="fv-sq" aria-label="Bu fotoğraftaki takılar">'+pids.map(function(pid){var p=byId[pid];return '<button class="fv-sqi" data-qv="'+p.id+'" aria-label="'+esc(p.name)+', '+tl(p.price)+'"><span class="im">'+art(p)+'</span><span class="pr">'+tl(p.price)+'</span></button>';}).join('')+'</div></div>'+
+  '</section>';
+}
+function openViewer(id){
+  FV.list=feedItems();var i=Math.max(0,FV.list.findIndex(function(x){return x.id===id;}));
+  var l=$('#fvlist');
+  l.innerHTML=FV.list.map(fvSlide).join('')+'<section class="fv-end"><b>Hepsi bu kadar</b><span>Sıradaki kombin senin olsun.</span><button class="btn btn-ruby" data-share="">Kombinini paylaş</button><button class="btn btn-line" data-fvclose style="color:#fff;border-color:rgba(255,255,255,.5)">Akışa dön</button></section>';
+  $('#fview').hidden=false;paintLikes();l.scrollTop=i*l.clientHeight;
+  var seen=S.get('lalli_seen',[]);if(seen.indexOf(id)<0){seen.push(id);S.set('lalli_seen',seen.slice(-300));}
+  var h=$('#fvhint');if(!S.get('lalli_fvhint2',false)&&FV.list.length>1){h.hidden=false;S.set('lalli_fvhint2',true);setTimeout(function(){h.hidden=true;},3800);}
+  setTimeout(function(){var x=$('#fview [data-fvclose]');if(x)x.focus({preventScroll:true});},60);
+}
+/* sağa kaydırınca akış ızgarasına dön (ürün şeridi hariç) */
+(function(){var sx=0,sy=0,ok=false,v=$('#fview');v.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;ok=!e.target.closest('.fv-sq,.fd-prods');},{passive:true});v.addEventListener('touchend',function(e){if(!ok)return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>90&&Math.abs(dy)<70)closeViewer();},{passive:true});})();
+
+/* paylaşım: önce teslim edilen siparişi seç */
+var SHARE_ORDER='';
+function shareItemsHtml(o){return (o?o.items:[]).filter(function(it){return vis(it.id);}).map(function(it){var p=byId[it.id];return '<label class="sitem"><input type="checkbox" name="sp" value="'+p.id+'" checked><span class="im">'+art(p)+'</span><span>'+esc(p.name)+'</span></label>';}).join('')||'<p class="ahint">Bu siparişteki ürünler artık satışta değil.</p>';}
+function openShare(orderId){
+  var dl=delivered();
+  if(!dl.length){openOrders();return;}
+  var o=dl.filter(function(x){return x.id===orderId;})[0]||dl[0];SHARE_ORDER=o.id;
+  var ls=S.get('lalli_social',{net:'instagram',user:''});
+  $('#sharebody').innerHTML=
+    '<div class="sstep"><b>1</b>Hangi siparişinin fotoğrafı?</div><div class="sords">'+dl.map(function(x){return '<label class="sord"><input type="radio" name="sord" value="'+esc(x.id)+'"'+(x.id===o.id?' checked':'')+'><span class="th">'+x.items.slice(0,3).map(function(it){var p=byId[it.id];return p?'<span>'+art(p)+'</span>':'';}).join('')+'</span><span class="tx"><b>Sipariş '+esc(x.id)+'</b><span>'+new Date(x.ts).toLocaleDateString('tr-TR')+' · '+x.items.length+' parça</span></span></label>';}).join('')+'</div>'+
+    '<div class="sstep"><b>2</b>Fotoğrafta görünen takılar</div><div class="shareitems" id="sitems">'+shareItemsHtml(o)+'</div>'+
+    '<div class="sstep"><b>3</b>Fotoğrafın ve yorumun</div>'+
+    '<label class="sfile"><span class="sprev" id="sprev"><span>Fotoğraf seç</span></span><input type="file" accept="image/*" id="sfile" class="sr"></label>'+
+    '<label class="mfl" style="color:var(--ink2)">Yorumun (1–2 cümle)<textarea id="scmt" maxlength="160" rows="3" placeholder="Örn. Her gün takıyorum, çok zarif duruyor."></textarea><small id="sccount">0 / 160</small></label>'+
+    '<label class="mfl" style="color:var(--ink2)">Görünecek adın<input type="text" id="sname" maxlength="30" value="'+esc(S.get('lalli_name',''))+'" placeholder="Örn. Ayşe Y."></label>'+
+    '<fieldset class="netpick"><legend>Adına tıklanınca hesabına gitsin mi? (isteğe bağlı)</legend><div class="nets">'+Object.keys(NETS).map(function(k){return '<label class="netopt"><input type="radio" name="snet" value="'+k+'"'+(ls.net===k?' checked':'')+'>'+netIcon(k)+'<span>'+NETS[k].name+'</span></label>';}).join('')+'</div>'+
+    '<label class="mfl" style="color:var(--ink2)">Kullanıcı adın<span class="uwrap"><span>@</span><input type="text" id="suser" maxlength="40" value="'+esc(ls.user||'')+'" placeholder="kullaniciadi" autocapitalize="off" autocomplete="off" spellcheck="false"></span></label><div class="ahint" id="slinkprev"></div></fieldset>'+
+    '<div class="chk" style="font-size:13px"><input type="checkbox" id="sok"><label for="sok">Fotoğrafımın, yorumumun ve etiketlediğim hesabın LALLİ Akışı’nda yayınlanmasına izin veriyorum.</label></div><div class="err" id="serr" aria-live="polite"></div><button class="btn btn-ruby" id="ssend">Akışa ekle</button>';
+  shareFile=null;$('#orders').hidden=true;$('#share').hidden=false;updLinkPrev();
+}
+document.addEventListener('change',function(e){if(e.target.name!=='sord')return;SHARE_ORDER=e.target.value;var o=delivered().filter(function(x){return x.id===SHARE_ORDER;})[0];$('#sitems').innerHTML=shareItemsHtml(o);});
 
 
 /* =========================================================
