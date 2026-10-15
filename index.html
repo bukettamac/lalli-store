@@ -1396,18 +1396,13 @@ nav.main button{font-weight:500;color:#2A2220}
   #cift .big{height:230px}
   #cift .steps{display:none!important}
 }
-/* sonsuz akış */
-#camps.cmarq{display:block!important;overflow:clip!important;margin:0!important;padding:4px 0!important;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-#camps .ctrack{display:flex;gap:16px;width:max-content;animation:cmarq var(--cdur,40s) linear infinite}
-#camps.cmarq:hover .ctrack,#camps.cmarq.hold .ctrack{animation-play-state:paused}
-#camps .ctrack .camp{flex:0 0 var(--cw)!important;width:var(--cw)!important;max-width:none!important}
-#camps .ctrack .camp.wide{--cw:var(--cww)}
-#camps{--cw:400px;--cww:640px}
-@keyframes cmarq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
-.campnav{display:none!important}
-#kampanyalar .wrap{max-width:none;padding-inline:0}
-@media (max-width:1023px){#camps{--cw:300px;--cww:340px}#camps .ctrack{gap:12px}@keyframes cmarq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}}
-@media (prefers-reduced-motion:reduce){#camps .ctrack{animation:none}#camps.cmarq{overflow-x:auto!important}}
+/* fırsat kartları: eski düzen + ortalama */
+#camps>.camp:first-child{margin-left:auto}
+#camps>.camp:last-child{margin-right:auto}
+@media (max-width:640px){
+  #camps{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))!important;padding-inline:9vw!important;scroll-padding-inline:9vw!important}
+  #camps .camp,#camps .camp.wide{flex:0 0 82vw!important;scroll-snap-align:start}
+}
 
 /* v22: üyelik metinleri, setler bölümü kaldırıldı */
 #setler{display:none!important}
@@ -2730,27 +2725,6 @@ addItem=function(id,opt){var p=byId[id];if(p&&p.soldout){toast('<div class="r"><
   paintBadges();paintSf();
 })();
 
-
-/* =========================================================
-   v21: fırsat kartları sonsuz akışta
-   ========================================================= */
-var _renderSlides21=renderSlides;
-renderSlides=function(){
-  _renderSlides21();
-  var c=$('#camps');if(!c)return;var html=c.innerHTML;if(!html.trim())return;
-  c.classList.add('cmarq');
-  c.innerHTML='<div class="ctrack"><div class="cset" style="display:contents">'+html+'</div></div>';
-  var tr=$('.ctrack',c);
-  // ekranı dolduracak kadar çoğalt, sonra kesintisiz döngü için ikiye katla
-  var guard=0;while(tr.scrollWidth<c.clientWidth*1.1&&guard++<6)tr.insertAdjacentHTML('beforeend','<div class="cset" style="display:contents">'+html+'</div>');
-  var once=tr.innerHTML;tr.insertAdjacentHTML('beforeend',once.replace(/<div class="cset"/g,'<div class="cset dup"'));
-  $$('.cset',tr).forEach(function(s,i){if(i>0)$$('.camp',s.parentNode).length;});
-  // ilk takım dışındakiler ekran okuyucudan gizli, tabla gelinmez
-  var sets=$$('.cset',tr);sets.forEach(function(s,i){if(i===0)return;Array.prototype.forEach.call(s.children,function(ch){ch.setAttribute('aria-hidden','true');ch.setAttribute('inert','');});});
-  var px=tr.scrollWidth/2;tr.style.setProperty('--cdur',Math.max(24,Math.round(px/45))+'s');
-};
-(function(){var c=$('#camps');if(!c)return;var t;c.addEventListener('touchstart',function(){c.classList.add('hold');clearTimeout(t);},{passive:true});c.addEventListener('touchend',function(){clearTimeout(t);t=setTimeout(function(){c.classList.remove('hold');},1800);},{passive:true});c.addEventListener('focusin',function(){c.classList.add('hold');});c.addEventListener('focusout',function(){c.classList.remove('hold');});})();
-var _rs21;window.addEventListener('resize',function(){clearTimeout(_rs21);_rs21=setTimeout(function(){if(typeof renderSlides==='function')renderSlides();},300);});
 
 
 /* =========================================================
