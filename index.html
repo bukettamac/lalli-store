@@ -30,7 +30,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&family=Great+Vibes&display=swap">
 <style>
 /* Layout: ferah fildişi vitrin; kategori kutuları, sakin ızgaralar, hızlı bakış penceresi */
 :root{
@@ -1382,6 +1382,31 @@ nav.main button{font-weight:500;color:#2A2220}
 .feature h2,.band h2{font-size:clamp(26px,2.6vw,38px)}
 @media (min-width:1024px){#magaza{padding-top:40px!important}.shead{margin-bottom:24px!important}:root{--sec:72px}}
 @media (max-width:1023px){:root{--sec:52px}}
+
+/* v21: el yazısı Şahmeran başlığı, eşit boy Çiftlere özel, sonsuz akan fırsat kartları */
+#sahmeran #sah-title{font-family:'Great Vibes','Pinyon Script',cursive!important;font-weight:400!important;font-size:clamp(46px,5vw,68px)!important;line-height:1.05!important;color:#E9D3A6;letter-spacing:0}
+#sahmeran .hand{display:block;font-family:'Great Vibes',cursive;font-size:clamp(26px,2.4vw,34px);color:#D9BC86;margin-top:6px;line-height:1.2}
+#cift .feature{align-items:center}
+#cift .big{aspect-ratio:auto!important;height:260px;border-radius:16px}
+#cift .steps{flex-direction:row!important;flex-wrap:wrap;gap:8px 18px!important;font-size:14px!important}
+#cift .steps li{gap:6px}
+#cift p{margin-block:8px 10px}
+@media (max-width:1023px){
+  #cift .big{height:230px}
+  #cift .steps{display:none!important}
+}
+/* sonsuz akış */
+#camps.cmarq{display:block!important;overflow:clip!important;margin:0!important;padding:4px 0!important;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+#camps .ctrack{display:flex;gap:16px;width:max-content;animation:cmarq var(--cdur,40s) linear infinite}
+#camps.cmarq:hover .ctrack,#camps.cmarq.hold .ctrack{animation-play-state:paused}
+#camps .ctrack .camp{flex:0 0 var(--cw)!important;width:var(--cw)!important;max-width:none!important}
+#camps .ctrack .camp.wide{--cw:var(--cww)}
+#camps{--cw:400px;--cww:640px}
+@keyframes cmarq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
+.campnav{display:none!important}
+#kampanyalar .wrap{max-width:none;padding-inline:0}
+@media (max-width:1023px){#camps{--cw:300px;--cww:340px}#camps .ctrack{gap:12px}@keyframes cmarq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}}
+@media (prefers-reduced-motion:reduce){#camps .ctrack{animation:none}#camps.cmarq{overflow-x:auto!important}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1515,6 +1540,7 @@ nav.main button{font-weight:500;color:#2A2220}
         <div class="eyebrow" id="sah-eye"></div>
         <h2 id="sah-title"></h2>
         <p id="sah-text"></p>
+        <span class="hand">Koruyan, bereket getiren, bilge…</span>
         <div><button class="btn btn-gold" data-shop="sahmeran">Şahmeranları keşfet</button></div>
       </div>
     </div>
@@ -2678,6 +2704,28 @@ addItem=function(id,opt){var p=byId[id];if(p&&p.soldout){toast('<div class="r"><
   var _pb=paintBadges;paintBadges=function(){_pb();var n=count(),b=$('#tbcartn');if(b){b.textContent=n;b.hidden=!n;}};
   paintBadges();paintSf();
 })();
+
+
+/* =========================================================
+   v21: fırsat kartları sonsuz akışta
+   ========================================================= */
+var _renderSlides21=renderSlides;
+renderSlides=function(){
+  _renderSlides21();
+  var c=$('#camps');if(!c)return;var html=c.innerHTML;if(!html.trim())return;
+  c.classList.add('cmarq');
+  c.innerHTML='<div class="ctrack"><div class="cset" style="display:contents">'+html+'</div></div>';
+  var tr=$('.ctrack',c);
+  // ekranı dolduracak kadar çoğalt, sonra kesintisiz döngü için ikiye katla
+  var guard=0;while(tr.scrollWidth<c.clientWidth*1.1&&guard++<6)tr.insertAdjacentHTML('beforeend','<div class="cset" style="display:contents">'+html+'</div>');
+  var once=tr.innerHTML;tr.insertAdjacentHTML('beforeend',once.replace(/<div class="cset"/g,'<div class="cset dup"'));
+  $$('.cset',tr).forEach(function(s,i){if(i>0)$$('.camp',s.parentNode).length;});
+  // ilk takım dışındakiler ekran okuyucudan gizli, tabla gelinmez
+  var sets=$$('.cset',tr);sets.forEach(function(s,i){if(i===0)return;Array.prototype.forEach.call(s.children,function(ch){ch.setAttribute('aria-hidden','true');ch.setAttribute('inert','');});});
+  var px=tr.scrollWidth/2;tr.style.setProperty('--cdur',Math.max(24,Math.round(px/45))+'s');
+};
+(function(){var c=$('#camps');if(!c)return;var t;c.addEventListener('touchstart',function(){c.classList.add('hold');clearTimeout(t);},{passive:true});c.addEventListener('touchend',function(){clearTimeout(t);t=setTimeout(function(){c.classList.remove('hold');},1800);},{passive:true});c.addEventListener('focusin',function(){c.classList.add('hold');});c.addEventListener('focusout',function(){c.classList.remove('hold');});})();
+var _rs21;window.addEventListener('resize',function(){clearTimeout(_rs21);_rs21=setTimeout(function(){if(typeof renderSlides==='function')renderSlides();},300);});
 
 
 /* =========================================================
