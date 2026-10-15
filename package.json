@@ -1,0 +1,1 @@
+{ "name": "lalli-store", "private": true, "engines": { "node": ">=20" } }
