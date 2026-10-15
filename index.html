@@ -1359,6 +1359,7 @@ nav.main button{font-weight:500;color:#2A2220}
   .msort select{min-height:42px;max-width:150px;border:1px solid #E6DED2;border-radius:999px;background:#fff;padding:0 12px;font-size:14px}
   .msort span{display:none}
   .sfilters{position:fixed;left:0;right:0;bottom:0;z-index:130;background:#fff;border-radius:22px 22px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -20px 50px rgba(0,0,0,.18);transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);max-height:85vh;overflow:auto}
+  .sfilters:not(.open){visibility:hidden;box-shadow:none}
   .sfilters.open{transform:none}
   .sfscrim.open{display:block;position:fixed;inset:0;z-index:129;background:rgba(30,25,24,.4)}
   .sfhead{display:flex;align-items:center;justify-content:space-between;padding:6px 0 12px}
@@ -1407,6 +1408,22 @@ nav.main button{font-weight:500;color:#2A2220}
 #kampanyalar .wrap{max-width:none;padding-inline:0}
 @media (max-width:1023px){#camps{--cw:300px;--cww:340px}#camps .ctrack{gap:12px}@keyframes cmarq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}}
 @media (prefers-reduced-motion:reduce){#camps .ctrack{animation:none}#camps.cmarq{overflow-x:auto!important}}
+
+/* v22: üyelik metinleri, setler bölümü kaldırıldı */
+#setler{display:none!important}
+.mbox{max-width:440px!important;text-align:left;align-items:stretch!important}
+.mbox .eyebrow{text-align:center}
+.wtitle{margin:0;text-align:center;font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.15}
+.wtitle #wamt{color:var(--ruby);white-space:nowrap}
+.wperks,.memperks{list-style:none;margin:4px 0 6px;padding:0;display:flex;flex-direction:column;gap:10px}
+.wperks li{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--ink2)}
+.wperks svg,.memperks svg{width:22px;height:22px;flex:none;color:var(--ruby);margin-top:1px}
+.wperks b{display:block;color:var(--ink);font-weight:500;font-size:15px}
+.memperks{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:10px 14px;margin:6px auto 22px}
+.memperks li{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 16px 8px 12px;font-size:14px;color:#fff}
+.memperks svg{color:#F3D9A4;margin:0}
+.memperks b{font-weight:600}
+@media (max-width:640px){.wtitle{font-size:26px}.memperks{flex-direction:column;align-items:stretch}.memperks li{border-radius:12px}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1562,18 +1579,23 @@ nav.main button{font-weight:500;color:#2A2220}
     <div class="wrap">
       <h2 id="mem-title"></h2>
       <p id="mem-text"></p>
+      <ul class="memperks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13M12 8S10.5 3 8 3.5 7 8 12 8zM12 8s1.5-5 4-4.5S17 8 12 8z"/></svg><span><b class="w-amt2">200 TL</b> hoş geldin indirimi</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span>Yeni koleksiyonlardan <b>ilk sen</b> haberdar ol</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span>Fırsat günü kodları ve üyelere özel kuponlar</span></li>
+      </ul>
       <form class="mform" data-mform novalidate>
         <label class="mfl">Adın soyadın<input type="text" name="name" autocomplete="name" maxlength="60"></label>
         <label class="mfl">Telefon numaran<input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="05XX XXX XX XX" maxlength="16"></label>
         <label class="mfl full">E-posta adresin<input type="email" name="email" autocomplete="email" placeholder="ornek@eposta.com" maxlength="120"></label>
-        <fieldset class="prefs"><legend>Kodları ve fırsat haberlerini nereden alalım?</legend>
+        <fieldset class="prefs"><legend>İndirim kodlarını ve yeni koleksiyon haberlerini nereden alalım?</legend>
           <label><input type="checkbox" name="pref" value="E-posta" checked>E-posta</label>
           <label><input type="checkbox" name="pref" value="SMS">SMS</label>
           <label><input type="checkbox" name="pref" value="WhatsApp">WhatsApp</label>
         </fieldset>
-        <div class="chk"><input type="checkbox" name="consent" id="m1-consent"><label for="m1-consent"><button type="button" class="linkbtn" data-legal="privacy">KVKK Aydınlatma Metni</button>’ni okudum; kişisel verilerimin işlenmesini ve seçtiğim kanallardan kampanya iletisi almayı kabul ediyorum.</label></div>
+        <div class="chk"><input type="checkbox" name="consent" id="m1-consent"><label for="m1-consent"><button type="button" class="linkbtn" data-legal="privacy">KVKK Aydınlatma Metni</button>’ni okudum; kişisel verilerimin işlenmesini ve seçtiğim kanallardan kampanya ve yeni koleksiyon duyurularını almayı kabul ediyorum.</label></div>
         <div class="err" aria-live="polite"></div>
-        <button class="btn btn-dark" type="submit">Üye ol, kodları al</button>
+        <button class="btn btn-dark" type="submit">Üye ol, indirimimi al</button>
       </form>
     </div>
   </section>
@@ -1717,22 +1739,25 @@ nav.main button{font-weight:500;color:#2A2220}
 <div class="modal" id="welcome" hidden>
   <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="wamt">
     <button class="icon x" data-wclose aria-label="Kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-    <div class="eyebrow" id="w-eye">LALLİ Fırsat Günleri</div>
-    <div class="amt" id="wamt">200 TL</div>
-    <div class="sub">ilk alışverişine özel indirim</div>
-    <p id="w-text">Üye ol; hoş geldin kodun hemen gelsin. Fırsat günü kodları ve üyelere özel hediye kuponları da seninle.</p>
+    <div class="eyebrow">LALLİ'ye üye ol</div>
+    <h2 class="wtitle"><span id="wamt">200 TL</span> indirim için üye ol</h2>
+    <ul class="wperks">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13M12 8S10.5 3 8 3.5 7 8 12 8zM12 8s1.5-5 4-4.5S17 8 12 8z"/></svg><span><b>Hoş geldin indirimi</b>İlk alışverişinde hemen kullan.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span><b>Yeni koleksiyonlardan ilk sen haberdar ol</b>Yeni parçalar satışa çıkmadan sana haber verelim.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span><b><span id="w-eye">LALLİ Fırsat Günleri</span> kodları</b>Her ayın 15’i ve 30’u üyelere özel indirim.</span></li>
+    </ul>
     <form class="mform" data-mform novalidate>
         <label class="mfl">Adın soyadın<input type="text" name="name" autocomplete="name" maxlength="60"></label>
         <label class="mfl">Telefon numaran<input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="05XX XXX XX XX" maxlength="16"></label>
         <label class="mfl full">E-posta adresin<input type="email" name="email" autocomplete="email" placeholder="ornek@eposta.com" maxlength="120"></label>
-        <fieldset class="prefs"><legend>Kodları ve fırsat haberlerini nereden alalım?</legend>
+        <fieldset class="prefs"><legend>İndirim kodlarını ve yeni koleksiyon haberlerini nereden alalım?</legend>
           <label><input type="checkbox" name="pref" value="E-posta" checked>E-posta</label>
           <label><input type="checkbox" name="pref" value="SMS">SMS</label>
           <label><input type="checkbox" name="pref" value="WhatsApp">WhatsApp</label>
         </fieldset>
-        <div class="chk"><input type="checkbox" name="consent" id="m2-consent"><label for="m2-consent"><button type="button" class="linkbtn" data-legal="privacy">KVKK Aydınlatma Metni</button>’ni okudum; kişisel verilerimin işlenmesini ve seçtiğim kanallardan kampanya iletisi almayı kabul ediyorum.</label></div>
+        <div class="chk"><input type="checkbox" name="consent" id="m2-consent"><label for="m2-consent"><button type="button" class="linkbtn" data-legal="privacy">KVKK Aydınlatma Metni</button>’ni okudum; kişisel verilerimin işlenmesini ve seçtiğim kanallardan kampanya ve yeni koleksiyon duyurularını almayı kabul ediyorum.</label></div>
         <div class="err" aria-live="polite"></div>
-        <button class="btn btn-ruby" type="submit">Üye ol, kodları al</button>
+        <button class="btn btn-ruby" type="submit">Üye ol, indirimimi al</button>
       </form>
     <button class="later" data-wclose>Şimdi değil</button>
   </div>
@@ -1953,7 +1978,7 @@ var DEF={
     {id:'s1',theme:'dark',eyebrow:'LALLİ FIRSAT GÜNLERİ',title:'LALLİ Fırsat Günleri',text:'Fırsat günü kodları ve özel hediye kuponları üyelerimize, seçtikleri kanaldan gönderilir.',btn:'Üye ol, kodları al',action:'member',width:'s',ratio:'auto'},
     {id:'s2',theme:'light',big:'%15',eyebrow:"HER AYIN 15'İ",title:'Tüm takılarda %15',text:"Kod, ayın 15'i sabahı üyelerimize gelir.",btn:'Kodu al',action:'member',day:15,width:'s',ratio:'auto'},
     {id:'s3',theme:'light',big:'%30',eyebrow:"HER AYIN 30'U",title:'Tüm takılarda %30',text:'Ayın en büyük fırsat günü. Kod, sabah sende.',btn:'Kodu al',action:'member',day:30,width:'s',ratio:'auto'},
-    {id:'s4',theme:'light',big:'200₺',eyebrow:'İLK ALIŞVERİŞ',title:'Hoş geldin kuponu',text:'Üye olduğun an kodun gelir.',btn:'Kuponu al',action:'member',width:'s',ratio:'auto'},
+    {id:'s4',theme:'light',big:'200₺',eyebrow:'ÜYELERE ÖZEL',title:'200 TL indirim için üye ol',text:'Yeni koleksiyonlardan da ilk sen haberdar ol.',btn:'Üye ol',action:'member',width:'s',ratio:'auto'},
     {id:'s5',theme:'light',stands:true,eyebrow:'2.500 ₺ VE ÜZERİ',title:'Takı standı hediye',text:"Sepetin 2.500 ₺'yi geçince üç standdan birini seç, siparişine ücretsiz ekleyelim.",btn:'',action:'none',width:'m',ratio:'auto'}
   ],
   cats:[
@@ -1971,7 +1996,7 @@ var DEF={
     sahmeran:{show:true,eyebrow:'Şahmeranlar',title:'Bilgeliğin kraliçesi',text:'Anadolu efsanelerinde Şahmeran, yılanların bilge kraliçesidir; koruyuculuğu ve bereketi simgeler. Taçlı başı ve sarmal gövdesiyle el işçiliğiyle hazırlanır.'},
     sets:{show:true,title:'Setler',text:'Kolye, küpe ve bileklik bir arada; ayrı ayrı almaktan %10 daha uygun.'},
     feed:{motto:'Tak takıştır, LALLİ Akışı’nda paylaş',text:'Müşterilerimizin LALLİ ile paylaştığı kombinler. Etikete dokun, parçayı keşfet; beğendiğini kalple işaretle.'},
-    member:{title:'Üyelere özel kodlar',text:'LALLİ Fırsat Günleri kodları, hoş geldin kuponu ve üyelere özel hediye kuponları seçtiğin kanaldan sana gelir.'}
+    member:{title:'Üye ol, ayrıcalıkları kaçırma',text:'Hoş geldin indirimin hemen gelsin; yeni koleksiyonları, fırsat günü kodlarını ve üyelere özel kuponları seçtiğin kanaldan ilk sen öğren.'}
   },
   social:{show:true,title:'Bizi takip et',text:'Yeni parçalar, LALLİ Fırsat Günleri duyuruları ve sürpriz kuponlar önce sosyal medyada.',instagram:'lallejewelry',tiktok:'lallejewelry',igText:'Kombin önerileri, yeni parçalar ve müşteri paylaşımları.',ttText:'Kısa videolar, paketleme anları ve canlı yayın fırsatları.'}
 };
@@ -2103,7 +2128,7 @@ function renderSections(){
   var s=C.sections;
   $('#cift').hidden=!s.couple.show;$('#cpl-eye').textContent=s.couple.eyebrow||'';$('#cpl-title').textContent=s.couple.title||'';$('#cpl-text').textContent=s.couple.text||'';
   $('#sahmeran').hidden=!s.sahmeran.show;$('#sah-eye').textContent=s.sahmeran.eyebrow||'';$('#sah-title').textContent=s.sahmeran.title||'';$('#sah-text').textContent=s.sahmeran.text||'';
-  $('#setler').hidden=!s.sets.show;$('#set-title').textContent=s.sets.title||'';$('#set-text').textContent=s.sets.text||'';
+  $('#setler').hidden=true;$('#set-title').textContent=s.sets.title||'';$('#set-text').textContent=s.sets.text||'';
   $('#feedsub').textContent=(s.feed&&s.feed.motto)||'';$('#fbtitle')&&($('#fbtitle').textContent='LALLİ Akışı');
   $('#mem-title').textContent=s.member.title||'';$('#mem-text').textContent=s.member.text||'';
   var so=C.social,ig=String(so.instagram||'').replace(/^@/,''),tt=String(so.tiktok||'').replace(/^@/,'');
@@ -2117,7 +2142,7 @@ function renderSections(){
   var b=C.brand;$('#brandname').textContent=b.name;$('#f-brand').textContent=b.name;$('#f-slogan').textContent=b.slogan||'';$('#f-mail').textContent=b.email||'';$('#f-domain').textContent='© '+(b.domain||'');
   document.title=b.name+' Jewelry';
   $('#f-stand').textContent=tl(+C.deals.standMin||0)+' üzeri takı standı hediye';
-  $('#w-eye').textContent=C.deals.title;$('#wamt').textContent=tl(+C.deals.firstAmt||0).replace('₺','')+' TL';
+  $('#w-eye').textContent=C.deals.title;$('#wamt').textContent=tl(+C.deals.firstAmt||0).replace('₺','')+' TL';$$('.w-amt2').forEach(function(x){x.textContent=tl(+C.deals.firstAmt||0).replace('₺','')+' TL';});
 }
 
 /* ---------- tüm ürünler ---------- */
