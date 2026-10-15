@@ -1104,6 +1104,113 @@ body:has(#legal:not([hidden])) .ckbar,body:has(#qv:not([hidden])) .ckbar,body:ha
   .mtile{width:132px}
   .feature{gap:24px!important}
 }
+
+/* v17: LALLİ Akışı — Pinterest akışı + Instagram tarzı tam ekran görüntüleyici */
+.feed{padding:0;background:#FDFBF7}
+.fx-top{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));background:rgba(253,251,247,.9);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid rgba(226,214,196,.6)}
+.fx-ic{width:44px;height:44px;border-radius:50%;border:0;background:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+.fx-ic svg{width:24px;height:24px}
+.fx-ic:hover{background:var(--sand)}
+.fx-plus{background:var(--ruby);color:#fff}.fx-plus:hover{background:var(--rubyd)}
+.fx-plus svg{width:20px;height:20px}
+.fx-title{text-align:center;min-width:0}
+.fx-title h2{margin:0;font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.1;letter-spacing:.06em}
+.fx-title h2 i{color:var(--ruby);letter-spacing:0}
+.fx-motto{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--goldtext);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fx-body{max-width:1500px;margin:0 auto;padding:4px max(10px,env(safe-area-inset-left,0px)) calc(40px + env(safe-area-inset-bottom,0px))}
+.fx-stories{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:14px 4px 16px;scroll-snap-type:x proximity}
+.fx-stories::-webkit-scrollbar{display:none}
+.fx-st{flex:none;width:74px;display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;scroll-snap-align:start;color:var(--ink2)}
+.fx-ring{width:70px;height:70px;border-radius:50%;padding:2.5px;background:conic-gradient(from 200deg,#D9BC86,#8E1630,#C2456A,#D9BC86)}
+.fx-st.seen .fx-ring{background:#DDD3C6}
+.fx-ring span{display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid #FDFBF7;background:var(--sand)}
+.fx-ring img,.fx-ring svg{width:100%;height:100%;object-fit:cover;display:block}
+.fx-st small{font-size:11.5px;max-width:74px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fx-st.me .fx-ring{background:none;border:1.5px dashed var(--gold);padding:2px}
+.fx-st.me .fx-ring span{display:flex;align-items:center;justify-content:center;background:var(--blush);color:var(--ruby);border:0}
+.fx-st.me svg{width:26px;height:26px}
+.fx-masonry{display:flex;gap:10px;align-items:flex-start}
+.fx-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:10px}
+@media (min-width:700px){.fx-masonry,.fx-col{gap:16px}}
+.pin{position:relative;margin:0;display:flex;flex-direction:column;gap:7px;animation:pinin .45s ease both}
+.pin-wrap{position:relative;border-radius:18px;overflow:hidden}
+@keyframes pinin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pin-ph{position:relative;display:block;width:100%;border:0;padding:0;border-radius:18px;overflow:hidden;background:var(--sand);cursor:zoom-in}
+.pin-ph img,.pin-ph>svg{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pin-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,25,24,.45),rgba(30,25,24,0) 42%);opacity:0;transition:opacity .25s}
+@media (hover:hover){.pin:hover .pin-ph img,.pin:hover .pin-ph>svg{transform:scale(1.04)}.pin:hover .pin-ph::after{opacity:1}}
+.pin-cnt{position:absolute;left:10px;top:10px;z-index:1;display:inline-flex;align-items:center;gap:5px;min-height:26px;padding:0 9px;border-radius:999px;background:rgba(30,25,24,.55);color:#fff;font-size:11.5px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.pin-cnt svg{width:13px;height:13px}
+.pin-heart{position:absolute;right:8px;bottom:8px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(253,251,247,.92);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.pin-heart svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7}
+.pin-heart span{display:none}
+.pin-heart[aria-pressed=true]{color:var(--ruby)}
+.pin-heart[aria-pressed=true] svg{fill:var(--ruby);stroke:var(--ruby);animation:pop2 .35s ease}
+.pin-meta{display:flex;align-items:center;gap:8px;padding:0 4px;min-width:0}
+.pin-av{width:26px;height:26px;border-radius:50%;flex:none;background:linear-gradient(135deg,#D9BC86,#8E1630);color:#fff;font-size:11px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;overflow:hidden}
+.pin-tx{min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.pin-tx b{font-weight:500;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pin-tx span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pin.shop .pin-ph{background:#fff;border:1px solid var(--line)}
+.pin-badge{position:absolute;left:10px;top:10px;z-index:1;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:var(--ivory);color:var(--goldtext);padding:5px 9px;border-radius:999px}
+.pin.shop .pin-tx b{font-family:var(--serif);font-size:16px}
+.pin.shop .pin-tx span{color:var(--ink)}
+.pin .ex{position:absolute;right:10px;top:10px;z-index:1;font-size:10.5px;letter-spacing:.12em;background:rgba(253,251,247,.9);color:var(--ink2);padding:4px 8px;border-radius:999px}
+.fx-sent{height:1px}
+.fx-end{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:40px 16px 20px}
+.fx-endic svg{width:40px;height:40px;color:var(--gold)}
+.fx-end b{font-family:var(--serif);font-weight:500;font-size:26px}
+.fx-end>span{color:var(--muted)}
+.fx-endbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.feed .fnote{margin:0 4px 14px}
+
+/* tam ekran görüntüleyici */
+.fview{position:fixed;inset:0;z-index:107;background:#0E0B0A;color:#fff;animation:pop .2s ease-out}
+.fv-list{position:absolute;inset:0;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}
+.fv-list::-webkit-scrollbar{display:none}
+.fv{position:relative;height:100%;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fv-media{position:relative;width:100%;height:100%;max-width:min(100%,calc(100dvh * .62));margin:0 auto;background:#1E1918}
+.fv-media>img,.fv-media>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.fv-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(40px) brightness(.45);transform:scale(1.1)}
+.fv-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 48%,rgba(0,0,0,.78))}
+.fv-head{position:absolute;left:14px;right:64px;top:calc(14px + env(safe-area-inset-top,0px));display:flex;align-items:center;gap:10px;z-index:2}
+.fv-head .pin-av{width:38px;height:38px;font-size:14px;border:2px solid rgba(255,255,255,.85)}
+.fv-who{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.fv-who b{font-weight:500;font-size:15px}
+.fv-who span{font-size:12.5px;opacity:.8}
+.fv-who a{color:#fff;text-decoration:none;font-size:12.5px;display:inline-flex;align-items:center;gap:5px;opacity:.95}
+.fv-who a .brandico{width:16px;height:16px;border-radius:4px}
+.fv-rail{position:absolute;right:10px;bottom:calc(150px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:16px;z-index:2;align-items:center}
+.fv-btn{display:flex;flex-direction:column;align-items:center;gap:3px;border:0;background:none;color:#fff;cursor:pointer;font-size:12px;font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.fv-btn .c{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center}
+.fv-btn svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:1.7}
+.fv-btn[aria-pressed=true] svg{fill:#E2475F;stroke:#E2475F;animation:pop2 .35s ease}
+.fv-btn .n{order:2;min-height:15px}
+.fv-foot{position:absolute;left:0;right:0;bottom:0;padding:0 72px calc(18px + env(safe-area-inset-bottom,0px)) 16px;z-index:2;display:flex;flex-direction:column;gap:12px}
+.fv-cmt{margin:0;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.3;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.fv-prods{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-right:-56px;padding-right:56px}
+.fv-prods::-webkit-scrollbar{display:none}
+.fv-prod{flex:none;display:flex;align-items:center;gap:9px;padding:5px 14px 5px 5px;border-radius:14px;border:0;background:rgba(253,251,247,.95);color:var(--ink);cursor:pointer;text-align:left;max-width:240px}
+.fv-prod .im{width:44px;height:44px;border-radius:10px;overflow:hidden;flex:none;background:var(--sand)}
+.fv-prod .im img,.fv-prod .im svg{width:100%;height:100%;object-fit:cover;display:block}
+.fv-prod b{display:block;font-weight:500;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fv-prod span{font-size:12.5px;color:var(--ruby)}
+.fv-x{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:3;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.35);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.fv-x svg{width:22px;height:22px}
+.fv .burst{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;z-index:2;pointer-events:none;opacity:0}
+.fv .burst svg{width:100%;height:100%;fill:#fff;filter:drop-shadow(0 6px 20px rgba(0,0,0,.35))}
+.fv .burst.go{animation:burst .8s ease}
+.fv-hint{position:fixed;left:50%;top:46%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(0,0,0,.55);font-size:13px;pointer-events:none;animation:hintup 1.8s ease-in-out 2}
+.fv-hint svg{width:16px;height:16px}
+@keyframes hintup{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-10px)}}
+.fv-end{height:100dvh;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.fv-end b{font-family:var(--serif);font-weight:500;font-size:30px}
+.fv-end span{opacity:.75}
+.fv-end .btn{min-width:220px}
+@media (min-width:900px){.fv-media{border-radius:0}.fv-foot,.fv-head{max-width:min(100%,calc(100dvh * .62));left:50%;transform:translateX(-50%);right:auto;width:100%}.fv-head{padding-right:64px}.fv-rail{right:calc(50% - min(50%,calc(100dvh * .31)) - 74px)}.fv-foot{padding-right:16px}.fv-prods{margin-right:0;padding-right:0}}
+.fv-hint{white-space:nowrap}
+@media (max-width:480px){.fx-motto{font-size:10px;letter-spacing:.08em}.fx-title h2{font-size:22px}}
+@media (prefers-reduced-motion:reduce){.pin{animation:none}.fv-hint{animation:none}.fv .burst.go{animation:none}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1325,15 +1432,28 @@ body:has(#legal:not([hidden])) .ckbar,body:has(#qv:not([hidden])) .ckbar,body:ha
 </div>
 
 <div class="feed" id="feed" hidden role="dialog" aria-modal="true" aria-labelledby="feedt">
-  <div class="fhead"><div class="wrap fhrow">
-    <div><div class="eyebrow">LALLİ Akışı</div><h2 id="feedt" class="motto">Tak takıştır, LALLİ Akışı’nda paylaş</h2><p id="feedsub">Müşterilerimizin LALLİ ile paylaştığı kombinler. Etikete dokun, parçayı keşfet; beğendiğini kalple işaretle.</p><button class="btn btn-ruby fsharetop" data-share="">Kombinini paylaş</button></div>
-    <button class="icon" data-closefeed aria-label="Akışı kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-  </div></div>
-  <div class="wrap fbody">
-    <p class="fnote" id="feednote">Şimdilik örnek gönderiler gösteriliyor. Teslim edilen siparişi olan müşteriler kombinlerini paylaştıkça burada yer alacak.</p>
-    <div class="fgrid2" id="fgrid"></div>
-    <div class="fshare"><div><b>Sen de paylaş</b><span>Siparişin teslim edildiyse kombin fotoğrafını, kısa yorumunu ve sosyal medya hesabını LALLİ Akışı’na kendin ekle.</span><span id="feedshare" hidden></span></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-ruby" data-share="">Kombinini paylaş</button><button class="btn btn-line" data-myorders>Siparişlerim</button><a class="btn btn-line" id="feedig" target="_blank" rel="noopener" hidden>Instagram</a></div></div>
+  <div class="fx-top">
+    <button class="fx-ic" data-closefeed aria-label="Akışı kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="fx-title"><h2 id="feedt">LALLİ <i>Akışı</i></h2><span id="feedsub" class="fx-motto">Tak takıştır, LALLİ Akışı’nda paylaş</span></div>
+    <button class="fx-ic fx-plus" data-share="" aria-label="Kombinini paylaş"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
   </div>
+  <div class="fx-body" id="fxbody">
+    <div class="fx-stories" id="fxstories" aria-label="Son paylaşımlar"></div>
+    <p class="fnote" id="feednote" hidden>Şimdilik örnek kombinler gösteriliyor. Teslim edilen siparişi olan müşteriler paylaştıkça burası gerçek fotoğraflarla dolacak.</p>
+    <div class="fx-masonry" id="fgrid"></div>
+    <div class="fx-sent" id="fxsent" aria-hidden="true"></div>
+    <div class="fx-end" id="fxend" hidden>
+      <div class="fx-endic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <b>Hepsini gördün</b><span>Sıradaki ilham senin kombinin olsun.</span>
+      <div class="fx-endbtns"><button class="btn btn-ruby" data-share="">Kombinini paylaş</button><button class="btn btn-line" data-myorders>Siparişlerim</button></div>
+      <span id="feedshare" hidden></span><a id="feedig" hidden></a>
+    </div>
+  </div>
+</div>
+<div class="fview" id="fview" hidden role="dialog" aria-modal="true" aria-label="LALLİ Akışı gönderileri">
+  <div class="fv-list" id="fvlist"></div>
+  <button class="fv-x" data-fvclose aria-label="Kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <div class="fv-hint" id="fvhint" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>Kaydır, sıradaki kombin</div>
 </div>
 
 <div class="modal kombin" id="kombin" hidden>
@@ -1769,7 +1889,7 @@ function renderSections(){
   $('#cift').hidden=!s.couple.show;$('#cpl-eye').textContent=s.couple.eyebrow||'';$('#cpl-title').textContent=s.couple.title||'';$('#cpl-text').textContent=s.couple.text||'';
   $('#sahmeran').hidden=!s.sahmeran.show;$('#sah-eye').textContent=s.sahmeran.eyebrow||'';$('#sah-title').textContent=s.sahmeran.title||'';$('#sah-text').textContent=s.sahmeran.text||'';
   $('#setler').hidden=!s.sets.show;$('#set-title').textContent=s.sets.title||'';$('#set-text').textContent=s.sets.text||'';
-  $('#feedt').textContent=(s.feed&&s.feed.motto)||'';$('#feedsub').textContent=(s.feed&&s.feed.text)||'';$('#fbtitle')&&($('#fbtitle').textContent='LALLİ Akışı');
+  $('#feedsub').textContent=(s.feed&&s.feed.motto)||'';$('#fbtitle')&&($('#fbtitle').textContent='LALLİ Akışı');
   $('#mem-title').textContent=s.member.title||'';$('#mem-text').textContent=s.member.text||'';
   var so=C.social,ig=String(so.instagram||'').replace(/^@/,''),tt=String(so.tiktok||'').replace(/^@/,'');
   $('#sosyal').hidden=!so.show;$('#soc-title').textContent=so.title||'';$('#soc-text').textContent=so.text||'';
