@@ -1263,6 +1263,43 @@ body:has(#legal:not([hidden])) .ckbar,body:has(#qv:not([hidden])) .ckbar,body:ha
 .pcrop summary{cursor:pointer;font-size:13.5px;color:var(--ink2);min-height:36px;display:flex;align-items:center}
 .pfoot{justify-content:space-between}
 .phead,.pchips,.pcards,.pedit,.psec,.pgal{flex-shrink:0}
+
+/* v19: beyaz, ferah ve okunaklı üst kısım */
+:root{--ivory:#FFFFFF;--sand:#F8F5F0;--sand2:#F3EEE7;--line:#ECE4D8;--blush:#FBF4F3}
+html,body{background:#fff}
+header.site{background:rgba(255,255,255,.97);-webkit-backdrop-filter:saturate(1.5) blur(12px);backdrop-filter:saturate(1.5) blur(12px);border-bottom:1px solid #EEE7DD}
+.logo{color:var(--ink)}
+.logo span{color:#2A2220;font-weight:600}
+nav.main button{font-weight:500;color:#2A2220}
+#kampanyalar.band,#kampanyalar{background:#fff!important}
+.camp.th-light{background:#FAF7F2;border-color:#EEE6DA}
+.camp.th-sand{background:#F5EFE6;border-color:#F5EFE6}
+.catbarw{background:#fff}
+@media (min-width:1101px){
+  .hrow{padding-block:14px 2px}
+  .logo svg{width:54px;height:54px}
+  .logo span{font-size:30px;letter-spacing:.32em}
+  nav.main ul{gap:0 32px!important}
+  nav.main button{font-size:14px;letter-spacing:.13em;padding:14px 0 13px}
+  .hside .icon svg{width:24px;height:24px}
+}
+@media (min-width:641px){
+  .catbar{padding-block:16px 18px!important}
+  #kampanyalar{padding-block:28px 22px!important}
+  .camps .camp:not(.has-ratio):not(.has-img){min-height:0!important;height:228px;padding:26px 30px!important;border-radius:16px}
+  .camps .camp.has-ratio,.camps .camp.has-img{border-radius:16px;overflow:hidden}
+  .camp .big{font-size:56px!important}
+  .camp .t{font-size:24px!important}
+  .camp .d{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .camp .body .btn{min-height:40px!important;margin-top:8px!important}
+  .camp.stand .stands svg{max-height:120px}
+}
+@media (max-width:640px){
+  .hrow{padding-block:8px!important}
+  .logo svg{width:40px!important;height:40px!important}
+  .logo span{font-size:21px!important;letter-spacing:.24em!important}
+  #kampanyalar{padding-block:16px 20px!important}
+}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
