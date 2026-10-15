@@ -1504,6 +1504,74 @@ a.fd-name:hover{color:var(--ruby)}
 .fd-more{max-width:1500px;margin:30px auto 0;padding:0 10px 40px}
 .fd-h2{font-family:var(--serif);font-size:26px;text-align:center;margin-bottom:16px}
 @media (min-width:900px){.fd-card{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start;gap:32px;padding:0 24px}.fd-body{position:sticky;top:70px;padding-top:6px}.fd-prods{margin:0;padding:2px 0 6px}}
+
+/* v26: TikTok tarzı profil */
+.pf{position:fixed;inset:0;z-index:105;background:#fff;overflow-y:auto;overscroll-behavior:contain;animation:pop .2s ease-out}
+.pf-top{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:calc(6px + env(safe-area-inset-top,0px)) 10px 6px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);text-align:center;font-family:var(--serif);font-size:20px;border-bottom:1px solid #F1EBE2}
+.pf-body{max-width:640px;margin:0 auto;padding:18px 16px 40px}
+.pf-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.pf-av{width:96px;height:96px;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,#D9BC86,#8E1630,#C2456A,#D9BC86)}
+.pf-av span{display:flex;width:100%;height:100%;border-radius:50%;border:3px solid #fff;background:linear-gradient(135deg,#F6E2E6,#F3E6CC);align-items:center;justify-content:center;font-family:var(--serif);font-size:36px;color:var(--ruby)}
+.pf-name{margin:6px 0 0;font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.1}
+.pf-handle{font-size:14px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.pf-handle .brandico{width:16px;height:16px;border-radius:4px}
+.pf-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.08em;color:var(--goldtext);background:#FBF4EA;border-radius:999px;padding:4px 12px}
+.pf-stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;max-width:380px;margin:10px auto 4px}
+.pf-stats button{border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;color:var(--ink);font-family:inherit}
+.pf-stats b{font-size:20px;font-weight:600}
+.pf-stats span{font-size:12.5px;color:var(--muted)}
+.pf-btns{display:flex;gap:8px;width:100%;max-width:380px}
+.pf-btns .btn{flex:1;min-height:44px;padding:0 10px;font-size:12px;border-radius:10px}
+.pf-sec{margin-top:24px}
+.pf-sec h3{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--goldtext);font-weight:500}
+.pf-sec h3 button{border:0;background:none;color:var(--ruby);font-size:13px;letter-spacing:0;text-transform:none;cursor:pointer;min-height:36px;font-family:inherit}
+.pf-cps{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px;scroll-snap-type:x proximity}
+.pf-cps::-webkit-scrollbar{display:none}
+.pf-cp{position:relative;flex:0 0 230px;scroll-snap-align:start;border-radius:16px;padding:14px 16px;background:linear-gradient(135deg,#8E1630,#5E0E21);color:#fff;display:flex;flex-direction:column;gap:4px;overflow:hidden}
+.pf-cp::after{content:"";position:absolute;right:-18px;top:50%;width:36px;height:36px;border-radius:50%;background:#fff;transform:translateY(-50%)}
+.pf-cp.gold{background:linear-gradient(135deg,#E3C68E,#B8914E);color:#2A2220}
+.pf-cp.soft{background:#FBF4EA;color:var(--ink);border:1px dashed #D9BC86}
+.pf-cp .v{font-family:var(--serif);font-size:30px;line-height:1}
+.pf-cp .t{font-size:13px;opacity:.9}
+.pf-cp .c{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-weight:600;letter-spacing:.08em;font-size:14px}
+.pf-cp .c button{border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;font-size:11.5px;padding:3px 10px;cursor:pointer;font-family:inherit}
+.pf-cp .btn{margin-top:8px;min-height:38px;font-size:11.5px;align-self:flex-start;padding:0 14px}
+.pf-ords{display:flex;flex-direction:column;gap:8px}
+.pf-ord{display:flex;align-items:center;gap:12px;width:100%;border:1px solid #EEE7DD;border-radius:14px;background:#fff;padding:10px 12px;text-align:left;cursor:pointer;font-family:inherit;color:var(--ink)}
+.pf-ord .im{width:48px;height:48px;border-radius:10px;overflow:hidden;background:var(--sand);flex:none}
+.pf-ord .im img,.pf-ord .im svg{width:100%;height:100%;object-fit:cover;display:block}
+.pf-ord .tx{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.pf-ord .tx b{font-weight:500;font-size:14px}
+.pf-ord .tx span{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-empty{border:1px dashed #E6DED2;border-radius:14px;padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.pf-tabs{position:sticky;top:57px;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-bottom:1px solid #EEE7DD;margin:26px -16px 0}
+.pf-tabs button{border:0;background:none;min-height:48px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13.5px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;font-family:inherit}
+.pf-tabs button svg{width:18px;height:18px}
+.pf-tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:3px -16px 0}
+.pf-g{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--sand);border:0;padding:0;cursor:pointer}
+.pf-g img,.pf-g svg{width:100%;height:100%;object-fit:cover;display:block}
+.pf-g .lk{position:absolute;left:6px;bottom:6px;display:inline-flex;align-items:center;gap:3px;color:#fff;font-size:12px;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.pf-g .lk svg{width:13px;height:13px;fill:#fff;stroke:none}
+.pf-g .hid{position:absolute;inset:0;background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ink)}
+.pf-del{position:absolute;right:5px;top:5px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:13px;cursor:pointer;z-index:1}
+.pf-add{aspect-ratio:3/4;border:1.5px dashed #D9BC86;background:#FFFBF5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--goldtext);font-size:12.5px;cursor:pointer;font-family:inherit;text-align:center;padding:6px}
+.pf-add span{font-size:30px;line-height:1;color:var(--ruby)}
+.pf-gempty{grid-column:1/-1;padding:28px 16px;text-align:center;color:var(--muted);font-size:14px}
+.pf-edit{display:flex;flex-direction:column;gap:10px;border:1px solid #EEE7DD;border-radius:16px;padding:14px;margin-top:14px;text-align:left;width:100%}
+.pf-edit input,.pf-edit select{width:100%;min-height:44px;border:1px solid #E6DED2;border-radius:10px;padding:0 12px;font-size:16px;background:#fff;font-family:inherit}
+.pf-edit label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--ink2)}
+.pf-links{display:flex;flex-direction:column;margin-top:22px;border-top:1px solid #EEE7DD}
+.pf-links button{display:flex;justify-content:space-between;align-items:center;min-height:50px;border:0;border-bottom:1px solid #F3EEE6;background:none;font-size:15px;color:var(--ink);cursor:pointer;font-family:inherit;text-align:left;padding:0 2px}
+.pf-links button::after{content:"›";color:var(--muted);font-size:20px}
+@media (max-width:1023px){
+  .pf{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  body.pf-open .tabbar{z-index:106}
+}
+.tabbar button[aria-current=page]{color:var(--ruby);font-weight:500}
+@media (min-width:1024px){.pf-tabs{top:57px}}
+
+@media (max-width:1023px){.pfbtn{display:none!important}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1546,6 +1614,7 @@ a.fd-name:hover{color:var(--ruby)}
       <button class="akisbtn" data-openfeed><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/></svg>Akış</button>
       <button class="icon hide-sm" data-focussearch aria-label="Ürün ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
       <button class="icon" id="favbtn" aria-label="Favorilerim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><span class="badge-n" id="favn" hidden>0</span></button>
+      <button class="icon pfbtn" data-openprofile aria-label="Profilim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg></button>
       <button class="icon" id="cartbtn" aria-label="Sepetim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge-n" id="cartn" hidden>0</span></button>
       <button class="icon mtoggle" id="mtoggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mainnav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -1554,10 +1623,10 @@ a.fd-name:hover{color:var(--ruby)}
 
 <nav class="tabbar" aria-label="Hızlı menü">
   <button data-go="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"/></svg>Ana sayfa</button>
-  <button data-tab="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Kategoriler</button>
+  <button data-opencart><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Sepet<span class="badge-n" id="tbcartn" hidden>0</span></button>
   <button class="tb-akis" data-openfeed><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/></svg>Akış</button>
   <button data-navfav><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>Favoriler</button>
-  <button data-opencart><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Sepet<span class="badge-n" id="tbcartn" hidden>0</span></button>
+  <button data-openprofile><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg>Profil</button>
 </nav>
 <main>
   <section class="band sand" id="kampanyalar" style="padding-block:36px 40px">
@@ -1767,6 +1836,10 @@ a.fd-name:hover{color:var(--ruby)}
       <span id="feedshare" hidden></span><a id="feedig" hidden></a>
     </div>
   </div>
+</div>
+<div class="pf" id="profile" hidden role="dialog" aria-modal="true" aria-labelledby="pfname">
+  <div class="pf-top"><button class="fd-back" data-pfclose aria-label="Profili kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span>Profilim</span><button class="fd-back" data-pfedit aria-label="Profili düzenle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"/></svg></button></div>
+  <div class="pf-body" id="pfbody"></div>
 </div>
 <div class="fview" id="fview" hidden role="dialog" aria-modal="true" aria-label="LALLİ Akışı gönderileri">
   <div class="fv-list" id="fvlist"></div>
@@ -2882,6 +2955,78 @@ function openViewer(id){
 var _pinHtml25=pinHtml;pinHtml=function(it,k){var h=_pinHtml25(it,k);return it.example?h.replace('<div class="pin-wrap">','<div class="pin-wrap"><span class="ex">Örnek</span>'):h;};
 /* parmakla sağa kaydırınca akışa dön (ürün şeridi hariç) */
 (function(){var sx=0,sy=0,ok=false;var v=$('#fview');v.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;ok=!e.target.closest('.fd-prods');},{passive:true});v.addEventListener('touchend',function(e){if(!ok)return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(dx>90&&Math.abs(dy)<60)closeViewer();},{passive:true});})();
+
+
+/* =========================================================
+   v26: TikTok tarzı profil (siparişler, kuponlar, paylaşımlar)
+   ========================================================= */
+var PFT='posts';
+function pfName(){return S.get('lalli_name','')||'';}
+function pfSocial(){var s=S.get('lalli_social',null);return s&&s.user?s:null;}
+function myLikedPosts(){var ids=MYLIKES||[];return feedItems().filter(function(x){return ids.indexOf(x.id)>-1;});}
+function copyText(t){try{navigator.clipboard.writeText(t);}catch(e){}toast('<div class="r"><div style="flex:1"><h4>Kod kopyalandı: '+esc(t)+'</h4><div style="font-size:14px">Sepette “İndirim kodu” alanına yapıştır.</div></div></div>',{ms:3000});}
+function pfCoupons(){
+  var h=[],amt=tl(+C.deals.firstAmt||0);
+  if(member){h.push('<div class="pf-cp"><span class="t">Hoş geldin indirimi</span><span class="v">'+amt+'</span><span class="c">'+esc(C.deals.firstCode)+' <button data-copy="'+esc(C.deals.firstCode)+'">Kopyala</button></span></div>');}
+  else h.push('<div class="pf-cp"><span class="t">Üyelere özel</span><span class="v">'+amt+'</span><span class="t">hoş geldin indirimi</span><button class="btn btn-gold" data-openwelcome>Üye ol, kodu al</button></div>');
+  if(TODAY)h.push('<div class="pf-cp gold"><span class="t">Bugün geçerli</span><span class="v">%'+TODAY.pct+'</span><span class="c">'+(member?esc(TODAY.code)+' <button data-copy="'+esc(TODAY.code)+'">Kopyala</button>':'Kod üyelere gönderildi')+'</span></div>');
+  if(NEXT)h.push('<div class="pf-cp soft"><span class="t">Sıradaki fırsat günü</span><span class="v">%'+NEXT.c.pct+'</span><span class="t">'+NEXT.date.toLocaleDateString('tr-TR',{day:'numeric',month:'long'})+' · '+NEXT.left+' gün kaldı</span></div>');
+  return '<div class="pf-cps">'+h.join('')+'</div>';
+}
+function pfOrders(){
+  if(!MYORDERS.length)return '<div class="pf-empty">Henüz siparişin yok. <button class="linkbtn" data-shop="all" data-pfclose>Alışverişe başla</button></div>';
+  return '<div class="pf-ords">'+MYORDERS.slice(0,3).map(function(o){var p=byId[(o.items[0]||{}).id];return '<button class="pf-ord" data-myorders><span class="im">'+(p?art(p):'')+'</span><span class="tx"><b>'+esc(o.items.map(function(i){return i.name;}).join(', '))+'</b><span>'+new Date(o.ts).toLocaleDateString('tr-TR')+' · '+tl(o.total)+'</span></span>'+orderStatusChip(o.status)+'</button>';}).join('')+'</div>';
+}
+function pfGrid(){
+  var h='';
+  if(PFT==='posts'){
+    var can=delivered().length>0;
+    h+='<button class="pf-add" data-share=""><span>+</span>'+(can?'Kombinini paylaş':'Siparişin teslim edilince paylaş')+'</button>';
+    h+=(MYPOSTS||[]).map(function(p){return '<div class="pf-g" role="button" tabindex="0" data-fview="'+esc(p.id)+'"><img src="'+esc(p.url)+'" alt="Paylaşımın" loading="lazy"><span class="lk">'+HEART+(likeCount(p.id)||0)+'</span>'+(p.hidden?'<span class="hid">Yayından kaldırıldı</span>':'')+'<button class="pf-del" data-rmpost="'+esc(p.id)+'" aria-label="Paylaşımı kaldır">✕</button></div>';}).join('');
+    if(!(MYPOSTS||[]).length)h+='<div class="pf-gempty" style="grid-column:2/-1;display:flex;align-items:center">Kombinlerin burada görünecek.</div>';
+  }else if(PFT==='likes'){
+    var l=myLikedPosts();
+    h=l.length?l.map(function(it){return '<button class="pf-g" data-fview="'+esc(it.id)+'">'+postMedia(it)+'<span class="lk">'+HEART+(likeCount(it.id)||'')+'</span></button>';}).join(''):'<div class="pf-gempty">Akışta beğendiğin kombinler burada.</div>';
+  }else{
+    var f=favs.map(vis).filter(Boolean);
+    h=f.length?f.map(function(p){return '<button class="pf-g" data-qv="'+p.id+'">'+art(p)+'</button>';}).join(''):'<div class="pf-gempty">Kalple işaretlediğin ürünler burada.</div>';
+  }
+  return h;
+}
+function renderProfile(){
+  var nm=pfName(),soc=pfSocial(),ini=initials(nm||'L');
+  var posts=(MYPOSTS||[]).length,ords=MYORDERS.length,fv=favs.length;
+  var h='<div class="pf-head"><div class="pf-av"><span>'+esc(nm?ini:'L')+'</span></div><h2 class="pf-name" id="pfname">'+esc(nm||'Misafir')+'</h2>'+
+    (soc&&NETS[soc.net]?'<a class="pf-handle" href="'+esc(NETS[soc.net].url(soc.user))+'" target="_blank" rel="noopener nofollow">'+netIcon(soc.net)+'@'+esc(soc.user)+'</a>':'<span class="pf-handle">'+(nm?'Hesabını ekle, paylaşımlarında görünsün':'Adını ve hesabını ekle')+'</span>')+
+    (member?'<span class="pf-badge">✦ LALLİ üyesi</span>':'')+
+    '<div class="pf-stats"><button data-myorders><b>'+ords+'</b><span>Sipariş</span></button><button data-pftab="posts"><b>'+posts+'</b><span>Paylaşım</span></button><button data-pftab="favs"><b>'+fv+'</b><span>Favori</span></button></div>'+
+    '<div class="pf-btns">'+(member?'<button class="btn btn-line" data-pfedit>Profili düzenle</button>':'<button class="btn btn-ruby" data-openwelcome>Üye ol</button>')+'<button class="btn btn-line" data-myorders>Siparişlerim</button><button class="btn btn-line" data-share="">Paylaş</button></div>'+
+    '<form class="pf-edit" id="pfedit" hidden><label>Görünecek adın<input id="pf-nm" maxlength="30" value="'+esc(nm)+'" placeholder="Örn. Ayşe Y."></label><label>Hesabın (isteğe bağlı)<select id="pf-net">'+Object.keys(NETS).map(function(k){return '<option value="'+k+'"'+(soc&&soc.net===k?' selected':'')+'>'+NETS[k].name+'</option>';}).join('')+'</select></label><label>Kullanıcı adın<input id="pf-us" maxlength="40" value="'+esc(soc?soc.user:'')+'" placeholder="kullaniciadi" autocapitalize="off" spellcheck="false"></label><button class="btn btn-ruby" type="submit">Kaydet</button></form></div>';
+  h+='<div class="pf-sec"><h3>Kuponlarım</h3>'+pfCoupons()+'</div>';
+  h+='<div class="pf-sec"><h3>Siparişlerim'+(MYORDERS.length?'<button data-myorders>Tümü</button>':'')+'</h3>'+pfOrders()+'</div>';
+  h+='<div class="pf-tabs" role="tablist"><button role="tab" data-pftab="posts" aria-selected="'+(PFT==='posts')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Paylaşımlarım</button><button role="tab" data-pftab="likes" aria-selected="'+(PFT==='likes')+'">'+HEART.replace('<svg','<svg fill="none" stroke="currentColor" stroke-width="1.6"')+'Beğendiklerim</button><button role="tab" data-pftab="favs" aria-selected="'+(PFT==='favs')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>Favoriler</button></div>';
+  h+='<div class="pf-grid" id="pfgrid">'+pfGrid()+'</div>';
+  h+='<div class="pf-links"><button data-myorders>Hesabım ve tüm siparişlerim</button><button data-ckopen>Çerez tercihleri</button><button data-legal="sales">İade ve değişim</button><button data-legal="privacy">Gizlilik ve KVKK</button></div>';
+  $('#pfbody').innerHTML=h;
+}
+function openProfile(){lastFocus=document.activeElement;closeNav();if(!$('#feed').hidden)closeFeed();if(!$('#fview').hidden)closeViewer();renderProfile();$('#profile').hidden=false;document.body.classList.add('pf-open');document.body.style.overflow='hidden';$$('.tabbar button').forEach(function(b){b.removeAttribute('aria-current');});var t=$('.tabbar [data-openprofile]');if(t)t.setAttribute('aria-current','page');setTimeout(function(){$('#profile [data-pfclose]').focus({preventScroll:true});},50);}
+function closeProfile(){$('#profile').hidden=true;document.body.classList.remove('pf-open');document.body.style.overflow='';var t=$('.tabbar [data-openprofile]');if(t)t.removeAttribute('aria-current');}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('button,[data-fview]');if(!el)return;
+  if(el.hasAttribute('data-openprofile')){if($('#profile').hidden)openProfile();else closeProfile();return;}
+  if(el.hasAttribute('data-pfclose')){closeProfile();return;}
+  if(el.dataset.pftab){PFT=el.dataset.pftab;renderProfile();var tb=$('.pf-tabs');if(tb)tb.scrollIntoView({block:'start',behavior:'smooth'});return;}
+  if(el.hasAttribute('data-pfedit')){var f=$('#pfedit');if(f){f.hidden=!f.hidden;if(!f.hidden)$('#pf-nm').focus();}return;}
+  if(el.dataset.copy){copyText(el.dataset.copy);return;}
+});
+/* profilden açılan pencereler profilin üstünde dursun; sepete geçince profil kapansın */
+document.addEventListener('click',function(e){var el=e.target.closest('[data-opencart],[data-shop],[data-go]');if(el&&!$('#profile').hidden)closeProfile();},true);
+document.addEventListener('submit',function(e){if(e.target.id!=='pfedit')return;e.preventDefault();var nm=$('#pf-nm').value.trim().slice(0,30),u=cleanUser($('#pf-us').value),n=$('#pf-net').value;S.set('lalli_name',nm);S.set('lalli_social',u?{net:n,user:u}:{net:n,user:''});renderProfile();toast('<div class="r"><div style="flex:1"><h4>Profilin güncellendi</h4></div></div>',{ms:2200});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#profile').hidden&&$('#qv').hidden&&$('#orders').hidden&&$('#share').hidden&&$('#welcome').hidden&&$('#fview').hidden){e.stopImmediatePropagation();closeProfile();}},true);
+/* veri değişince profili tazele */
+var _openOrders26=openOrders;openOrders=function(){_openOrders26.apply(this,arguments);};
+setInterval(function(){if(!$('#profile').hidden&&document.activeElement&&!document.activeElement.closest('#pfedit')){var y=$('#profile').scrollTop;renderProfile();$('#profile').scrollTop=y;}},4000);
+var _paintLikes26=paintLikes;paintLikes=function(){_paintLikes26();};
 
 
 /* =========================================================
