@@ -19,6 +19,8 @@ module.exports = async (req, res) => {
     if (!b.accept) return L.send(res, 400, { ok: false, msg: 'Mesafeli satış sözleşmesini onaylaman gerekiyor.' });
 
     const cfg = await L.getConfig();
+    const mode = ['kapali', 'siparis', 'iyzico'].includes(cfg.shop && cfg.shop.mode) ? cfg.shop.mode : 'kapali';
+    if (mode === 'kapali') return L.send(res, 403, { ok: false, msg: 'Satışlarımız çok yakında başlıyor.' });
     const by = L.catalog(cfg);
     const items = [];
     let sub = 0;
@@ -42,7 +44,7 @@ module.exports = async (req, res) => {
     const d = L.dealsOf(cfg);
     const stand = (+d.standMin > 0 && total >= +d.standMin) ? (L.STANDS[b.stand] || L.STANDS.bar) : null;
     const id = 'LL' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 4).toUpperCase();
-    const pay = L.iyzOn();
+    const pay = mode === 'iyzico' && L.iyzOn();
     const order = {
       id, user_id: user.id, status: 'Ödeme bekleniyor', payment_status: pay ? 'bekliyor' : 'manuel',
       subtotal: sub, discount, total, coupon, coupon_label: couponLabel, items, customer, stand

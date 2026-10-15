@@ -1122,6 +1122,8 @@ body:has(#legal:not([hidden])) .ckbar,body:has(#qv:not([hidden])) .ckbar,body:ha
 .acctf input{flex:1;min-width:0;min-height:44px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font-size:16px;background:#fff}
 .acctf .btn{min-height:44px;padding:0 16px;font-size:12px}
 @media (max-width:420px){.ckrow{grid-template-columns:1fr}}
+.soon{gap:14px}.soon .btn{width:100%}
+.mnote{white-space:pre-line;background:var(--sand);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--ink2);text-align:left}
 
 </style>
 </head>
@@ -1902,7 +1904,7 @@ function addItem(id,opt){
 }
 function renderCart(){
   var body=$('#cartbody'),foot=$('#cartfoot');
-  if(ordered){body.innerHTML='<div class="empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1F6B45" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><div class="s">Teşekkürler!</div><div>Siparişin alındı'+(ordered&&ordered.id?' (no: '+esc(ordered.id)+')':'')+'. '+(ordered&&ordered.manual?'Ödeme için seninle kısa sürede iletişime geçeceğiz.':'Ödemen alındı, siparişin hazırlanıyor.')+'</div><div style="font-size:14px">Siparişin teslim edildiğinde kombin fotoğrafını LALLİ Akışı’nda paylaşabilirsin.</div></div>';foot.innerHTML='<button class="btn btn-ruby" data-myorders data-closecart>Siparişlerim</button><button class="btn btn-line" data-closecart>Alışverişe dön</button>';return;}
+  if(ordered){body.innerHTML='<div class="empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1F6B45" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><div class="s">Teşekkürler!</div><div>Siparişin alındı'+(ordered&&ordered.id?' (no: '+esc(ordered.id)+')':'')+'. '+(ordered&&ordered.manual?'Ödeme için seninle kısa sürede iletişime geçeceğiz.'+(C.shop&&C.shop.manualNote?'</div><div class="mnote">'+esc(C.shop.manualNote):''):'Ödemen alındı, siparişin hazırlanıyor.')+'</div><div style="font-size:14px">Siparişin teslim edildiğinde kombin fotoğrafını LALLİ Akışı’nda paylaşabilirsin.</div></div>';foot.innerHTML='<button class="btn btn-ruby" data-myorders data-closecart>Siparişlerim</button><button class="btn btn-line" data-closecart>Alışverişe dön</button>';return;}
   if(!cart.length){body.innerHTML='<div class="empty"><div class="s">Sepetin boş</div><div>Gez, beğen; hazır olduğunda burada olacak.</div><button class="btn btn-line" data-shop="all" data-closecart>Tüm ürünler</button></div>';foot.innerHTML='';return;}
   var r=calc();
   body.innerHTML=cart.map(function(l){var p=byId[l.id],meta=[labelOf(p),l.opt.size?'Ölçü '+l.opt.size:'',l.opt.eng||''].filter(Boolean).join(' · ');return '<div class="ci"><div class="im">'+art(p)+'</div><div style="min-width:0"><div class="nm">'+esc(p.name)+'</div><div class="meta">'+esc(meta)+'</div><div class="qty"><button data-q="-1" data-key="'+esc(l.key)+'" aria-label="Adet azalt">−</button><span>'+l.q+'</span><button data-q="1" data-key="'+esc(l.key)+'" aria-label="Adet artır">+</button></div></div><div class="rt"><span>'+tl(p.price*l.q)+'</span><button class="rm" data-rm="'+esc(l.key)+'">Kaldır</button></div></div>';}).join('')+
@@ -2216,11 +2218,22 @@ async function verifyCode(c){
   else{renderCart();var m2=$('#cartfoot .codemsg');if(m2&&code===c){m2.className='codemsg bad';m2.textContent=r.msg||'Bu kod geçerli değil.';}}
 }
 
+/* ---------- satış modu: kapali | siparis | iyzico (yönetim panelinden) ---------- */
+function shopMode(){var m=C.shop&&C.shop.mode;return ['kapali','siparis','iyzico'].indexOf(m)>-1?m:'kapali';}
+var _renderCart=renderCart;
+renderCart=function(){_renderCart();var b=$('#checkout');if(!b)return;if(shopMode()==='kapali')b.textContent='Satışlarımız çok yakında';else if(shopMode()==='siparis')b.textContent='Siparişi tamamla';};
+function soonPanel(){
+  $('#cartbody').innerHTML='<div class="empty soon"><div class="s">Satışlarımız çok yakında başlıyor</div><div>Sepetin bu cihazda kayıtlı kalacak. Satışlar açıldığında ilk sen haberdar ol; üyelere özel hoş geldin kuponu da seni bekliyor.</div>'+(member?'<div class="hint">Üyesin; satışlar açılınca seçtiğin kanaldan haber vereceğiz.</div>':'<button class="btn btn-ruby" data-openwelcome>Açılınca haber ver</button>')+'<button class="btn btn-line" data-ckoback>Sepete dön</button></div>';
+  $('#cartfoot').innerHTML='';
+}
+
 /* ---------- ödeme adımı ---------- */
 var CUST=S.get('lalli_cust',{});
 function fld(id,label,type,val,extra){return '<label class="mfl ckf">'+label+'<input id="'+id+'" type="'+(type||'text')+'" value="'+esc(val||'')+'" '+(extra||'')+'></label>';}
 function openCheckout(){
   if(!cart.length)return;
+  if(shopMode()==='kapali'){soonPanel();return;}
+  var MAN=shopMode()==='siparis';
   var r=calc(),c=CUST;
   $('#cartbody').innerHTML='<form id="ckoform" class="ckoform" novalidate>'+
     '<button type="button" class="linkbtn ckback" data-ckoback>← Sepete dön</button>'+
@@ -2232,7 +2245,7 @@ function openCheckout(){
     '<label class="mfl ckf">Sipariş notu (isteğe bağlı)<input id="c-note" maxlength="300" placeholder="Hediye notu, teslimat saati…"></label>'+
     '<label class="chk ckacc"><input type="checkbox" id="c-accept"><span><button type="button" class="linkbtn" data-legal="sales">Mesafeli satış sözleşmesini ve ön bilgilendirme formunu</button> okudum, onaylıyorum. Kişisel verilerim <button type="button" class="linkbtn" data-legal="privacy">aydınlatma metnine</button> göre işlenir.</span></label>'+
     '<div class="codemsg bad" id="ckoerr" aria-live="polite"></div></form>';
-  $('#cartfoot').innerHTML='<div class="sum"><div class="row"><span>Ara toplam</span><span>'+tl(r.sub)+'</span></div>'+(r.disc?'<div class="row disc"><span>'+esc(r.ck.d.label)+'</span><span>−'+tl(r.disc)+'</span></div>':'')+(r.stand?'<div class="row gift"><span>Takı standı</span><span>Hediye</span></div>':'')+'<div class="tot"><span>Toplam</span><b>'+tl(r.total)+'</b></div></div><button class="btn btn-ruby" id="paynow" form="ckoform" type="submit">Güvenli ödemeye geç</button><p class="ckpay">Ödeme iyzico güvencesiyle alınır; kart bilgilerin bize ulaşmaz.</p>';
+  $('#cartfoot').innerHTML='<div class="sum"><div class="row"><span>Ara toplam</span><span>'+tl(r.sub)+'</span></div>'+(r.disc?'<div class="row disc"><span>'+esc(r.ck.d.label)+'</span><span>−'+tl(r.disc)+'</span></div>':'')+(r.stand?'<div class="row gift"><span>Takı standı</span><span>Hediye</span></div>':'')+'<div class="tot"><span>Toplam</span><b>'+tl(r.total)+'</b></div></div><button class="btn btn-ruby" id="paynow" form="ckoform" type="submit">'+(MAN?'Siparişi gönder':'Güvenli ödemeye geç')+'</button><p class="ckpay">'+(MAN?'Ödeme için siparişinden sonra seninle iletişime geçeceğiz.':'Ödeme iyzico güvencesiyle alınır; kart bilgilerin bize ulaşmaz.')+'</p>';
   $('#cartbody').scrollTop=0;setTimeout(function(){var i=$('#c-name');if(i&&!i.value)i.focus({preventScroll:true});},60);
 }
 async function submitCheckout(){
@@ -2247,7 +2260,7 @@ async function submitCheckout(){
   var r=await api('/api/siparis',{items:cart.map(function(l){return {id:l.id,q:l.q,opt:l.opt||{}};}),code:calc().ck.ok?code:'',stand:standType,customer:cu,accept:true});
   if(r.ok&&r.paymentPageUrl){location.href=r.paymentPageUrl;return;}
   if(r.ok){cart=[];code='';save();paintBadges();ordered={id:r.id,manual:!!r.manual};renderCart();loadMyOrders();return;}
-  b.disabled=false;b.textContent='Güvenli ödemeye geç';er.textContent=r.msg||'Sipariş oluşturulamadı, tekrar dene.';
+  b.disabled=false;b.textContent=shopMode()==='siparis'?'Siparişi gönder':'Güvenli ödemeye geç';er.textContent=r.msg||'Sipariş oluşturulamadı, tekrar dene.';
   if(r.badCode){code='';save();}
 }
 document.addEventListener('click',function(e){var el=e.target.closest('button');if(!el)return;if(el.hasAttribute('data-ckoback')){renderCart();return;}});
