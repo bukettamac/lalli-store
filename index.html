@@ -26,7 +26,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"JewelryStore","name":"LALLİ Jewelry","url":"https://lallejewelry.com/","logo":"https://lallejewelry.com/apple-touch-icon.png","description":"Çiftlere özel isimli takılar, şahmeranlar, yüzük, kolye, bileklik ve setler.","sameAs":["https://www.instagram.com/lallejewelry","https://www.tiktok.com/@lallejewelry"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"JewelryStore","name":"LALLİ Jewelry","url":"https://lallejewelry.com/","logo":"https://lallejewelry.com/apple-touch-icon.png","description":"Çiftlere özel isimli takılar, şahmeranlar, yüzük, kolye, bileklik ve setler.","sameAs":["https://www.instagram.com/lallijewelry","https://www.tiktok.com/@lallijewelry"]}</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1453,6 +1453,57 @@ html,body{margin:0!important}
   #uyelik .err:empty{display:none}
   #uyelik .mform>button{min-height:48px!important;margin-top:2px}
 }
+
+/* v25: akış ayrıntı görünümü (Pinterest) ve büyük motto */
+.fx-stories{display:none!important}
+.fx-hero{text-align:center;padding:30px 16px 22px;max-width:760px;margin:0 auto}
+.fx-hero .eyebrow{display:block;margin-bottom:10px}
+.fx-hero h3{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(34px,6vw,58px);line-height:1.05;color:var(--ink)}
+.fx-hero h3 em{font-family:'Great Vibes',cursive;font-style:normal;color:var(--ruby);font-size:1.15em;font-weight:400}
+.fx-hero p{margin:12px auto 18px;max-width:520px;color:var(--ink2);font-size:15.5px;line-height:1.55}
+.fx-hero .btn{min-height:48px;padding:0 26px}
+.fx-tip{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 14px;font-size:13.5px;color:var(--goldtext);letter-spacing:.04em}
+.fx-tip svg{width:18px;height:18px}
+.fview{background:#fff!important;color:var(--ink)!important}
+.fv-x,.fv-hint{display:none!important}
+.fv-list{scroll-snap-type:none!important}
+.fd-top{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:calc(6px + env(safe-area-inset-top,0px)) 10px 6px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);text-align:center;font-family:var(--serif);font-size:20px}
+.fd-back{width:44px;height:44px;border-radius:50%;border:0;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+.fd-back:hover{background:var(--sand)}
+.fd-back svg{width:24px;height:24px}
+.fd-card{max-width:1000px;margin:6px auto 0;padding:0 14px;display:grid;gap:18px}
+.fd-media{position:relative;border-radius:24px;overflow:hidden;background:var(--sand);max-height:78vh}
+.fd-media>img,.fd-media>svg{width:100%;height:100%;max-height:78vh;object-fit:cover;display:block;aspect-ratio:4/5}
+.fd-media .burst{position:absolute;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;pointer-events:none;opacity:0}
+.fd-media .burst svg{width:100%;height:100%;fill:#fff;filter:drop-shadow(0 6px 20px rgba(0,0,0,.3))}
+.fd-media .burst.go{animation:burst .8s ease}
+.fd-body{display:flex;flex-direction:column;gap:14px;min-width:0}
+.fd-who{display:flex;align-items:center;gap:10px}
+.fd-who .pin-av{width:42px;height:42px;font-size:15px}
+.fd-who>div{display:flex;flex-direction:column;line-height:1.3;min-width:0;flex:1}
+.fd-name{display:inline-flex;align-items:center;gap:6px;font-weight:500;font-size:16px;color:var(--ink);text-decoration:none}
+a.fd-name:hover{color:var(--ruby)}
+.fd-name .brandico{width:18px;height:18px;border-radius:5px}
+.fd-sub{font-size:12.5px;color:var(--muted)}
+.fd-like{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:14px;color:var(--ink)}
+.fd-like svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7}
+.fd-like[aria-pressed=true]{color:var(--ruby);border-color:#F0C9D1}
+.fd-like[aria-pressed=true] svg{fill:var(--ruby);stroke:var(--ruby)}
+.fd-cmt{margin:0;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.35}
+.fd-h{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--goldtext);margin-bottom:10px}
+.fd-h small{letter-spacing:0;text-transform:none;color:var(--muted);font-size:12.5px;margin-left:6px}
+.fd-prods{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -14px;padding:2px 14px 6px}
+.fd-prods::-webkit-scrollbar{display:none}
+.fd-prod{flex:0 0 min(70%,230px);scroll-snap-align:start;display:flex;flex-direction:column;gap:5px;text-align:left;border:1px solid var(--line);border-radius:16px;padding:8px 8px 12px;background:#fff;cursor:pointer;color:var(--ink)}
+.fd-prod .im{display:block;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--sand)}
+.fd-prod .im img,.fd-prod .im svg{width:100%;height:100%;object-fit:cover;display:block}
+.fd-prod b{font-weight:500;font-size:14.5px;padding:0 4px}
+.fd-prod .pr{font-size:14px;padding:0 4px;display:flex;gap:6px}
+.fd-prod .pr s{color:var(--muted)}
+.fd-prod .go{font-size:12.5px;color:var(--ruby);padding:0 4px}
+.fd-more{max-width:1500px;margin:30px auto 0;padding:0 10px 40px}
+.fd-h2{font-family:var(--serif);font-size:26px;text-align:center;margin-bottom:16px}
+@media (min-width:900px){.fd-card{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start;gap:32px;padding:0 24px}.fd-body{position:sticky;top:70px;padding-top:6px}.fd-prods{margin:0;padding:2px 0 6px}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1705,7 +1756,8 @@ html,body{margin:0!important}
   </div>
   <div class="fx-body" id="fxbody">
     <div class="fx-stories" id="fxstories" aria-label="Son paylaşımlar"></div>
-    <p class="fnote" id="feednote" hidden>Şimdilik örnek kombinler gösteriliyor. Teslim edilen siparişi olan müşteriler paylaştıkça burası gerçek fotoğraflarla dolacak.</p>
+    <div class="fx-hero"><span class="eyebrow">LALLİ Akışı</span><h3 id="fxmotto">Tak takıştır, <em>LALLİ Akışı’nda</em> paylaş</h3><p>Müşterilerimizin kombinleri. Bir fotoğrafa dokun, içindeki takıları kaydırarak incele.</p><button class="btn btn-ruby" data-share="">Kombinini paylaş</button></div>
+    <p class="fx-tip" id="feednote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15"/></svg>Fotoğrafa tıkla, takıları kaydırarak incele</p>
     <div class="fx-masonry" id="fgrid"></div>
     <div class="fx-sent" id="fxsent" aria-hidden="true"></div>
     <div class="fx-end" id="fxend" hidden>
@@ -2027,7 +2079,7 @@ var DEF={
     feed:{motto:'Tak takıştır, LALLİ Akışı’nda paylaş',text:'Müşterilerimizin LALLİ ile paylaştığı kombinler. Etikete dokun, parçayı keşfet; beğendiğini kalple işaretle.'},
     member:{title:'Üye ol, ayrıcalıkları kaçırma',text:'Hoş geldin indirimin hemen gelsin; yeni koleksiyonları, fırsat günü kodlarını ve üyelere özel kuponları seçtiğin kanaldan ilk sen öğren.'}
   },
-  social:{show:true,title:'Bizi takip et',text:'Yeni parçalar, LALLİ Fırsat Günleri duyuruları ve sürpriz kuponlar önce sosyal medyada.',instagram:'lallejewelry',tiktok:'lallejewelry',igText:'Kombin önerileri, yeni parçalar ve müşteri paylaşımları.',ttText:'Kısa videolar, paketleme anları ve canlı yayın fırsatları.'}
+  social:{show:true,title:'Bizi takip et',text:'Yeni parçalar, LALLİ Fırsat Günleri duyuruları ve sürpriz kuponlar önce sosyal medyada.',instagram:'lallijewelry',tiktok:'lallijewelry',igText:'Kombin önerileri, yeni parçalar ve müşteri paylaşımları.',ttText:'Kısa videolar, paketleme anları ve canlı yayın fırsatları.'}
 };
 var IGI='<svg class="brandico" viewBox="0 0 24 24" role="img" aria-label="Instagram"><defs><radialGradient id="igG2" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#igG2)"/><rect x="5" y="5" width="14" height="14" rx="4.2" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.3" cy="7.7" r="1.05" fill="#fff"/></svg>',TTI='<svg class="brandico" viewBox="0 0 24 24" role="img" aria-label="TikTok"><rect width="24" height="24" rx="6" fill="#000"/><g transform="translate(5.2 4.6) scale(.58)"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#25F4EE" transform="translate(-.9 -.7)"/><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#FE2C55" transform="translate(.9 .7)"/><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#fff"/></g></svg>';
 var CONFIG={},C=deepMerge(DEF,{}),DRAFT=null,dirty=false;
@@ -2632,7 +2684,7 @@ function renderStories(){
 }
 function renderFeed(){
   FX.items=feedItems();FX.shown=0;FX.shopK=0;
-  $('#feednote').hidden=!FX.items.length||!FX.items[0].example;
+  $('#feednote').hidden=!FX.items.length;
   renderStories();layoutCols();
   if(!FX.items.length){$('#fgrid').innerHTML='<div class="empty"><div class="s">Henüz paylaşım yok</div></div>';return;}
   morePins();
@@ -2794,6 +2846,42 @@ var CAMP=(function(){
 CAMP.init();
 var _renderSlides24=renderSlides;
 renderSlides=function(){_renderSlides24();CAMP.dots();};
+
+
+/* =========================================================
+   v25: LALLİ Akışı — Pinterest ayrıntı görünümü, hesap adı bağlantısı, örnek yorumlar
+   ========================================================= */
+NETS.pinterest={name:'Pinterest',url:function(u){return 'https://www.pinterest.com/'+encodeURIComponent(u)+'/';}};
+var PINI='<svg class="brandico" viewBox="0 0 24 24" role="img" aria-label="Pinterest"><rect width="24" height="24" rx="6" fill="#E60023"/><path fill="#fff" d="M12.3 4.5c-4.2 0-6.3 3-6.3 5.5 0 1.5.6 2.9 1.8 3.4.2.1.4 0 .4-.2l.2-.7c.1-.2 0-.3-.1-.5-.4-.4-.6-1-.6-1.8 0-2.3 1.7-4.3 4.5-4.3 2.4 0 3.8 1.5 3.8 3.5 0 2.6-1.2 4.8-2.9 4.8-.9 0-1.6-.8-1.4-1.7.3-1.1.8-2.4.8-3.2 0-.7-.4-1.3-1.2-1.3-1 0-1.7 1-1.7 2.3 0 .8.3 1.4.3 1.4l-1.1 4.8c-.3 1.4 0 3.2 0 3.4 0 .1.2.1.2.1.1-.1 1.3-1.6 1.7-3.1l.6-2.5c.3.6 1.2 1.1 2.2 1.1 2.9 0 4.9-2.7 4.9-6.2 0-2.7-2.3-5.2-5.8-5.2z"/></svg>';
+var _netIcon25=netIcon;netIcon=function(n){return n==='pinterest'?PINI:_netIcon25(n);};
+/* örnek gönderiler: kısa yorum ve görünen ad (gerçek hesaplara bağlantı verilmez) */
+var EXC=[['Elif','Her gün takıyorum, çok zarif ve hafif.'],['Zeynep','Nişanımızda taktık, isimlerimiz ne kadar güzel durdu.'],['Merve','Kutusu bile hediye gibi geldi, bayıldım.'],['Selin','Şahmeranı annem için aldım, çok sevdi.'],['Ayşe','İnce zinciri kazakla bile çok şık duruyor.'],['Deniz','Yakut taşı fotoğraftakinden de canlı.'],['Ece','Üst üste takınca bambaşka bir hava veriyor.'],['Buse','Kargo hızlıydı, paketleme çok özenliydi.'],['Gizem','Sevgilime sürpriz yaptım, gözleri doldu.'],['İrem','Küpeleri düğünde taktım, çok iltifat aldım.'],['Nazlı','Günlük kullanıma çok uygun, kararmadı.'],['Cansu','Setin parçalarını ayrı ayrı da kombinliyorum.'],['Damla','Harf kolyemi hiç çıkarmıyorum.'],['Melis','Fiyatına göre kalitesi çok iyi.'],['Sude','İkinci siparişim, yine çok memnunum.'],['Ceren','Bilekliği arkadaşımla eş aldık.']];
+EXAMPLES.forEach(function(e,i){var x=EXC[i%EXC.length];e.name=x[0];e.comment=x[1];e.handle='';e.ts=Date.now()-(i*7+3)*3600e3;});
+function whoOf(it){if(it.social&&it.social.user)return '@'+it.social.user;return it.name||it.handle||'';}
+function whoHtml(it,cls){var w=whoOf(it);if(!w)return '';if(it.social&&it.social.user&&NETS[it.social.net])return '<a class="'+(cls||'')+'" href="'+esc(NETS[it.social.net].url(it.social.user))+'" target="_blank" rel="noopener nofollow">'+netIcon(it.social.net)+'<span>'+esc(w)+'</span></a>';return '<span class="'+(cls||'')+'">'+esc(w)+'</span>';}
+/* hikâye satırı yok */
+function renderStories(){var s=$('#fxstories');if(s)s.innerHTML='';}
+/* ayrıntı görünümü (Pinterest gibi) */
+function fdProds(it){var pids=postPids(it);return '<div class="fd-sec"><div class="fd-h">Bu fotoğraftaki takılar <small>'+pids.length+' parça · kaydırarak incele</small></div><div class="fd-prods">'+pids.map(function(pid){var p=byId[pid];return '<button class="fd-prod" data-qv="'+p.id+'"><span class="im">'+art(p)+'</span><b>'+esc(p.name)+'</b><span class="pr">'+priceHtml(p)+'</span><span class="go">İncele →</span></button>';}).join('')+'</div></div>';}
+function openViewer(id){
+  var all=feedItems(),it=all.filter(function(x){return x.id===id;})[0];if(!it)return;
+  var pids=postPids(it),lk=liked(it.id),n=likeCount(it.id),first=byId[pids[0]];
+  var rest=all.filter(function(x){return x.id!==id;});
+  var h='<div class="fd-top"><button class="fd-back" data-fvclose aria-label="Akışa dön"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span>LALLİ Akışı</span><button class="fd-back" data-fvshare="'+esc(it.id)+'" aria-label="Paylaş"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13M7 8l5-5 5 5"/></svg></button></div>'+
+    '<article class="fd-card"><div class="fd-media" data-dbl="'+esc(it.id)+'">'+postMedia(it,true)+'<span class="burst" aria-hidden="true">'+HEART+'</span></div>'+
+    '<div class="fd-body"><div class="fd-who"><span class="pin-av" aria-hidden="true">'+esc(initials(whoOf(it)||(first&&first.name)))+'</span><div>'+whoHtml(it,'fd-name')+'<span class="fd-sub">'+(it.example?'Örnek kombin':esc(ago(it.ts)))+'</span></div>'+
+      '<button class="fd-like" data-like="'+esc(it.id)+'" aria-pressed="'+lk+'" aria-label="'+(lk?'Beğenmekten vazgeç':'Beğen')+'">'+HEART+'<span>'+(n||'')+'</span></button></div>'+
+      (it.comment?'<p class="fd-cmt">“'+esc(it.comment)+'”</p>':'')+fdProds(it)+'</div></article>'+
+    (rest.length?'<div class="fd-more"><div class="fd-h2">Benzer kombinler</div><div class="fx-masonry fd-grid" id="fdgrid"></div></div>':'');
+  var l=$('#fvlist');l.innerHTML=h;$('#fview').hidden=false;l.scrollTop=0;
+  if(rest.length){var g=$('#fdgrid'),w=g.clientWidth||l.clientWidth,n2=w<560?2:w<900?3:4,cols=[],hs=[];for(var i=0;i<n2;i++){var c=document.createElement('div');c.className='fx-col';g.appendChild(c);cols.push(c);hs.push(0);}
+    rest.slice(0,24).forEach(function(x,k){var j=hs.indexOf(Math.min.apply(null,hs));cols[j].insertAdjacentHTML('beforeend',pinHtml(x,k+1));var r=PRATIOS[(k+1)%PRATIOS.length].split('/');hs[j]+=(+r[1]/+r[0])+0.18;});}
+  paintLikes();var seen=S.get('lalli_seen',[]);if(seen.indexOf(id)<0){seen.push(id);S.set('lalli_seen',seen.slice(-300));}
+  setTimeout(function(){$('#fview .fd-back').focus({preventScroll:true});},60);
+}
+var _pinHtml25=pinHtml;pinHtml=function(it,k){var h=_pinHtml25(it,k);return it.example?h.replace('<div class="pin-wrap">','<div class="pin-wrap"><span class="ex">Örnek</span>'):h;};
+/* parmakla sağa kaydırınca akışa dön (ürün şeridi hariç) */
+(function(){var sx=0,sy=0,ok=false;var v=$('#fview');v.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;ok=!e.target.closest('.fd-prods');},{passive:true});v.addEventListener('touchend',function(e){if(!ok)return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(dx>90&&Math.abs(dy)<60)closeViewer();},{passive:true});})();
 
 
 /* =========================================================
