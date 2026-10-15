@@ -2322,6 +2322,110 @@ document.addEventListener('click',function(e){
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#legal').hidden){e.stopImmediatePropagation();$('#legal').hidden=true;}},true);
 
 /* =========================================================
+   v17: LALLİ Akışı — Pinterest akışı + tam ekran görüntüleyici
+   ========================================================= */
+var PRATIOS=['3/4','4/5','2/3','1/1','4/5','3/4','5/7','4/5'];
+var FX={items:[],shown:0,cols:0,io:null,shopK:0};
+function initials(s){s=String(s||'').trim();if(!s)return 'L';var p=s.replace(/^@/,'').split(/\s+/);return (p[0][0]+(p[1]?p[1][0]:'')).toLocaleUpperCase('tr');}
+function whoOf(it){return it.name||(it.social&&it.social.user?'@'+it.social.user:'')||it.handle||'';}
+function ago(ts){if(!ts)return '';var s=(Date.now()-ts)/1000;if(s<3600)return Math.max(1,Math.round(s/60))+' dk önce';if(s<86400)return Math.round(s/3600)+' sa önce';if(s<86400*30)return Math.round(s/86400)+' gün önce';return new Date(ts).toLocaleDateString('tr-TR',{day:'numeric',month:'short'});}
+function postMedia(it,big){var pids=postPids(it),first=byId[pids[0]];if(it.example)return art(first,big?{}:undefined);return '<img src="'+esc(it.url)+'" alt="'+esc((first?first.name:'LALLİ')+' kombini')+'" loading="lazy" decoding="async" draggable="false">';}
+var BAGI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>';
+var SHAREI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13M7 8l5-5 5 5"/></svg>';
+function pinHtml(it,k){
+  var pids=postPids(it),first=byId[pids[0]],lk=liked(it.id),n=likeCount(it.id),who=whoOf(it);
+  return '<figure class="pin" data-pin="'+esc(it.id)+'" style="animation-delay:'+((k%8)*40)+'ms">'+
+    '<div class="pin-wrap"><button class="pin-ph" data-fview="'+esc(it.id)+'" style="aspect-ratio:'+PRATIOS[k%PRATIOS.length]+'" aria-label="'+esc((who?who+' · ':'')+(first?first.name:'Kombin'))+' gönderisini aç">'+postMedia(it)+'</button>'+
+    (pids.length>1?'<span class="pin-cnt">'+BAGI+pids.length+' parça</span>':'')+
+    '<button class="pin-heart" data-like="'+esc(it.id)+'" aria-pressed="'+lk+'" aria-label="'+(lk?'Beğenmekten vazgeç':'Beğen')+'">'+HEART+'<span>'+(n||'')+'</span></button></div>'+
+    '<figcaption class="pin-meta"><span class="pin-av" aria-hidden="true">'+esc(initials(who||(first&&first.name)))+'</span><span class="pin-tx"><b>'+esc(who||(first?first.name:'LALLİ'))+'</b><span>'+esc(it.comment?it.comment:(first?first.name:''))+'</span></span></figcaption></figure>';
+}
+function shopPinHtml(p,k){
+  return '<figure class="pin shop"><div class="pin-wrap"><button class="pin-ph" data-qv="'+p.id+'" style="aspect-ratio:'+(k%2?'4/5':'1/1')+'" aria-label="'+esc(p.name)+' ürününü incele">'+art(p)+'</button><span class="pin-badge">Mağazadan</span></div>'+
+    '<figcaption class="pin-meta"><span class="pin-tx"><b>'+esc(p.name)+'</b><span>'+tl(p.price)+'</span></span></figcaption></figure>';
+}
+function shopPicks(){var l=P.filter(function(p){return p.best||p.isNew||p.tag;});return l.length?l:P.slice(0,8);}
+function colCount(){var w=$('#fgrid').clientWidth||window.innerWidth;return w<560?2:w<900?3:w<1240?4:5;}
+function layoutCols(){var n=colCount(),g=$('#fgrid');FX.cols=n;g.innerHTML='';for(var i=0;i<n;i++){var c=document.createElement('div');c.className='fx-col';g.appendChild(c);}FX.h=new Array(n).fill(0);}
+function placePin(html,ratio){var i=FX.h.indexOf(Math.min.apply(null,FX.h)),col=$('#fgrid').children[i];col.insertAdjacentHTML('beforeend',html);var r=String(ratio||'1/1').split('/');FX.h[i]+=(+r[1]/+r[0])+0.18;}
+function morePins(){
+  var picks=shopPicks(),start=FX.shown,end=Math.min(FX.items.length,start+12);
+  for(var k=start;k<end;k++){
+    placePin(pinHtml(FX.items[k],k),PRATIOS[k%PRATIOS.length]);
+    if((k+1)%5===0&&picks.length){var p=picks[FX.shopK++%picks.length];placePin(shopPinHtml(p,FX.shopK),FX.shopK%2?'4/5':'1/1');}
+  }
+  FX.shown=end;$('#fxend').hidden=FX.shown<FX.items.length;paintLikes();
+}
+function renderStories(){
+  var seen=S.get('lalli_seen',[]),list=FX.items.slice(0,14);
+  $('#fxstories').innerHTML='<button class="fx-st me" data-share=""><span class="fx-ring"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></span><small>Sen de paylaş</small></button>'+
+    list.map(function(it){var first=byId[postPids(it)[0]],who=whoOf(it);return '<button class="fx-st'+(seen.indexOf(it.id)>-1?' seen':'')+'" data-fview="'+esc(it.id)+'"><span class="fx-ring"><span>'+postMedia(it)+'</span></span><small>'+esc(who||(first?first.name:'Kombin'))+'</small></button>';}).join('');
+}
+function renderFeed(){
+  FX.items=feedItems();FX.shown=0;FX.shopK=0;
+  $('#feednote').hidden=!FX.items.length||!FX.items[0].example;
+  renderStories();layoutCols();
+  if(!FX.items.length){$('#fgrid').innerHTML='<div class="empty"><div class="s">Henüz paylaşım yok</div></div>';return;}
+  morePins();
+  if(!FX.io&&'IntersectionObserver' in window){FX.io=new IntersectionObserver(function(es){if(es[0].isIntersecting&&!$('#feed').hidden&&FX.shown<FX.items.length)morePins();},{root:$('#feed'),rootMargin:'900px 0px'});FX.io.observe($('#fxsent'));}
+  if(!('IntersectionObserver' in window))while(FX.shown<FX.items.length)morePins();
+}
+var _fxResize;window.addEventListener('resize',function(){clearTimeout(_fxResize);_fxResize=setTimeout(function(){if($('#feed').hidden||colCount()===FX.cols)return;var n=FX.shown;FX.shown=0;FX.shopK=0;layoutCols();while(FX.shown<n)morePins();},200);});
+
+/* ---------- tam ekran görüntüleyici ---------- */
+var FV={list:[],obs:null};
+function fvSlide(it,i){
+  var pids=postPids(it),first=byId[pids[0]],lk=liked(it.id),n=likeCount(it.id),who=whoOf(it);
+  var bg=it.example?'':'<div class="fv-bg" style="background-image:url(\''+esc(it.url).replace(/'/g,'%27')+'\')"></div>';
+  return '<section class="fv" data-fvi="'+i+'" data-id="'+esc(it.id)+'" aria-label="'+esc((who||'LALLİ')+' kombini')+'">'+bg+
+    '<div class="fv-media" data-dbl="'+esc(it.id)+'">'+postMedia(it,true)+'<div class="fv-shade"></div><span class="burst" aria-hidden="true">'+HEART+'</span></div>'+
+    '<div class="fv-head"><span class="pin-av" aria-hidden="true">'+esc(initials(who||(first&&first.name)))+'</span><div class="fv-who"><b>'+esc(who||'LALLİ müşterisi')+'</b>'+(it.social&&it.social.user&&NETS[it.social.net]?'<a href="'+esc(NETS[it.social.net].url(it.social.user))+'" target="_blank" rel="noopener nofollow">'+netIcon(it.social.net)+'@'+esc(it.social.user)+'</a>':'<span>'+(it.example?'Örnek kombin':esc(ago(it.ts)))+'</span>')+'</div></div>'+
+    '<div class="fv-rail"><button class="fv-btn" data-like="'+esc(it.id)+'" aria-pressed="'+lk+'" aria-label="'+(lk?'Beğenmekten vazgeç':'Beğen')+'"><span class="n">'+(n||'')+'</span><i class="c">'+HEART+'</i></button>'+
+      '<button class="fv-btn" data-postprods="'+esc(it.id)+'" aria-label="Bu kombindeki parçalar"><i class="c">'+BAGI+'</i>'+pids.length+'</button>'+
+      '<button class="fv-btn" data-fvshare="'+esc(it.id)+'" aria-label="Paylaş"><i class="c">'+SHAREI+'</i>Paylaş</button></div>'+
+    '<div class="fv-foot">'+(it.comment?'<p class="fv-cmt">“'+esc(it.comment)+'”</p>':'')+
+      '<div class="fv-prods">'+pids.map(function(pid){var p=byId[pid];return '<button class="fv-prod" data-qv="'+p.id+'"><span class="im">'+art(p)+'</span><span><b>'+esc(p.name)+'</b><span>'+tl(p.price)+'</span></span></button>';}).join('')+'</div></div>'+
+  '</section>';
+}
+function openViewer(id){
+  FV.list=feedItems();var i=Math.max(0,FV.list.findIndex(function(x){return x.id===id;}));
+  var l=$('#fvlist');
+  l.innerHTML=FV.list.map(fvSlide).join('')+'<section class="fv-end"><b>Hepsi bu kadar</b><span>Sıradaki kombin senin olsun.</span><button class="btn btn-ruby" data-share="">Kombinini paylaş</button><button class="btn btn-line" data-fvclose style="color:#fff;border-color:rgba(255,255,255,.5)">Akışa dön</button></section>';
+  $('#fview').hidden=false;paintLikes();
+  l.scrollTop=i*l.clientHeight;
+  var seen=S.get('lalli_seen',[]);
+  if(FV.obs)FV.obs.disconnect();
+  if('IntersectionObserver' in window){FV.obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var pid=e.target.dataset.id;if(pid&&seen.indexOf(pid)<0){seen.push(pid);S.set('lalli_seen',seen.slice(-300));}}});},{root:l,threshold:.6});$$('.fv',l).forEach(function(s){FV.obs.observe(s);});}
+  var h=$('#fvhint');if(!S.get('lalli_fvhint',false)&&FV.list.length>1){h.hidden=false;S.set('lalli_fvhint',true);setTimeout(function(){h.hidden=true;},3800);}
+  setTimeout(function(){$('#fview [data-fvclose]').focus({preventScroll:true});},60);
+}
+function closeViewer(){$('#fview').hidden=true;$('#fvlist').innerHTML='';if(!$('#feed').hidden)renderStories();}
+async function sharePost(id){
+  var it=findPost(id),first=it&&byId[postPids(it)[0]];var url=location.origin+location.pathname+'?akis='+encodeURIComponent(id);
+  var data={title:'LALLİ Akışı',text:(first?first.name+' · ':'')+'LALLİ Akışı’nda bu kombine bak',url:url};
+  try{if(navigator.share){await navigator.share(data);return;}await navigator.clipboard.writeText(url);toast('<div class="r"><div style="flex:1"><h4>Bağlantı kopyalandı</h4></div></div>',{ms:2500});}catch(e){}
+}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('[data-fview],[data-fvclose],[data-fvshare]');if(!el)return;
+  if(el.dataset.fview){e.preventDefault();openViewer(el.dataset.fview);return;}
+  if(el.hasAttribute('data-fvclose')){closeViewer();return;}
+  if(el.dataset.fvshare){sharePost(el.dataset.fvshare);}
+});
+/* telefonda çift dokunuş: beğen */
+var _lastTap=0;document.addEventListener('touchend',function(e){var m=e.target.closest&&e.target.closest('[data-dbl]');if(!m)return;var t=Date.now();if(t-_lastTap<300){e.preventDefault();toggleLike(m.dataset.dbl,true);var b=$('.burst',m);if(b){b.classList.remove('go');void b.offsetWidth;b.classList.add('go');}_lastTap=0;}else _lastTap=t;},{passive:false});
+document.addEventListener('keydown',function(e){
+  if($('#fview').hidden)return;var l=$('#fvlist');
+  if(e.key==='Escape'){e.stopImmediatePropagation();if($('#qv').hidden&&$('#kombin').hidden)closeViewer();return;}
+  if(e.key==='ArrowDown'||e.key==='j'){e.preventDefault();l.scrollBy({top:l.clientHeight,behavior:'smooth'});}
+  if(e.key==='ArrowUp'||e.key==='k'){e.preventDefault();l.scrollBy({top:-l.clientHeight,behavior:'smooth'});}
+},true);
+/* sepete gidince akış kapansın */
+var _openCartFx=openCart;openCart=function(){if(!$('#fview').hidden)closeViewer();if(!$('#feed').hidden)closeFeed();_openCartFx();};
+/* bağlantıyla gelen gönderi: ?akis=ID */
+(function(){var q=new URLSearchParams(location.search),id=q.get('akis');if(!id)return;history.replaceState(null,'',location.pathname+location.hash);setTimeout(function(){openFeed();setTimeout(function(){if(findPost(id))openViewer(id);},250);},900);})();
+
+
+/* =========================================================
    Mağaza: ödeme, siparişlerim, hesap bağlama, kupon, analitik
    ========================================================= */
 var SB=window.LALLI&&window.LALLI.sb;
