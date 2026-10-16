@@ -1700,6 +1700,78 @@ span.fv-acc{font-weight:500}
   .tabbar button[aria-current=page]::before{content:"";position:absolute;top:0;left:50%;width:28px;height:3px;border-radius:0 0 3px 3px;background:var(--ruby);transform:translateX(-50%)}
 }
 @media (prefers-reduced-motion:reduce){.tabin-r,.tabin-l{animation:none}}
+
+/* v32: Favorilerim sayfası */
+.favp .pf-top small{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-left:6px}
+.fl-list{display:flex;flex-direction:column}
+.fl-row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #F1EBE2}
+.fl-row:first-child{padding-top:4px}
+.fl-im{width:96px;height:96px;border:0;padding:0;border-radius:16px;overflow:hidden;background:var(--sand);cursor:pointer}
+.fl-im img,.fl-im svg{width:100%;height:100%;object-fit:cover;display:block}
+.fl-row.so .fl-im{opacity:.55}
+.fl-tx{display:flex;flex-direction:column;gap:3px;min-width:0}
+.fl-cat{font-size:10.5px;letter-spacing:.16em;color:var(--goldtext)}
+.fl-nm{border:0;background:none;padding:0;text-align:left;font-family:var(--serif);font-size:19px;line-height:1.2;color:var(--ink);cursor:pointer}
+.fl-pr{display:flex;gap:8px;align-items:baseline;font-size:15px;font-weight:500}
+.fl-pr s{color:var(--muted);font-weight:400;font-size:13px}
+.fl-note{font-size:12.5px;color:var(--muted)}
+.fl-act{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.fl-rm{width:40px;height:40px;border-radius:50%;border:1px solid #F0D3D9;background:#FFF7F8;color:var(--ruby);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.fl-rm svg{width:20px;height:20px;fill:var(--ruby);stroke:var(--ruby)}
+.fl-add{min-height:40px;padding:0 14px;font-size:11px;white-space:nowrap}
+.fl-so{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.fl-more{display:flex;width:100%;margin-top:20px}
+.fl-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:50px 20px}
+.fl-hic svg{width:46px;height:46px;fill:none;stroke:var(--ruby);stroke-width:1.4}
+.fl-empty b{font-family:var(--serif);font-weight:500;font-size:24px}
+.fl-empty span{color:var(--muted);max-width:300px;line-height:1.5}
+.fl-empty .btn{margin-top:10px}
+@media (max-width:420px){.fl-row{grid-template-columns:78px minmax(0,1fr);grid-template-areas:"im tx" "im act"}.fl-im{width:78px;height:78px;grid-area:im;align-self:start}.fl-tx{grid-area:tx}.fl-act{grid-area:act;flex-direction:row;align-items:center;justify-content:flex-start}.fl-nm{font-size:17px}}
+@media (min-width:1024px){.favp .pf-body{max-width:760px}}
+
+/* v33: mobil akış belge kaydırması */
+[data-fdochide]{display:none!important}
+html.feed-doc .feed{position:relative;inset:auto;overflow:visible;min-height:100vh;min-height:100dvh;animation:none}
+html.feed-doc .fx-top{position:sticky;top:0}
+html.fdoc-lock body{position:fixed;left:0;right:0;overflow:hidden}
+
+/* v33: alt menü sepet rozeti dar kalsın */
+.tabbar .badge-n{right:auto!important;left:calc(50% + 5px);width:auto;min-width:17px;height:17px;padding:0 5px;font-size:10px;line-height:1;top:4px}
+
+/* v33: fırsat kartları arasında boşluk, yumuşak köşe */
+@media (max-width:1023px){
+  #camps{padding:6px 16px 10px!important;gap:12px!important;scroll-padding:0 16px!important}
+  #camps>.camp,#camps>.camp.wide{flex:0 0 100%!important;width:100%!important;border-radius:18px!important;border:1px solid rgba(226,214,196,.7)!important;overflow:hidden;scroll-snap-align:center!important;box-shadow:0 10px 24px -14px rgba(42,34,32,.35)}
+  #camps>.camp:first-child,#camps>.camp:last-child{margin:0!important}
+  #kampanyalar{padding-top:12px!important}
+}
+
+/* v34: ayın kombini — ortalanmış */
+.ct2{position:relative;overflow:hidden;border-radius:24px;padding:20px 18px 18px;background:radial-gradient(120% 90% at 50% 0%,#7A1E33 0%,#3A1520 70%,#2A1018 100%);color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;box-shadow:0 18px 40px -18px rgba(58,21,32,.6)}
+.ct2 .ct-glow{left:50%;right:auto;top:-120px;transform:translateX(-50%)}
+.ct2-hd{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+.ct2-cd{font-size:11.5px;color:#F3DFC6;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:4px 12px}
+.ct2-pod{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:14px;margin:22px 0 6px;width:100%}
+.cz{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px}
+.cz.p1{order:2}.cz.p2{order:1}.cz.p3{order:3}
+.cz-im{display:block;border:2px solid rgba(255,255,255,.85);padding:0;border-radius:18px;overflow:hidden;background:#F8F2EA;box-shadow:0 12px 26px rgba(0,0,0,.35);cursor:pointer}
+.cz-im img,.cz-im svg{width:100%;height:100%;object-fit:cover;display:block}
+.cz.p1 .cz-im{width:110px;height:140px;border-color:#E9D3A6}
+.cz.p2 .cz-im,.cz.p3 .cz-im{width:86px;height:110px}
+.cz-empty{display:flex!important;align-items:center;justify-content:center;font-family:var(--serif);font-size:32px;color:#C9B79F;cursor:default}
+.cz-m{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:#2A2220;background:linear-gradient(135deg,#F6E3B4,#C9A04E);box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.cz.p2 .cz-m{background:linear-gradient(135deg,#F2F2F2,#B9B9B9)}.cz.p3 .cz-m{background:linear-gradient(135deg,#F1C9A5,#B97A4A)}
+.cz-pr{margin-top:6px;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1;color:#E9D3A6;white-space:nowrap}
+.cz.p1 .cz-pr{font-size:25px;color:#F6E3B4}
+.cz-lk{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;color:rgba(255,255,255,.75)}
+.cz-lk svg{width:12px;height:12px;fill:#F08AA0;stroke:none}
+.ct2-cheer{position:relative;margin:8px 0 0;font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.15;color:#fff}
+.ct2-note{position:relative;margin:0;font-size:13px;color:#F3DFC6;max-width:420px}
+.ct2-b{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px;width:100%}
+.ct2-b .btn{min-height:46px;padding:0 24px;font-size:12px;border-radius:999px}
+.ct2-b .linkbtn{color:#E9D3A6;font-size:13px;text-decoration:underline;min-height:40px}
+@media (max-width:380px){.ct2-pod{gap:10px}.cz.p1 .cz-im{width:96px;height:122px}.cz.p2 .cz-im,.cz.p3 .cz-im{width:74px;height:96px}.cz-pr{font-size:17px}.cz.p1 .cz-pr{font-size:21px}}
+@media (min-width:900px){.ct2{padding:28px 24px 24px}.cz.p1 .cz-im{width:140px;height:178px}.cz.p2 .cz-im,.cz.p3 .cz-im{width:108px;height:138px}.ct2-pod{gap:22px}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1969,6 +2041,10 @@ span.fv-acc{font-weight:500}
 <div class="pf" id="profile" hidden role="dialog" aria-modal="true" aria-labelledby="pfname">
   <div class="pf-top"><button class="fd-back" data-pfclose aria-label="Profili kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span>Profilim</span><button class="fd-back" data-pfedit aria-label="Profili düzenle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"/></svg></button></div>
   <div class="pf-body" id="pfbody"></div>
+</div>
+<div class="pf favp" id="favpage" hidden role="dialog" aria-modal="true" aria-labelledby="favt">
+  <div class="pf-top"><button class="fd-back" data-favclose aria-label="Favorileri kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span id="favt">Favorilerim <small id="favcount"></small></span><span></span></div>
+  <div class="pf-body" id="favbody"></div>
 </div>
 <div class="fview" id="fview" hidden role="dialog" aria-modal="true" aria-label="LALLİ Akışı gönderileri">
   <div class="fv-list" id="fvlist"></div>
@@ -3327,6 +3403,96 @@ function anyModal(){return ['#qv','#share','#orders','#welcome','#legal','#kombi
 })();
 /* sekme çubuğundaki seçili sekmeyi güncel tut */
 setInterval(function(){if(window.innerWidth>1023)return;var c=curTab(),ix=TABORDER.indexOf(c);$$('.tabbar button').forEach(function(b,i){if(i===ix)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});},500);
+
+
+/* =========================================================
+   v32: Favorilerim ayrı sayfa (liste)
+   ========================================================= */
+function favListHtml(){
+  var list=favs.map(function(id){return byId[id];}).filter(function(p){return p&&!p.hidden;});
+  $('#favcount').textContent=list.length?list.length+' ürün':'';
+  if(!list.length)return '<div class="fl-empty"><div class="fl-hic">'+HEART+'</div><b>Favorilerin henüz boş</b><span>Beğendiğin takıların üzerindeki kalbe dokun, hepsi burada liste halinde dursun.</span><button class="btn btn-ruby" data-favclose data-shop="all">Ürünleri keşfet</button></div>';
+  return '<div class="fl-list">'+list.map(function(p){var note=p.engrave?'İsim yazdırılabilir':(p.incl?'Set · '+p.incl.length+' parça':(p.size?'Ölçü seçilebilir':''));
+    return '<div class="fl-row'+(p.soldout?' so':'')+'"><button class="fl-im" data-qv="'+p.id+'" aria-label="'+esc(p.name)+' ürününü incele">'+art(p)+'</button>'+
+      '<div class="fl-tx"><span class="fl-cat">'+esc(labelOf(p).toLocaleUpperCase('tr-TR'))+'</span><button class="fl-nm" data-qv="'+p.id+'">'+esc(p.name)+'</button><span class="fl-pr">'+priceHtml(p)+'</span>'+(note?'<span class="fl-note">'+note+'</span>':'')+'</div>'+
+      '<div class="fl-act"><button class="fl-rm" data-fav="'+p.id+'" aria-pressed="true" aria-label="'+esc(p.name)+' favorilerden çıkar">'+HEART+'</button>'+(p.soldout?'<span class="fl-so">Tükendi</span>':'<button class="btn btn-ruby fl-add" data-favadd="'+p.id+'">'+((p.size||p.engrave||p.initial)?'Seç ve ekle':'Sepete ekle')+'</button>')+'</div></div>';}).join('')+'</div>'+
+    '<button class="btn btn-line fl-more" data-favclose data-shop="all">Alışverişe devam et</button>';
+}
+function renderFavs(){$('#favbody').innerHTML=favListHtml();}
+function openFavs(){lastFocus=document.activeElement;closeNav();if(typeof closeAllTabs==='function')closeAllTabs();if(st.favs){st.favs=false;renderShop();}renderFavs();$('#favpage').hidden=false;document.body.classList.add('pf-open');document.body.style.overflow='hidden';setTimeout(function(){var b=$('#favpage [data-favclose]');if(b)b.focus({preventScroll:true});},50);}
+function closeFavs(){if($('#favpage').hidden)return;$('#favpage').hidden=true;document.body.classList.remove('pf-open');document.body.style.overflow='';}
+/* kalp, menü ve alt menüdeki Favoriler artık bu sayfayı açar */
+document.addEventListener('click',function(e){
+  var el=e.target.closest('[data-navfav],#favbtn');if(el){e.preventDefault();e.stopImmediatePropagation();if($('#favpage').hidden)openFavs();else closeFavs();return;}
+  var c=e.target.closest('[data-favclose]');if(c){closeFavs();}
+  var a=e.target.closest('[data-favadd]');if(a){e.stopImmediatePropagation();var p=byId[a.dataset.favadd];if(!p)return;if(p.size||p.engrave||p.initial){openQV(p.id);}else{addItem(p.id,{});}return;}
+  var o=e.target.closest('[data-opencart],[data-openfeed],[data-openprofile],[data-go]');if(o&&!$('#favpage').hidden)closeFavs();
+},true);
+var _toggleFav32=toggleFav;toggleFav=function(){var r=_toggleFav32.apply(this,arguments);if(!$('#favpage').hidden)renderFavs();return r;};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#favpage').hidden&&$('#qv').hidden){e.stopImmediatePropagation();closeFavs();}},true);
+/* mağazadaki süzgeçten "Favorilerim" seçeneği kalktı */
+var _renderShop32=renderShop;renderShop=function(){if(st.favs)st.favs=false;_renderShop32.apply(this,arguments);var o=$('#f-catsel option[value="__fav"]');if(o)o.remove();};
+/* kaydırma sekmeleri: favoriler artık ayrı sayfa */
+if(typeof curTab==='function'){var _curTab32=curTab;curTab=function(){if(!$('#favpage').hidden)return 'favs';var t=_curTab32();return t==='favs'?'home':t;};}
+if(typeof closeAllTabs==='function'){var _closeAll32=closeAllTabs;closeAllTabs=function(){_closeAll32();closeFavs();};}
+if(typeof goTab==='function'){var _goTab32=goTab;goTab=function(name,dir){if(name==='favs'){closeAllTabs();openFavs();var el=$('#favpage');if(dir){el.classList.remove('tabin-l','tabin-r');void el.offsetWidth;el.classList.add(dir>0?'tabin-r':'tabin-l');setTimeout(function(){el.classList.remove('tabin-l','tabin-r');},420);}return;}_goTab32(name,dir);};}
+
+
+/* =========================================================
+   v33: mobilde Akış sayfanın kendisi gibi kaysın
+   (Safari/Chrome alt çubuğu kaydırırken gizlenir)
+   ========================================================= */
+var FDOC={on:false,y:0,hid:[]};
+function feedDocOn(){
+  if(FDOC.on||window.innerWidth>=900)return;
+  var f=$('#feed');FDOC.y=window.scrollY||0;FDOC.hid=[];
+  Array.prototype.forEach.call(f.parentNode.children,function(el){
+    if(el===f||el.hidden||/^(SCRIPT|STYLE|LINK|META)$/.test(el.tagName))return;
+    if(getComputedStyle(el).position==='fixed')return;
+    el.setAttribute('data-fdochide','');FDOC.hid.push(el);
+  });
+  document.documentElement.classList.add('feed-doc');document.body.style.overflow='';
+  FDOC.on=true;window.scrollTo(0,0);
+  if(FX.io){FX.io.disconnect();FX.io=new IntersectionObserver(function(es){if(es[0].isIntersecting&&!$('#feed').hidden&&FX.shown<FX.items.length)morePins();},{root:null,rootMargin:'900px 0px'});FX.io.observe($('#fxsent'));}
+}
+function feedDocOff(){
+  if(!FDOC.on)return;FDOC.on=false;
+  FDOC.hid.forEach(function(el){el.removeAttribute('data-fdochide');});FDOC.hid=[];
+  document.documentElement.classList.remove('feed-doc');
+  if(FX.io){FX.io.disconnect();FX.io=null;}
+  window.scrollTo(0,FDOC.y);
+}
+var _openFeed33=openFeed;openFeed=function(){_openFeed33.apply(this,arguments);if(!$('#feed').hidden)feedDocOn();};
+var _closeFeed33=closeFeed;closeFeed=function(){feedDocOff();_closeFeed33.apply(this,arguments);if(FDOC.y)window.scrollTo(0,FDOC.y);};
+/* tam ekran görüntüleyici açıkken sayfa kaymasın, kapanınca yer korunsun */
+(function(){var y=0;new MutationObserver(function(){if(!FDOC.on)return;var v=$('#fview');if(!v)return;if(!v.hidden&&!document.documentElement.classList.contains('fdoc-lock')){y=window.scrollY;document.documentElement.classList.add('fdoc-lock');document.body.style.top=-y+'px';}else if(v.hidden&&document.documentElement.classList.contains('fdoc-lock')){document.documentElement.classList.remove('fdoc-lock');document.body.style.top='';window.scrollTo(0,y);}}).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['hidden']});})();
+/* başka sekmeye geçince akış kapanmalı */
+window.addEventListener('resize',function(){if(FDOC.on&&window.innerWidth>=900){feedDocOff();document.body.style.overflow='hidden';}});
+
+
+/* =========================================================
+   v34: Ayın kombini kartı — ortalanmış podyum, altında ödül
+   ========================================================= */
+DEF.sections.contest.p1=DEF.sections.contest.p1||'1.500 ₺';DEF.sections.contest.p2=DEF.sections.contest.p2||'1.000 ₺';DEF.sections.contest.p3=DEF.sections.contest.p3||'500 ₺';
+DEF.sections.contest.cheer=DEF.sections.contest.cheer||'Sıradaki zirve senin kombinin olabilir';
+DEF.sections.contest.note=DEF.sections.contest.note||'Ay sonunda en çok beğenilen 3 kombine LALLİ hediye çeki';
+(function(){var c=C.sections.contest;['p1','p2','p3','cheer','note'].forEach(function(k){if(c[k]==null)c[k]=DEF.sections.contest[k];});})();
+function contestHtml(){
+  var c=(C.sections&&C.sections.contest)||DEF.sections.contest;if(!c.show)return '';
+  var ml=monthLeft(),top=topPosts(),pr=[c.p1,c.p2,c.p3];
+  var mon=ml.name.charAt(0).toLocaleUpperCase('tr')+ml.name.slice(1);
+  var pod=[0,1,2].map(function(i){var it=top[i];
+    return '<div class="cz p'+(i+1)+'">'+(it?'<button class="cz-im" data-fview="'+esc(it.id)+'" aria-label="'+(i+1)+'. sıradaki kombini aç">'+postMedia(it)+'</button>':'<span class="cz-im cz-empty" aria-hidden="true">?</span>')+
+      '<span class="cz-m" aria-hidden="true">'+(i+1)+'</span><b class="cz-pr">'+esc(pr[i]||'')+'</b><span class="cz-lk">'+HEART+(it?(likeCount(it.id)||0):0)+'</span></div>';}).join('');
+  return '<section class="ct2" aria-label="'+esc(mon)+' ayının kombini yarışması">'+
+    '<div class="ct-glow" aria-hidden="true"></div>'+
+    '<div class="ct2-hd"><span class="ct-ey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13M12 8S10.5 3 8 3.5 7 8 12 8zM12 8s1.5-5 4-4.5S17 8 12 8z"/></svg>'+esc(mon)+' ayının kombini</span><span class="ct2-cd">'+ml.d+' gün '+ml.h+' saat kaldı</span></div>'+
+    '<div class="ct2-pod">'+pod+'</div>'+
+    '<p class="ct2-cheer">'+esc(c.cheer)+'</p><p class="ct2-note">'+esc(c.note)+'</p>'+
+    '<div class="ct2-b"><button class="btn btn-gold" data-share="">Kombinini paylaş, katıl</button><button class="linkbtn" data-legal="contest">Koşullar</button></div>'+
+  '</section>';
+}
+/* yönetici sonu v34 */
 
 
 /* =========================================================
