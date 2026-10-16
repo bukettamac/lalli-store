@@ -1844,6 +1844,17 @@ html.fdoc-lock body{position:fixed;left:0;right:0;overflow:hidden}
 .ct2-kos{display:inline;min-height:0!important;padding:0;border:0;background:none;color:#E9D3A6;font-size:12px;text-decoration:underline;cursor:pointer}
 @media (min-width:900px){.ct2.ct2-s{padding:16px 22px 18px}.ct2-s .cz.p1 .cz-im{width:96px;height:118px}.ct2-s .cz.p2 .cz-im,.ct2-s .cz.p3 .cz-im{width:76px;height:94px}.ct2-s .ct2-cheer{font-size:24px}}
 #fxhero2{margin-top:10px;margin-bottom:12px}
+
+/* v39: takı standı kartı */
+#camps>.camp.stand3{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center;gap:6px!important;padding:14px 16px!important;overflow:hidden}
+.st3-row{display:flex;justify-content:center;align-items:flex-end;gap:10px;width:100%}
+.st3-row figure{margin:0;flex:0 1 90px;display:flex;flex-direction:column;align-items:center;gap:3px;background:rgba(255,255,255,.55);border-radius:14px;padding:6px 4px 5px}
+.st3-row svg{width:100%;max-width:74px;height:auto;max-height:74px;aspect-ratio:1/1;display:block}
+.st3-row figcaption{font-size:10.5px;letter-spacing:.04em;color:#5A443C;white-space:nowrap}
+.st3-t{font-family:var(--serif);font-size:clamp(24px,2.2vw,30px);line-height:1.05;color:#7A1E33;font-weight:500;margin-top:4px}
+.st3-s{font-size:12.5px;color:#5A443C}
+.st3-k{border:0;background:none;padding:0;color:#9A4F33;font-size:12.5px;text-decoration:underline;cursor:pointer;min-height:0}
+@media (max-width:1023px){#camps>.camp.stand3{min-height:0!important;height:auto!important}.st3-row figure{flex-basis:84px}.st3-row svg{max-width:62px;max-height:62px}.st3-t{font-size:25px}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -2404,7 +2415,7 @@ function setPath(o,p,v){var ks=p.split('.'),x=o;for(var i=0;i<ks.length-1;i++){i
 /* ---------- varsayılanlar ---------- */
 var DEF={
   brand:{name:'LALLİ',slogan:'Lal eden zarafet.',email:'destek@lallejewelry.com',domain:'lallejewelry.com'},
-  deals:{title:'LALLİ Fırsat Günleri',days:[{day:15,pct:15,code:'AY15'},{day:30,pct:30,code:'AY30'}],firstAmt:200,firstCode:'HOSGELDIN200',standMin:2500},
+  deals:{title:'LALLİ Fırsat Günleri',days:[{day:15,pct:15,code:'AY15'},{day:30,pct:30,code:'AY30'}],firstAmt:200,firstCode:'HOSGELDIN200',standMin:800},
   slides:[
     {id:'s1',theme:'dark',eyebrow:'LALLİ FIRSAT GÜNLERİ',title:'LALLİ Fırsat Günleri',text:'Fırsat günü kodları ve özel hediye kuponları üyelerimize, seçtikleri kanaldan gönderilir.',btn:'Üye ol, kodları al',action:'member',width:'s',ratio:'auto'},
     {id:'s2',theme:'light',big:'%15',eyebrow:"HER AYIN 15'İ",title:'Tüm takılarda %15',text:"Kod, ayın 15'i sabahı üyelerimize gelir.",btn:'Kodu al',action:'member',day:15,width:'s',ratio:'auto'},
@@ -3639,6 +3650,24 @@ contestHtml=function(){
   h=h.replace(/(<p class="ct2-note">)([\s\S]*?)(<\/p>)/,'$1$2 · <button class="linkbtn ct2-kos" data-legal="contest">Koşullar</button>$3');
   return h.replace('class="ct2"','class="ct2 ct2-s"');
 };
+
+
+/* =========================================================
+   v39: takı standı kartı — üç stand ortada, altında büyük başlık,
+   Koşullar: tutar üzeri siparişte biri hediye (varsayılan 800 ₺)
+   ========================================================= */
+DEF.deals.standMin=800;
+if(!(CONFIG&&CONFIG.deals&&CONFIG.deals.standMin!=null))C.deals.standMin=800;
+function standLegal(){var m=+C.deals.standMin||0;LEGAL_DEF.stand={title:'Takı standı hediyesi',body:(m?tl(m)+' ve üzeri siparişlerde kolye standı, ağaç stand ya da katlı tepsiden birini hediye ediyoruz.':'Takı standı hediyesi şu an kapalı.')+'\n\nSepet tutarın bu sınırı geçince sepette standını seçersin; siparişine ücretsiz eklenir. İndirim ve kupon sonrası tutar geçerlidir. Hediye stand iade edilen siparişlerde geri gönderilir, nakde çevrilmez.'};}
+var _slideHtml39=slideHtml;
+slideHtml=function(s){
+  if(!s||!s.stands||(s.img&&s.img.url))return _slideHtml39(s);
+  standLegal();var m=+C.deals.standMin||0;
+  return '<article class="camp stand3 th-rose"><div class="st3-row">'+STANDS.map(function(x){return '<figure>'+standSvg(x[0])+'<figcaption>'+esc(x[1])+'</figcaption></figure>';}).join('')+'</div>'+
+    '<div class="st3-t">Takı standı hediye</div>'+
+    '<div class="st3-s">'+(m?esc(tl(m))+' ve üzeri siparişlerde':'Seçili siparişlerde')+' · <button class="st3-k" data-legal="stand">Koşullar</button></div></article>';
+};
+renderSlides();
 
 
 /* =========================================================
