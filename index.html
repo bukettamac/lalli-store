@@ -1824,6 +1824,26 @@ html.fdoc-lock body{position:fixed;left:0;right:0;overflow:hidden}
 .camp.th-rose{background:linear-gradient(135deg,#F8ECE6 0%,#E8C2B0 100%)!important;border-color:#E2BCA9!important;color:#3A2420}
 .camp.th-rose .when{color:#9A4F33}.camp.th-rose .big{color:#9A4F33}.camp.th-rose .d{color:#5A443C}
 .camp.th-rose .btn-line{border-color:#9A4F33;color:#9A4F33}.camp.th-rose .btn-line:hover{background:#9A4F33;color:#fff}
+
+/* v38: kompakt ayın kombini */
+.ct2.ct2-s{padding:12px 14px 14px;gap:2px;border-radius:20px}
+.ct2-s .ct2-hd{flex-direction:row;justify-content:space-between;width:100%;gap:8px}
+.ct2-s .ct-ey{font-size:10.5px;letter-spacing:.14em;gap:6px}
+.ct2-s .ct-ey svg{width:15px;height:15px}
+.ct2-s .ct2-cd{font-size:11px;padding:3px 10px}
+.ct2-s .ct2-pod{margin:16px 0 2px;gap:12px}
+.ct2-s .cz{gap:1px}
+.ct2-s .cz.p1 .cz-im{width:72px;height:88px;border-radius:14px}
+.ct2-s .cz.p2 .cz-im,.ct2-s .cz.p3 .cz-im{width:58px;height:72px;border-radius:12px}
+.ct2-s .cz-m{width:22px;height:22px;font-size:11px;top:-10px}
+.ct2-s .cz-pr{margin-top:5px;font-size:15px}
+.ct2-s .cz.p1 .cz-pr{font-size:18px}
+.ct2-s .cz-lk{font-size:10.5px}
+.ct2-s .ct2-cheer{margin:6px 0 0;font-size:19px}
+.ct2-s .ct2-note{font-size:12px}
+.ct2-kos{display:inline;min-height:0!important;padding:0;border:0;background:none;color:#E9D3A6;font-size:12px;text-decoration:underline;cursor:pointer}
+@media (min-width:900px){.ct2.ct2-s{padding:16px 22px 18px}.ct2-s .cz.p1 .cz-im{width:96px;height:118px}.ct2-s .cz.p2 .cz-im,.ct2-s .cz.p3 .cz-im{width:76px;height:94px}.ct2-s .ct2-cheer{font-size:24px}}
+#fxhero2{margin-top:10px;margin-bottom:12px}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -3606,6 +3626,19 @@ renderSlides=function(){
 };
 /* yönetici sonu v37 */
 renderSlides();
+
+
+/* =========================================================
+   v38: Ayın kombini kartı kompakt — yarı yükseklik
+   ========================================================= */
+var _contestHtml38=contestHtml;
+contestHtml=function(){
+  var h=_contestHtml38();if(!h)return h;
+  /* Koşullar bağlantısı slogan satırının sonuna */
+  h=h.replace(/<div class="ct2-b">[\s\S]*?<\/div>/,'');
+  h=h.replace(/(<p class="ct2-note">)([\s\S]*?)(<\/p>)/,'$1$2 · <button class="linkbtn ct2-kos" data-legal="contest">Koşullar</button>$3');
+  return h.replace('class="ct2"','class="ct2 ct2-s"');
+};
 
 
 /* =========================================================
