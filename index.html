@@ -1617,6 +1617,15 @@ span.fv-acc{font-weight:500}
 .sord .th svg,.sord .th img{width:100%;height:100%;object-fit:cover;display:block}
 .sord .tx{display:flex;flex-direction:column;line-height:1.3;font-size:13px;color:var(--muted)}
 .sord .tx b{color:var(--ink);font-weight:500;font-size:14px}
+
+/* v29: masaüstünde "Takip et" logonun altında */
+.fgrid [data-openfeed]{padding-inline:0!important}
+@media (min-width:1024px){
+  .fgrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:auto 1fr;row-gap:28px!important}
+  .fgrid>div:nth-child(1){grid-column:1;grid-row:1}
+  .fgrid>div:nth-child(5){grid-column:1;grid-row:2;align-self:start}
+  .fgrid>div:nth-child(2),.fgrid>div:nth-child(3),.fgrid>div:nth-child(4){grid-row:1/span 2}
+}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1820,7 +1829,7 @@ span.fv-acc{font-weight:500}
       <div><strong>YARDIM</strong><button data-anchor="sss">Sık sorulan sorular</button><span>Kargo: 1–3 iş günü, ücretsiz</span><span id="f-stand"></span><span>İade: 14 gün</span><span id="f-mail"></span></div>
       <div><strong>TAKİP ET</strong><a id="f-ig" target="_blank" rel="noopener">Instagram</a><a id="f-tt" target="_blank" rel="noopener">TikTok</a><button data-openfeed>Akış</button><button data-myorders>Siparişlerim</button></div>
     </div>
-    <div class="fbot"><span id="f-domain"></span><span>Önizleme · fiyat ve içerikler örnektir</span></div>
+    <div class="fbot"><span id="f-domain"></span><span>Tüm hakları saklıdır.</span></div>
   </div>
 </footer>
 
