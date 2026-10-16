@@ -1626,6 +1626,68 @@ span.fv-acc{font-weight:500}
   .fgrid>div:nth-child(5){grid-column:1;grid-row:2;align-self:start}
   .fgrid>div:nth-child(2),.fgrid>div:nth-child(3),.fgrid>div:nth-child(4){grid-row:1/span 2}
 }
+
+/* v30: hediye yarışması kartı ve rehber animasyonları */
+.fx-hero,.fx-tip{display:none!important}
+#fxhero2{max-width:1100px;margin:14px auto 18px;padding:0 4px}
+.ct{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:center;border-radius:24px;padding:24px 26px;background:linear-gradient(120deg,#2A1418 0%,#5E0E21 55%,#8E1630 100%);color:#FBEFE0;box-shadow:0 20px 50px rgba(94,14,33,.22)}
+.ct-glow{position:absolute;right:-60px;top:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(233,211,166,.45),rgba(233,211,166,0) 70%);pointer-events:none;animation:ctglow 5s ease-in-out infinite}
+@keyframes ctglow{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.15);opacity:1}}
+.ct-l{position:relative;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ct-ey{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#E9D3A6}
+.ct-ey svg{width:18px;height:18px}
+.ct-t{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,34px);line-height:1.12;color:#fff}
+.ct-p{margin:0;font-size:14px;line-height:1.5;color:#F3DFC6}
+.ct-cd{display:flex;align-items:center;gap:8px;margin-top:4px}
+.ct-cd span{display:flex;flex-direction:column;align-items:center;min-width:54px;padding:6px 8px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#E9D3A6}
+.ct-cd b{font-family:var(--serif);font-size:24px;font-weight:500;line-height:1;color:#fff;letter-spacing:0}
+.ct-cd em{font-style:normal;font-size:13px;color:#F3DFC6}
+.ct-b{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.ct-b .btn{min-height:46px;padding:0 20px;font-size:12px}
+.ct-b .linkbtn{color:#E9D3A6;font-size:13px;text-decoration:underline;min-height:40px}
+.ct-r{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ct-now{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#E9D3A6}
+.ct-pod{display:flex;align-items:flex-end;justify-content:center;gap:10px}
+.ct-pl{position:relative;border:0;padding:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.ct-im{display:block;border-radius:16px;overflow:hidden;background:#F8F2EA;border:2px solid rgba(255,255,255,.85);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.ct-im img,.ct-im svg{width:100%;height:100%;object-fit:cover;display:block}
+.ct-pl.p1{order:2}.ct-pl.p1 .ct-im{width:118px;height:150px;border-color:#E9D3A6}
+.ct-pl.p2{order:1}.ct-pl.p2 .ct-im{width:92px;height:118px}
+.ct-pl.p3{order:3}.ct-pl.p3 .ct-im{width:84px;height:104px}
+.ct-m{position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:#2A2220;background:linear-gradient(135deg,#F6E3B4,#C9A35C);box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.ct-pl.p2 .ct-m{background:linear-gradient(135deg,#F2F2F2,#B9B9B9)}
+.ct-pl.p3 .ct-m{background:linear-gradient(135deg,#F1C9A5,#B97A4A)}
+.ct-lk{display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:12px;color:#fff}
+.ct-lk svg{width:13px;height:13px;fill:#F08AA0;stroke:none}
+@media (max-width:760px){
+  .ct{grid-template-columns:minmax(0,1fr) auto;padding:16px 14px 16px 16px;gap:10px 12px;border-radius:20px}
+  .ct-l{gap:6px}.ct-t{font-size:21px}.ct-p{font-size:12.5px}
+  .ct-r{gap:6px;align-self:start;margin-top:4px}.ct-now{font-size:9.5px;letter-spacing:.12em}
+  .ct-pod{gap:5px}.ct-pl.p1 .ct-im{width:54px;height:70px;border-radius:12px}.ct-pl.p2 .ct-im,.ct-pl.p3 .ct-im{width:44px;height:58px;border-radius:10px}
+  .ct-m{width:20px;height:20px;font-size:10.5px;top:-9px}.ct-lk{font-size:10.5px;margin-top:3px}
+  .ct-cd span{min-width:44px;padding:4px 6px}.ct-cd b{font-size:19px}
+  .ct-b{grid-column:1/-1;margin-top:2px}.ct-b .btn{flex:1;min-height:44px}
+  .ct-glow{width:180px;height:180px}
+}
+/* rehber: fotoğrafa dokun */
+.coach{position:absolute;inset:0;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.coach-ring{position:absolute;width:74px;height:74px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 6px rgba(142,22,48,.35);animation:cring 1.4s ease-out infinite}
+@keyframes cring{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.coach-hand{position:absolute;width:46px;height:46px;transform:translate(14px,18px);animation:ctap 1.4s ease-in-out infinite;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
+.coach-hand svg{width:100%;height:100%}
+@keyframes ctap{0%,100%{transform:translate(14px,18px) scale(1)}45%{transform:translate(8px,10px) scale(.88)}}
+.coach-tip{position:absolute;bottom:14px;left:8px;right:8px;text-align:center;background:rgba(30,25,24,.88);color:#fff;font-size:12.5px;line-height:1.35;padding:8px 10px;border-radius:12px;animation:pop .3s ease-out}
+/* rehber: görüntüleyicide kaydır */
+.swcoach{position:fixed;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:opacity .3s}
+.swcoach.out{opacity:0}
+.sw-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:22px 26px 20px;border-radius:20px;background:rgba(30,25,24,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;text-align:center;font-size:13px;min-width:230px}
+.sw-card b{font-size:16px;font-weight:500;margin-top:6px}
+.sw-card span{color:#E9D3A6}
+.sw-card i{display:block;width:40px;height:1px;background:rgba(255,255,255,.25);margin:10px 0 4px}
+.sw-hand{width:48px;height:48px;animation:swup 1.3s ease-in-out infinite;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4))}
+.sw-hand svg{width:100%;height:100%}
+@keyframes swup{0%{transform:translateY(18px);opacity:0}25%{opacity:1}75%{transform:translateY(-22px);opacity:1}100%{transform:translateY(-26px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.coach-ring,.coach-hand,.sw-hand,.ct-glow{animation:none}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -1880,6 +1942,7 @@ span.fv-acc{font-weight:500}
   <div class="fx-body" id="fxbody">
     <div class="fx-stories" id="fxstories" aria-label="Son paylaşımlar"></div>
     <div class="fx-hero"><span class="eyebrow">LALLİ Akışı</span><h3 id="fxmotto">Tak takıştır, <em>LALLİ Akışı’nda</em> paylaş</h3><p>Müşterilerimizin kombinleri. Bir fotoğrafa dokun, içindeki takıları kaydırarak incele.</p><button class="btn btn-ruby" data-share="">Kombinini paylaş</button></div>
+    <div id="fxhero2"></div>
     <p class="fx-tip" id="feednote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15"/></svg>Fotoğrafa tıkla, takıları kaydırarak incele</p>
     <div class="fx-masonry" id="fgrid"></div>
     <div class="fx-sent" id="fxsent" aria-hidden="true"></div>
@@ -3169,6 +3232,39 @@ function openShare(orderId){
   shareFile=null;$('#orders').hidden=true;$('#share').hidden=false;updLinkPrev();
 }
 document.addEventListener('change',function(e){if(e.target.name!=='sord')return;SHARE_ORDER=e.target.value;var o=delivered().filter(function(x){return x.id===SHARE_ORDER;})[0];$('#sitems').innerHTML=shareItemsHtml(o);});
+
+
+/* =========================================================
+   v30: en çok beğenilen 3 kombine hediye + ilk ziyaret rehberi
+   ========================================================= */
+DEF.sections.contest={show:true,title:'Ayın en çok beğenilen 3 kombinine hediye',prize:'Birinciye 1.500 ₺, ikinciye 1.000 ₺, üçüncüye 500 ₺ LALLİ hediye çeki'};
+if(!C.sections.contest)C.sections.contest=clone(DEF.sections.contest);
+LEGAL_DEF.contest={title:'Ayın kombini: katılım koşulları',body:'Takvim ayı içinde LALLİ Akışı’nda yayınlanan paylaşımlar katılır. Ay sonunda en çok beğeni alan 3 paylaşımın sahiplerine hediye çeki verilir.\n\nYalnızca teslim edilmiş bir siparişe ait, kendi çektiğin fotoğraflar katılabilir. Kişi başı en fazla 3 paylaşım değerlendirilir. Sahte hesaplarla veya otomatik yollarla alınan beğeniler sayılmaz; LALLİ bu paylaşımları değerlendirme dışı bırakabilir.\n\nKazananlar ayın ilk haftası paylaşımlarında belirttikleri hesap ya da sipariş iletişim bilgisi üzerinden bilgilendirilir. Hediye çekleri nakde çevrilemez, 3 ay içinde kullanılır.\n\n[Kampanyayı yayına almadan önce bu metni bir hukukçuya kontrol ettir.]'};
+function monthLeft(){var n=new Date(),e=new Date(n.getFullYear(),n.getMonth()+1,1),ms=e-n,d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5);return {d:d,h:h,name:n.toLocaleDateString('tr-TR',{month:'long'})};}
+function topPosts(){var now=new Date(),m0=+new Date(now.getFullYear(),now.getMonth(),1);return feedItems().filter(function(x){return !x.example?(x.ts||0)>=m0:true;}).slice().sort(function(a,b){return likeCount(b.id)-likeCount(a.id)||(b.ts||0)-(a.ts||0);}).slice(0,3);}
+function contestHtml(){
+  var c=(C.sections&&C.sections.contest)||DEF.sections.contest;if(!c.show)return '';
+  var ml=monthLeft(),top=topPosts(),medal=['1','2','3'];
+  return '<section class="ct" aria-label="Ayın kombini yarışması">'+
+    '<div class="ct-glow" aria-hidden="true"></div>'+
+    '<div class="ct-l"><span class="ct-ey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13M12 8S10.5 3 8 3.5 7 8 12 8zM12 8s1.5-5 4-4.5S17 8 12 8z"/></svg>'+esc(ml.name.charAt(0).toLocaleUpperCase('tr')+ml.name.slice(1))+' ayının kombini</span>'+
+      '<h3 class="ct-t">'+esc(c.title)+'</h3><p class="ct-p">'+esc(c.prize)+'</p>'+
+      '<div class="ct-cd"><span><b>'+ml.d+'</b>gün</span><span><b>'+ml.h+'</b>saat</span><em>kaldı</em></div>'+
+      '<div class="ct-b"><button class="btn btn-gold" data-share="">Kombinini paylaş, katıl</button><button class="linkbtn" data-legal="contest">Koşullar</button></div></div>'+
+    '<div class="ct-r"><span class="ct-now">Şu an zirvede</span><div class="ct-pod">'+top.map(function(it,i){return '<button class="ct-pl p'+(i+1)+'" data-fview="'+esc(it.id)+'" aria-label="'+(i+1)+'. sıradaki kombin"><span class="ct-im">'+postMedia(it)+'</span><span class="ct-m">'+medal[i]+'</span><span class="ct-lk">'+HEART+(likeCount(it.id)||0)+'</span></button>';}).join('')+'</div></div>'+
+  '</section>';
+}
+var _renderFeed30=renderFeed;
+renderFeed=function(){_renderFeed30();var h=$('#fxhero2');if(h)h.innerHTML=contestHtml();paintLikes();};
+/* ilk ziyaret: fotoğrafa dokun rehberi */
+var _openFeed30=openFeed;
+openFeed=function(){_openFeed30.apply(this,arguments);if(S.get('lalli_coach1',false))return;setTimeout(function(){var p=$('#fgrid .pin .pin-wrap');if(!p||$('#feed').hidden)return;var c=document.createElement('div');c.className='coach';c.innerHTML='<span class="coach-ring"></span><span class="coach-hand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff" stroke="#2A2220" stroke-width="1.2"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15z"/></svg></span><span class="coach-tip">Bir fotoğrafa dokun,<br>kombini yakından gör</span>';p.appendChild(c);var off=function(){S.set('lalli_coach1',true);c.remove();document.removeEventListener('pointerdown',off,true);};document.addEventListener('pointerdown',off,true);setTimeout(off,9000);},700);};
+/* görüntüleyicide ilk kez: kaydırma rehberi ve küçük gösterim */
+var _openViewer30=openViewer;
+openViewer=function(id){_openViewer30(id);if(S.get('lalli_coach2',false))return;S.set('lalli_coach2',true);var h=$('#fvhint');if(!h)return;h.hidden=true;
+  var v=$('#fview'),c=document.createElement('div');c.className='swcoach';c.innerHTML='<div class="sw-card"><span class="sw-hand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff" stroke="#2A2220" stroke-width="1.2"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15z"/></svg></span><b>Yukarı kaydır</b><span>sıradaki kombin gelsin</span><i></i><b class="s2">Takılara dokun</b><span>altta, sağa kaydırarak incele</span></div>';v.appendChild(c);
+  var l=$('#fvlist');if(FV.list.length>1&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){setTimeout(function(){var y=l.scrollTop;l.scrollTo({top:y+120,behavior:'smooth'});setTimeout(function(){l.scrollTo({top:y,behavior:'smooth'});},650);},900);}
+  var off=function(){c.classList.add('out');setTimeout(function(){c.remove();},300);v.removeEventListener('pointerdown',off,true);};setTimeout(function(){v.addEventListener('pointerdown',off,true);},1600);setTimeout(off,5200);};
 
 
 /* =========================================================
