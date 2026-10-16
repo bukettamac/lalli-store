@@ -1772,6 +1772,25 @@ html.fdoc-lock body{position:fixed;left:0;right:0;overflow:hidden}
 .ct2-b .linkbtn{color:#E9D3A6;font-size:13px;text-decoration:underline;min-height:40px}
 @media (max-width:380px){.ct2-pod{gap:10px}.cz.p1 .cz-im{width:96px;height:122px}.cz.p2 .cz-im,.cz.p3 .cz-im{width:74px;height:96px}.cz-pr{font-size:17px}.cz.p1 .cz-pr{font-size:21px}}
 @media (min-width:900px){.ct2{padding:28px 24px 24px}.cz.p1 .cz-im{width:140px;height:178px}.cz.p2 .cz-im,.cz.p3 .cz-im{width:108px;height:138px}.ct2-pod{gap:22px}}
+
+/* v35: akış başlığı tek satır, canlı + düğmesi */
+#feedsub{display:none!important}
+.fx-plus{position:relative;overflow:visible;background:linear-gradient(135deg,#B0243F,#7A1730)!important;box-shadow:0 6px 16px -4px rgba(155,28,51,.55);animation:fxp-bob 3.2s ease-in-out infinite}
+.fx-plus::before,.fx-plus::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid rgba(176,36,63,.55);animation:fxp-ring 2.4s ease-out infinite;pointer-events:none}
+.fx-plus::after{animation-delay:1.2s}
+.fx-plus svg{position:relative;z-index:1;animation:fxp-spin 4.8s cubic-bezier(.6,0,.3,1) infinite}
+.fx-plus:hover svg,.fx-plus:focus-visible svg{animation:none;transform:rotate(90deg) scale(1.12);transition:transform .3s}
+.fx-plus:active{transform:scale(.92)}
+@keyframes fxp-ring{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.65);opacity:0}}
+@keyframes fxp-spin{0%,70%{transform:rotate(0)}85%{transform:rotate(180deg) scale(1.15)}100%{transform:rotate(180deg)}}
+@keyframes fxp-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+/* alt menü: Akış küçük görsel */
+.tabbar .tb-th{position:relative;display:block;width:24px;height:24px;border-radius:7px;overflow:hidden;background:#F3ECE2;box-shadow:0 0 0 1.5px var(--ruby);margin-bottom:1px}
+.tb-th .tb-l{position:absolute;inset:0;opacity:0;transform:scale(1.15);transition:opacity .6s ease,transform 1.2s ease}
+.tb-th .tb-l.on{opacity:1;transform:scale(1)}
+.tb-th .tb-l img,.tb-th .tb-l svg{width:100%!important;height:100%!important;object-fit:cover;display:block}
+.tb-th.tb-ic{background:var(--ruby)}
+@media (prefers-reduced-motion:reduce){.fx-plus,.fx-plus svg,.fx-plus::before,.fx-plus::after{animation:none}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -3493,6 +3512,32 @@ function contestHtml(){
   '</section>';
 }
 /* yönetici sonu v34 */
+
+
+/* =========================================================
+   v35: akış başlığı sadeleşti, motto hediye kartına taşındı,
+   + düğmesi canlı, alt menüde Akış küçük görsel döngüsü
+   ========================================================= */
+var _contestHtml35=contestHtml;
+contestHtml=function(){
+  var h=_contestHtml35();if(!h)return h;
+  var motto=(C.feed&&C.feed.motto)||'Tak takıştır, LALLİ Akışı’nda paylaş';
+  h=h.replace(/<p class="ct2-note">[\s\S]*?<\/p>/,'<p class="ct2-note">'+esc(motto)+'</p>');
+  h=h.replace(/<button class="btn btn-gold" data-share="">[^<]*<\/button>/,'');
+  return h;
+};
+(function(){
+  var b=$('.tabbar [data-openfeed]');if(!b)return;
+  var svg=b.querySelector('svg');var box=document.createElement('span');box.className='tb-th';box.setAttribute('aria-hidden','true');
+  box.innerHTML='<span class="tb-l on"></span><span class="tb-l"></span>';
+  if(svg)svg.replaceWith(box);else b.prepend(box);
+  var L=box.children,cur=0,k=0;
+  function pool(){try{return feedItems().filter(function(x){return x&&(x.url||x.example);}).slice(0,12);}catch(e){return [];}}
+  function paint(first){var p=pool();if(!p.length){box.classList.add('tb-ic');return;}box.classList.remove('tb-ic');var it=p[k%p.length];k++;var nx=first?L[cur]:L[1-cur];nx.innerHTML=postMedia(it);if(!first){L[cur].classList.remove('on');nx.classList.add('on');cur=1-cur;}}
+  setTimeout(function(){paint(true);},800);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce)setInterval(function(){if(document.hidden||!$('#feed').hidden)return;paint(false);},3500);
+})();
 
 
 /* =========================================================
