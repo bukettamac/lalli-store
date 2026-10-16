@@ -1791,6 +1791,24 @@ html.fdoc-lock body{position:fixed;left:0;right:0;overflow:hidden}
 .tb-th .tb-l img,.tb-th .tb-l svg{width:100%!important;height:100%!important;object-fit:cover;display:block}
 .tb-th.tb-ic{background:var(--ruby)}
 @media (prefers-reduced-motion:reduce){.fx-plus,.fx-plus svg,.fx-plus::before,.fx-plus::after{animation:none}}
+
+/* v36: son baktıklarım satırı */
+.rv{margin-top:30px;padding-top:20px;border-top:1px solid #F1EBE2}
+.rv-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.rv-hd h3{margin:0;font-family:var(--serif);font-weight:500;font-size:22px}
+.rv-hd span{font-size:12.5px;color:var(--muted)}
+.rv-row{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin:0 -16px;padding:2px 16px 8px;scroll-padding:0 16px}
+.rv-row::-webkit-scrollbar{display:none}
+.rv-it{flex:0 0 128px;display:flex;flex-direction:column;gap:4px;border:0;background:none;padding:0;text-align:left;cursor:pointer;scroll-snap-align:start;color:var(--ink)}
+.rv-im{position:relative;display:block;width:128px;height:128px;border-radius:16px;overflow:hidden;background:var(--sand)}
+.rv-im img,.rv-im svg{width:100%;height:100%;object-fit:cover;display:block}
+.rv-it.so .rv-im{opacity:.55}
+.rv-fav{position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.rv-fav svg{width:13px!important;height:13px!important;fill:var(--ruby);stroke:var(--ruby)}
+.rv-nm{font-size:13.5px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-pr{display:flex;gap:6px;align-items:baseline;font-size:13.5px;font-weight:500}
+.rv-pr s{font-size:11.5px;color:var(--muted);font-weight:400}
+@media (min-width:1024px){.rv-row{margin:0;padding:2px 0 8px}.rv-it{flex-basis:140px}.rv-im{width:140px;height:140px}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -3538,6 +3556,20 @@ contestHtml=function(){
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reduce)setInterval(function(){if(document.hidden||!$('#feed').hidden)return;paint(false);},3500);
 })();
+
+
+/* =========================================================
+   v36: Favorilerim altında "Son baktıklarım" — tek satır, yana kayar
+   ========================================================= */
+function recentRowHtml(){
+  var list=recent.filter(function(id){return byId[id]&&!byId[id].hidden;}).slice(0,12);
+  if(!list.length)return '';
+  return '<section class="rv" aria-labelledby="rvt"><div class="rv-hd"><h3 id="rvt">Son baktıklarım</h3><span>'+list.length+' ürün</span></div><div class="rv-row">'+
+    list.map(function(id){var p=byId[id];return '<button class="rv-it'+(p.soldout?' so':'')+'" data-qv="'+p.id+'" aria-label="'+esc(p.name)+' ürününü incele"><span class="rv-im">'+art(p)+(favs.indexOf(p.id)>-1?'<i class="rv-fav" aria-hidden="true">'+HEART+'</i>':'')+'</span><span class="rv-nm">'+esc(p.name)+'</span><span class="rv-pr">'+priceHtml(p)+'</span></button>';}).join('')+
+  '</div></section>';
+}
+var _favListHtml36=favListHtml;favListHtml=function(){return _favListHtml36()+recentRowHtml();};
+(function(){var q=$('#qv');if(!q)return;new MutationObserver(function(){if(q.hidden&&!$('#favpage').hidden)renderFavs();}).observe(q,{attributes:true,attributeFilter:['hidden']});})();
 
 
 /* =========================================================
