@@ -1809,6 +1809,21 @@ html.fdoc-lock body{position:fixed;left:0;right:0;overflow:hidden}
 .rv-pr{display:flex;gap:6px;align-items:baseline;font-size:13.5px;font-weight:500}
 .rv-pr s{font-size:11.5px;color:var(--muted);font-weight:400}
 @media (min-width:1024px){.rv-row{margin:0;padding:2px 0 8px}.rv-it{flex-basis:140px}.rv-im{width:140px;height:140px}}
+
+/* v37: renkli fırsat kartları */
+.camp.th-blush{background:linear-gradient(135deg,#FBE9EC 0%,#F3C9D1 100%)!important;border-color:#EFC3CC!important;color:#3A1520}
+.camp.th-blush .when{color:#9B1C33}.camp.th-blush .big{color:#9B1C33}.camp.th-blush .d{color:#5A3A40}
+.camp.th-blush .btn-line{border-color:#9B1C33;color:#9B1C33}.camp.th-blush .btn-line:hover{background:#9B1C33;color:#fff}
+.camp.th-champ{background:linear-gradient(135deg,#FBF3E0 0%,#E9D3A6 100%)!important;border-color:#E3CB98!important;color:#2A2220}
+.camp.th-champ .when{color:#8A5A12}.camp.th-champ .big{color:#7A1E33}.camp.th-champ .d{color:#4F4234}
+.camp.th-champ .btn-line{border-color:#2A2220;color:#2A2220}.camp.th-champ .btn-line:hover{background:#2A2220;color:#F6E3B4}
+.camp.th-wine{background:radial-gradient(120% 120% at 0% 0%,#B0243F 0%,#7A1730 55%,#4A0E1D 100%)!important;border-color:#7A1730!important;color:#fff}
+.camp.th-wine .when{color:#F6E3B4}.camp.th-wine .big{color:#F6E3B4}.camp.th-wine .t{color:#fff}.camp.th-wine .d{color:#F3DFC6}
+.camp.th-wine .btn-gold{border:0}
+.camp.th-wine svg [stroke="#2A2220"],.camp.th-wine .vis svg{filter:none}
+.camp.th-rose{background:linear-gradient(135deg,#F8ECE6 0%,#E8C2B0 100%)!important;border-color:#E2BCA9!important;color:#3A2420}
+.camp.th-rose .when{color:#9A4F33}.camp.th-rose .big{color:#9A4F33}.camp.th-rose .d{color:#5A443C}
+.camp.th-rose .btn-line{border-color:#9A4F33;color:#9A4F33}.camp.th-rose .btn-line:hover{background:#9A4F33;color:#fff}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -3570,6 +3585,27 @@ function recentRowHtml(){
 }
 var _favListHtml36=favListHtml;favListHtml=function(){return _favListHtml36()+recentRowHtml();};
 (function(){var q=$('#qv');if(!q)return;new MutationObserver(function(){if(q.hidden&&!$('#favpage').hidden)renderFavs();}).observe(q,{attributes:true,attributeFilter:['hidden']});})();
+
+
+/* =========================================================
+   v37: fırsat kartları renkli — açık temalı kartlar sırayla
+   gül, şampanya, şarap ve pudra tonlarını alır
+   ========================================================= */
+var CTONES=['blush','champ','wine','rose'];
+var _renderSlides37=renderSlides;
+renderSlides=function(){
+  _renderSlides37();
+  var n=0;$$('#camps .camp').forEach(function(el){
+    var m=el.className.match(/\bth-(\w+)/),th=m?m[1]:'light';
+    if(th==='light'){var t=CTONES[n%CTONES.length];n++;el.classList.remove('th-light');el.classList.add('th-'+t);
+      if(t==='wine')$$('.btn-line',el).forEach(function(b){b.classList.remove('btn-line');b.classList.add('btn-gold');});}
+    else if(th==='plain'){el.classList.remove('th-plain');el.classList.add('th-light');}
+    else if(['blush','champ','wine','rose'].indexOf(th)>-1&&th==='wine')$$('.btn-line',el).forEach(function(b){b.classList.remove('btn-line');b.classList.add('btn-gold');});
+  });
+  if(typeof CAMP!=='undefined'&&CAMP.dots)CAMP.dots();
+};
+/* yönetici sonu v37 */
+renderSlides();
 
 
 /* =========================================================
