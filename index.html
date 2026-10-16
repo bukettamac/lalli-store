@@ -1678,7 +1678,7 @@ span.fv-acc{font-weight:500}
 @keyframes ctap{0%,100%{transform:translate(14px,18px) scale(1)}45%{transform:translate(8px,10px) scale(.88)}}
 .coach-tip{position:absolute;bottom:14px;left:8px;right:8px;text-align:center;background:rgba(30,25,24,.88);color:#fff;font-size:12.5px;line-height:1.35;padding:8px 10px;border-radius:12px;animation:pop .3s ease-out}
 /* rehber: görüntüleyicide kaydır */
-.swcoach{position:fixed;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:opacity .3s}
+.swcoach{pointer-events:none;position:fixed;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:opacity .3s}
 .swcoach.out{opacity:0}
 .sw-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:22px 26px 20px;border-radius:20px;background:rgba(30,25,24,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;text-align:center;font-size:13px;min-width:230px}
 .sw-card b{font-size:16px;font-weight:500;margin-top:6px}
@@ -1688,6 +1688,18 @@ span.fv-acc{font-weight:500}
 .sw-hand svg{width:100%;height:100%}
 @keyframes swup{0%{transform:translateY(18px);opacity:0}25%{opacity:1}75%{transform:translateY(-22px);opacity:1}100%{transform:translateY(-26px);opacity:0}}
 @media (prefers-reduced-motion:reduce){.coach-ring,.coach-hand,.sw-hand,.ct-glow{animation:none}}
+
+/* v31: kaydırma geçiş animasyonları ve seçili sekme */
+@keyframes tabinR{from{transform:translateX(38%);opacity:.3}to{transform:none;opacity:1}}
+@keyframes tabinL{from{transform:translateX(-38%);opacity:.3}to{transform:none;opacity:1}}
+.tabin-r{animation:tabinR .34s cubic-bezier(.2,.8,.2,1)}
+.tabin-l{animation:tabinL .34s cubic-bezier(.2,.8,.2,1)}
+#fview{will-change:transform;overflow:hidden}
+@media (max-width:1023px){
+  .tabbar button{transition:color .2s}
+  .tabbar button[aria-current=page]::before{content:"";position:absolute;top:0;left:50%;width:28px;height:3px;border-radius:0 0 3px 3px;background:var(--ruby);transform:translateX(-50%)}
+}
+@media (prefers-reduced-motion:reduce){.tabin-r,.tabin-l{animation:none}}
 /* mağaza: ödeme adımı ve hesap */
 .ckoform{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .ckback{align-self:flex-start;font-size:14px;min-height:40px}
@@ -3071,7 +3083,7 @@ function openViewer(id){
 }
 var _pinHtml25=pinHtml;pinHtml=function(it,k){var h=_pinHtml25(it,k);return it.example?h.replace('<div class="pin-wrap">','<div class="pin-wrap"><span class="ex">Örnek</span>'):h;};
 /* parmakla sağa kaydırınca akışa dön (ürün şeridi hariç) */
-(function(){var sx=0,sy=0,ok=false;var v=$('#fview');v.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;ok=!e.target.closest('.fd-prods');},{passive:true});v.addEventListener('touchend',function(e){if(!ok)return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(dx>90&&Math.abs(dy)<60)closeViewer();},{passive:true});})();
+/* (v25 kaydırma v31 ile değişti) */
 
 
 /* =========================================================
@@ -3209,7 +3221,7 @@ function openViewer(id){
   setTimeout(function(){var x=$('#fview [data-fvclose]');if(x)x.focus({preventScroll:true});},60);
 }
 /* sağa kaydırınca akış ızgarasına dön (ürün şeridi hariç) */
-(function(){var sx=0,sy=0,ok=false,v=$('#fview');v.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;ok=!e.target.closest('.fv-sq,.fd-prods');},{passive:true});v.addEventListener('touchend',function(e){if(!ok)return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>90&&Math.abs(dy)<70)closeViewer();},{passive:true});})();
+/* (v28 kaydırma v31 ile değişti) */
 
 /* paylaşım: önce teslim edilen siparişi seç */
 var SHARE_ORDER='';
@@ -3265,6 +3277,56 @@ openViewer=function(id){_openViewer30(id);if(S.get('lalli_coach2',false))return;
   var v=$('#fview'),c=document.createElement('div');c.className='swcoach';c.innerHTML='<div class="sw-card"><span class="sw-hand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff" stroke="#2A2220" stroke-width="1.2"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15z"/></svg></span><b>Yukarı kaydır</b><span>sıradaki kombin gelsin</span><i></i><b class="s2">Takılara dokun</b><span>altta, sağa kaydırarak incele</span></div>';v.appendChild(c);
   var l=$('#fvlist');if(FV.list.length>1&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){setTimeout(function(){var y=l.scrollTop;l.scrollTo({top:y+120,behavior:'smooth'});setTimeout(function(){l.scrollTo({top:y,behavior:'smooth'});},650);},900);}
   var off=function(){c.classList.add('out');setTimeout(function(){c.remove();},300);v.removeEventListener('pointerdown',off,true);};setTimeout(function(){v.addEventListener('pointerdown',off,true);},1600);setTimeout(off,5200);};
+
+
+/* =========================================================
+   v31: parmakla kolay geçişler
+   - Akış görüntüleyicisinde sağa/sola sürükleyince ekran parmağı izler, bırakınca Pinterest ızgarasına döner
+   - Telefonda alt menü sekmeleri arasında sağa/sola kaydırarak geçiş
+   ========================================================= */
+(function(){
+  var v=$('#fview');if(!v)return;
+  var sx=0,sy=0,t0=0,mode='',dx=0;
+  function reset(anim){v.style.transition=anim?'transform .22s ease, opacity .22s ease':'';v.style.transform='';v.style.opacity='';}
+  v.addEventListener('touchstart',function(e){if(e.touches.length!==1){mode='no';return;}var t=e.touches[0];sx=t.clientX;sy=t.clientY;t0=Date.now();dx=0;mode=e.target.closest('.fv-sq,.fd-prods')?'no':'';var sc=$('.swcoach');if(sc){sc.classList.add('out');setTimeout(function(){sc.remove();},300);}},{passive:true});
+  v.addEventListener('touchmove',function(e){if(mode==='no'||mode==='v')return;var t=e.touches[0],x=t.clientX-sx,y=t.clientY-sy;
+    if(!mode){if(Math.abs(x)<8&&Math.abs(y)<8)return;mode=Math.abs(x)>Math.abs(y)*1.1?'h':'v';if(mode==='v')return;}
+    dx=x;e.preventDefault();var w=window.innerWidth;v.style.transition='none';v.style.transform='translateX('+dx+'px) scale('+(1-Math.min(Math.abs(dx)/w,1)*.08)+')';v.style.opacity=String(1-Math.min(Math.abs(dx)/w,1)*.5);v.style.borderRadius='18px';
+  },{passive:false});
+  v.addEventListener('touchend',function(){if(mode!=='h'){mode='';return;}mode='';var dt=Math.max(1,Date.now()-t0),vel=Math.abs(dx)/dt;
+    if(Math.abs(dx)>window.innerWidth*.22||(vel>.45&&Math.abs(dx)>30)){v.style.transition='transform .2s ease, opacity .2s ease';v.style.transform='translateX('+(dx>0?1:-1)*window.innerWidth+'px) scale(.92)';v.style.opacity='0';setTimeout(function(){closeViewer();reset(false);v.style.borderRadius='';},190);}
+    else{reset(true);setTimeout(function(){v.style.borderRadius='';},230);}
+  });
+})();
+
+/* alt menü sekmeleri arasında kaydırma */
+var TABORDER=['home','cart','feed','favs','profile'];
+function curTab(){if(!$('#profile').hidden)return 'profile';if(!$('#feed').hidden)return 'feed';if($('#drawer').classList.contains('open'))return 'cart';if(st.favs)return 'favs';return 'home';}
+function closeAllTabs(){if(!$('#fview').hidden)closeViewer();if(!$('#profile').hidden)closeProfile();if(!$('#feed').hidden)closeFeed();if($('#drawer').classList.contains('open'))closeCart();}
+function goTab(name,dir){
+  closeAllTabs();
+  if(name==='home'){if(st.favs)goShop('all',{noscroll:true});window.scrollTo({top:0});}
+  else if(name==='cart')openCart();
+  else if(name==='feed')openFeed();
+  else if(name==='favs')goShop('all',{favs:true});
+  else if(name==='profile')openProfile();
+  var el=name==='feed'?$('#feed'):name==='profile'?$('#profile'):name==='cart'?$('#drawer'):$('main');
+  if(el&&dir){el.classList.remove('tabin-l','tabin-r');void el.offsetWidth;el.classList.add(dir>0?'tabin-r':'tabin-l');setTimeout(function(){el.classList.remove('tabin-l','tabin-r');},420);}
+  $$('.tabbar button').forEach(function(b,i){b.toggleAttribute('aria-current',false);});
+  var ix=TABORDER.indexOf(name),bt=$$('.tabbar button')[ix];if(bt)bt.setAttribute('aria-current','page');
+}
+function hScrollable(el){for(var n=el;n&&n!==document.body;n=n.parentElement){if(n.matches&&n.matches('.camps,.catbar,.cats,#cats,.fd-prods,.fv-sq,.pf-cps,.qthumbs,.marq,.pchips,.ct-pod,input,textarea,select,.fx-masonry .nope'))return true;var cs=getComputedStyle(n);if((cs.overflowX==='auto'||cs.overflowX==='scroll')&&n.scrollWidth>n.clientWidth+4)return true;}return false;}
+function anyModal(){return ['#qv','#share','#orders','#welcome','#legal','#kombin'].some(function(s){var e=$(s);return e&&!e.hidden;})||!$('#fview').hidden||($('#sfilters')&&$('#sfilters').classList.contains('open'))||$('#mainnav').classList.contains('open');}
+(function(){
+  var sx=0,sy=0,t0=0,ok=false;
+  document.addEventListener('touchstart',function(e){if(window.innerWidth>1023||e.touches.length!==1){ok=false;return;}var t=e.touches[0];sx=t.clientX;sy=t.clientY;t0=Date.now();ok=!anyModal()&&!hScrollable(e.target)&&!e.target.closest('.tabbar');},{passive:true});
+  document.addEventListener('touchend',function(e){if(!ok)return;ok=false;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-t0;
+    if(dt>700||Math.abs(dx)<70||Math.abs(dx)<Math.abs(dy)*1.7)return;
+    var i=TABORDER.indexOf(curTab()),j=i+(dx<0?1:-1);if(j<0||j>=TABORDER.length)return;goTab(TABORDER[j],dx<0?1:-1);
+  },{passive:true});
+})();
+/* sekme çubuğundaki seçili sekmeyi güncel tut */
+setInterval(function(){if(window.innerWidth>1023)return;var c=curTab(),ix=TABORDER.indexOf(c);$$('.tabbar button').forEach(function(b,i){if(i===ix)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});},500);
 
 
 /* =========================================================
